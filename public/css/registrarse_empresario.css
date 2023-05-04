@@ -1,0 +1,220 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+#REGISTRO_EMPRESARIO_BOTON{
+  
+    position: absolute;
+    left : 82%;
+    top : 32px;
+    padding: 16px;
+    width: 256px;
+    border-radius: 9999px;
+    font-size : 24px;
+    font-family : monospace;
+    color : #000;
+    text-decoration : none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#REGISTRO_EMPRESARIO{
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    background-image : url('../img/fondo_registrar_empresario.jpg');
+    background-size: 100%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#REGISTRO_EMPRESARIO_IMAGEN{
+    height: 100vh;
+    width: 50%;
+}
+
+#REGISTRO_EMPRESARIO_IMAGEN img{
+    height: 480px;
+    width: 520px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 128px ;
+    position: absolute;
+    top : 18%;
+    left : 10%;
+    box-shadow: 0 24px 18px -6px black;
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO{
+    top : 64px;
+    position: absolute;
+    left: 47%;
+    
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO h1{
+    text-align: center;
+    font-size: 5rem;
+    color : white;
+    font-family: Farmhouse;
+    text-shadow: 3px 6px #04182b;
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO p{
+    text-align: center;
+    font-size: 1.2rem;
+    color : white;
+    position: relative;
+    left : -24px;
+    top : -32px;
+    max-width: 1040px;
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO form{
+    display: inline;
+    position: relative;
+    left : 24%;
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO input::placeholder{
+    font-size: 15px;
+    font-family: monospace;
+    font-style: italic;
+}
+
+#REGISTRO_EMPRESARIO_FORMULARIO input{
+    display : block;
+    margin : 4px;
+    padding: 4px;
+    border-radius: 24px;
+    width: 280px;
+    height: 32px;
+}
+
+
+
+#REGISTRO_EMPRESARIO_FORMULARIO #input_empresario_submit{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    position: relative;
+    top : -132px;
+    height: 64px;
+    width: 288px;
+    cursor: pointer;
+}
+
+#input_empresario_nombre, #input_empresario_correo{
+    position: relative;
+    left : -160px;
+}
+#input_empresario_nombreEmpresa{
+    position: relative;
+    left : 8px;
+    top : -156px;
+}
+#input_empresario_dni, #input_empresario_password{
+    position: relative;
+    left : 200px;
+    top : -160px;
+}
+
+#input_empresario_nif{
+    position: relative;
+    left : 200px;
+    top : -234px;
+}
+
+
+#REGISTRO_empresario_nombre_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : -56px;
+}
+#REGISTRO_empresario_correo_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : -56px;
+}
+#REGISTRO_empresario_dni_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 332px;
+    top : -160px
+}
+#REGISTRO_empresario_nif_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 332px;
+    top : -240px
+}
+
+#REGISTRO_empresario_nombreEmpresa_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 24px;
+    top : -160px;
+}
+
+
+#REGISTRO_empresario_password_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 280px;
+    top : -160px
+}
+
+#REGISTRO_empresario_select_label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 36px;
+    top : -148px
+}
+
+#REGISTRO_empresario_select{
+    width: 512px;
+    display : block;
+    margin : 4px;
+    padding: 4px;
+    border-radius: 24px;
+    height: 32px;
+    font-family: monospace;
+    font-size: 16px;
+    position: relative;
+    top : -148px;
+    left : -116px;
+}
+

@@ -1,0 +1,31 @@
+extends layout.pug 
+
+block content
+
+    div#REGISTRO_EMPRESARIO
+        button#REGISTRO_EMPRESARIO_BOTON Volver Atrás
+        div#REGISTRO_EMPRESARIO_IMAGEN 
+            img(src="../img/registrar_empresario.png", alt="")
+        div#REGISTRO_EMPRESARIO_FORMULARIO
+            h1 Registro ~ Empresario
+            p Rellene este simple formulario para convertirte en miembro de nuestra página. ¡Su nuevo espacio de trabajo está esperando!
+
+            form
+                label#REGISTRO_empresario_nombre_label Nombre
+                input(type="text" id="input_empresario_nombre" name="input_empresario_nombre" placeholder="Inserte su nombre: min 3 caract.") 
+                label#REGISTRO_empresario_correo_label Correo
+                input(type="text" id="input_empresario_correo" name="input_empresario_correo" placeholder="Inserte su correo: xxx@gmail.com") 
+                label#REGISTRO_empresario_dni_label DNI
+                input(type="text" id="input_empresario_dni" name="input_empresario_dni" placeholder="Inserte su DNI: 00000000X") 
+                label#REGISTRO_empresario_password_label Contraseña
+                input(type="password" id="input_empresario_password" name="input_empresario_password" placeholder="Inserte su contraseña: min 8 caract.") 
+                label#REGISTRO_empresario_nombreEmpresa_label Nombre de la Empresa
+                input(type="text" id="input_empresario_nombreEmpresa" name="input_empresario_nombreEmpresa" placeholder="Inserte él nombre de la empresa") 
+
+                label#REGISTRO_empresario_select_label Categoría / Sector
+                select#REGISTRO_empresario_select
+                    option Seleccione una categoría
+                    option Agricultura
+                input(type="button" value="Registrarse" id="input_empresario_submit") 
+    
+    script(type="text/javascript", src="../js/registro_empresario.js")

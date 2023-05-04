@@ -1,0 +1,28 @@
+extends layout.pug 
+
+block content
+
+    div#REGISTRO_OFERENTE
+        button#REGISTRO_OFERENTE_BOTON Volver Atrás
+        div#REGISTRO_OFERENTE_IMAGEN 
+            img(src="../img/registrar_oferente.png", alt="")
+        div#REGISTRO_OFERENTE_FORMULARIO
+            h1 Registro ~ Oferente
+            p Rellene este simple formulario para convertirte en miembro de nuestra página. ¡Las empresas están esperandote!
+
+            form
+                label#REGISTRO_oferente_nombre_label Nombre
+                input(type="text" id="input_oferente_nombre" name="input_oferente_nombre" placeholder="Inserte su nombre") 
+                label#REGISTRO_oferente_correo_label Correo
+                input(type="text" id="input_oferente_correo" name="input_oferente_correo" placeholder="Inserte su correo") 
+                label#REGISTRO_oferente_dni_label DNI
+                input(type="text" id="input_oferente_dni" name="input_oferente_dni" placeholder="Inserte su dni") 
+                label#REGISTRO_oferente_password_label Contraseña
+                input(type="password" id="input_oferente_password" name="input_oferente_password" placeholder="Inserte su contraseña") 
+                
+                label#REGISTRO_oferente_select_label Categoría / Sector
+                select#REGISTRO_oferente_select
+                    option Seleccione una categoría
+                input(type="button" value="Registrarse" id="input_oferente_submit") 
+    
+    script(type="text/javascript", src="../js/registro_oferente.js")

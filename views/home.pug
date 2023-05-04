@@ -1,0 +1,31 @@
+extends layout.pug 
+
+block content
+
+    -if(usuario != null)
+
+        //- PERFIL ADMIN
+        -if(usuario.rol == "admin")
+
+            p Hola estas en ADMIN 
+
+        //- PERFIL EMPRESARIO
+        -if(usuario.rol == "empresario")
+
+            p Hola estas en EMPRESARIO 
+
+        //- PERFIL TRABAJADOR
+        -if(usuario.rol == "trabajador")
+
+            p Hola estas en TRABAJADOR 
+
+        //- PERFIL EMPRESARIO
+        -if(usuario.rol == "oferente")
+
+            p Hola estas en OFERENTE 
+
+
+    //- No existe el usuario    
+    -else
+        script.
+            location.href ='/iniciarSesion';  

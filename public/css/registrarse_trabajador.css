@@ -1,0 +1,130 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+#REGISTRO_TRABAJADOR_BOTON{
+  
+    position: absolute;
+    left : 82%;
+    top : 32px;
+    padding: 16px;
+    width: 256px;
+    border-radius: 9999px;
+    font-size : 24px;
+    font-family : monospace;
+    color : #000;
+    text-decoration : none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#REGISTRO_TRABAJADOR{
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    background-image : url('../img/fondo_registrar_trabajador.jpg');
+    background-size: 100%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#REGISTRO_TRABAJADOR_IMAGEN{
+    height: 100vh;
+    width: 50%;
+}
+
+#REGISTRO_TRABAJADOR_IMAGEN img{
+    height: 480px;
+    width: 520px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 128px ;
+    position: absolute;
+    top : 18%;
+    left : 10%;
+    box-shadow: 0 24px 18px -6px black;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO{
+    top : 64px;
+    position: absolute;
+    left: 48%;
+    
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO h1{
+    text-align: center;
+    font-size: 5rem;
+    color : white;
+    font-family: Farmhouse;
+    text-shadow: 3px 6px #04182b;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO p{
+    text-align: center;
+    font-size: 1.2rem;
+    color : white;
+    position: relative;
+    left : -24px;
+    top : -32px;
+    max-width: 1040px;
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO form{
+    display: inline;
+    position: relative;
+    left : 24%;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO input::placeholder{
+    font-size: 15px;
+    font-family: monospace;
+    font-style: italic;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO input{
+    display : block;
+    margin : 4px;
+    padding: 4px;
+    border-radius: 24px;
+    width: 280px;
+    height: 32px;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO label{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    left : 16px;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+    left : 80px;
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO label:first-child{
+    color : #fff;
+    font-size: 24px;
+    position: relative;
+    left : 16px;
+    font-family: monospace;
+    background-color: rgba(99, 16, 92, 0.523);  
+    backdrop-filter: blur(5px);
+}
+
+#REGISTRO_TRABAJADOR_FORMULARIO #input_trabajador_submit{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    position: relative;
+    top : 16px;
+    height: 64px;
+    width: 288px;
+    cursor: pointer;
+}
+

@@ -1,0 +1,22 @@
+extends layout.pug 
+
+block content
+
+    
+    div#REGISTRO
+        button#REGISTRO_ATRAS Volver Atrás
+        h1#REGISTRO_titulo_modal ¡Gracias por la Oportunidad!
+        p#REGISTRO_texto_modal ¡Estás a punto de unirte a la comunidad de TeamWork!. Porfavor elija el papel que más se asemeje a su necesidad.
+
+        div#REGISTRO_div_contenedor
+            div#REGISTRO_div 
+                img(src='./img/registrar_empresario.png' id='REGISTRO_registrar_empresario')
+                button#REGISTRO_boton_empresario EMPRESARIO
+            div#REGISTRO_div 
+                img(src='./img/registrar_trabajador.png' id='REGISTRO_registrar_trabajador')
+                button#REGISTRO_boton_trabajador TRABAJADOR
+            div#REGISTRO_div 
+                img(src='./img/registrar_oferente.png' id='REGISTRO_registrar_oferente')
+                button#REGISTRO_boton_oferente OFERENTE
+
+    script(type="text/javascript", src="../js/registrarse.js")

@@ -1,0 +1,114 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+
+#REGISTRO{
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    background-image : url('../img/registrar_fondo.png');
+    background-size: 100%;
+    height: 100vh;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+#REGISTRO_registrar_empresario, #REGISTRO_registrar_trabajador, #REGISTRO_registrar_oferente{
+    width: 360px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+#REGISTRO_atras_modal{
+
+    cursor: pointer;
+    
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    width: 64px;
+    height: 64PX;
+    
+    margin : 8px;
+}
+
+#REGISTRO_titulo_modal{
+    font-family : Farmhouse;
+    text-align: center;
+    font-size: 4.5rem;
+    color : rgb(0, 0, 0);
+}
+
+#REGISTRO_texto_modal{
+    color : rgb(0, 0, 0);
+    text-align: center;
+    max-width: 660px;
+    font-size: 20px;
+    font-family: monospace;
+    position: absolute;
+    left : 29%;
+    top : 132px;
+    background-color: rgba(243, 240, 240, 0.523);  
+    backdrop-filter: blur(5px);
+}
+
+#REGISTRO_div_contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left : 108px;
+    top : 224px;
+}
+
+#REGISTRO_boton_empresario, #REGISTRO_boton_trabajador, #REGISTRO_boton_oferente{
+    top : 16px;
+    left : 88px;
+    position: relative;
+    border-radius: 99px;
+    width: 182px;
+    height: 46px;
+    background-color: transparent;
+    border : 6px rgb(253, 253, 253) solid;
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: white;
+    cursor : pointer;
+}
+
+#REGISTRO_boton_empresario{
+    border : rgb(0, 0, 0) solid 6px;
+    color : rgb(0, 0, 0);
+}
+
+#REGISTRO_boton_trabajador{
+    border : rgb(0, 0, 0) solid 6px;
+    color : rgb(0, 0, 0);
+}
+
+#REGISTRO_boton_oferente{
+    border : rgb(0, 0, 0) solid 6px;
+    color : rgb(0, 0, 0);
+}
+
+#REGISTRO_ATRAS{
+  
+    position: absolute;
+    left : 82%;
+    top : 32px;
+    padding: 16px;
+    width: 256px;
+    border-radius: 9999px;
+    font-size : 24px;
+    font-family : monospace;
+    color : #000;
+    text-decoration : none;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* EMPRESARIO */

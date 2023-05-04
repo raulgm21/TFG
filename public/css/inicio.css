@@ -1,0 +1,386 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+
+body{
+    overflow-x: hidden;
+    height: 200vh;
+}
+
+.INICIO_imagen_inicio{
+    width: 105%;
+    height: 115vh;
+    position: absolute;
+    top : -8px;
+    left : -16px;
+    filter: blur(2px);
+}
+
+.INICIO_div_titulo_inicio{
+    display: flex;
+    justify-content: center; 
+}
+
+.INICIO_titulo_inicio{
+    text-align: center;
+    font-size: 5rem;
+    color : white;
+    font-family: Farmhouse;
+    position: absolute;
+    top : 32%;
+    text-shadow: 3px 6px #04182b;
+    
+}
+
+.INICIO_texto_inicio{
+    text-align: center;
+    font-size: 1.2rem;
+    color : white;
+    max-width: 1040px;
+    position: absolute;
+    top : 56%;
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+    
+    
+}
+
+.INICIO_iniciarsesion{
+    position: absolute;
+    top : 74%;
+    left : 37%;
+    border-radius: 99px;
+    width: 182px;
+    height: 46px;
+    background-color: rgb(71,138,201);
+    border : 2px rgb(71,138,201) solid;
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: white;
+    cursor : pointer;
+}
+
+.INICIO_iniciarsesion:hover{
+    background-color: rgb(40, 97, 151);
+    border : 2px rgb(40, 97, 151) solid;
+    transition: 0.3s;
+}
+
+.INICIO_registrarse{
+    position: absolute;
+    top : 74%;
+    left : 51%;
+    border-radius: 99px;
+    width: 182px;
+    height: 46px;
+    background-color: transparent;
+    border : 6px rgb(253, 253, 253) solid;
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: white;
+    cursor : pointer;
+}
+
+.INICIO_registrarse:hover{
+    background-color: rgb(196, 200, 203);
+    transition: 0.3s;
+}
+
+
+.INICIO_clasificacion{
+    height: 240px;
+    width: 360px;
+    position: relative;
+    background-color: rgb(71,138,201);
+    text-align: center;
+    color : white;
+    vertical-align: middle;
+    line-height: 320px;
+    font-size: 2.5em;
+    font-family: monospace;
+}
+
+.INICIO_clasificacion_personal{
+   
+    left : 8%;
+    position: absolute;
+    top : 105%;
+}
+
+.INICIO_clasificacion_personal img{
+    top : 32px;
+    height: 120px;
+    left : 120px;
+    position: absolute;
+}
+
+.INICIO_clasificacion_administracion{
+   
+    left : 38%;
+    position: absolute;
+    top : 105%;
+}
+
+.INICIO_clasificacion_administracion img{
+    top : 32px;
+    height: 120px;
+    left : 120px;
+    position: absolute;
+}
+
+.INICIO_clasificacion_planificacion{
+    
+    left : 68%;
+    position: absolute;
+    top : 105%;
+}
+
+.INICIO_clasificacion_planificacion img{
+    top : 32px;
+    height: 120px;
+    left : 120px;
+    position: absolute;
+}
+
+
+.INICIO_div_titulo_externo{
+    display: flex;
+    justify-content: center; 
+}
+
+.INCIO_texto_externo{
+    position: absolute;
+    top : 150%;
+    font-family: monospace;
+    font-size: 3rem;
+}
+
+
+.INICIO_grid_container{
+    display: grid;
+    position: relative;
+    top : 85%;
+    left : 10%;
+    grid-template-rows: 240px 240px;
+    grid-template-columns: 360px 360px 360px;
+    grid-gap : 15px 15px; 
+    overflow: hidden;
+    justify-items: center;
+    align-items: center;
+    object-position: center;
+}
+
+.INICIO_grid_item1{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa1.png");
+    object-position: center;
+}
+
+.INICIO_grid_item1:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+    
+}
+
+.INICIO_grid_item2{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa2.png");
+    object-position: center;
+}
+
+.INICIO_grid_item2:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+}
+
+.INICIO_grid_item3{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa3.png");
+    object-position: center;
+}
+
+.INICIO_grid_item3:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+}
+
+.INICIO_grid_item4{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa4.png");
+    object-position: center;
+}
+
+.INICIO_grid_item4:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+}
+
+.INICIO_grid_item5{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa5.png");
+    object-position: center;
+}
+
+.INICIO_grid_item5:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+}
+
+.INICIO_grid_item6{
+    height: 240px;
+    width: 360px;
+    background-image: url("../img/empresa6.png");
+    
+}
+
+.INICIO_grid_item6:hover{
+    transform: rotate(2deg);
+    transition: 1s;
+
+}
+
+.INICIO_imagen_footer{
+    position: absolute;
+    top : 250%;
+    left : 0%;
+    width: 100%;
+    height: 760px;
+    object-position: center;
+}
+
+.INICIO_grid2_container{
+    display: grid;
+    position: relative;
+    top : 85%;
+    left : 10%;
+    grid-template-rows: 520px;
+    grid-template-columns: 520px 520px;
+    justify-items: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    color : #fff;
+}
+
+.INICIO_item1{
+    position: relative;
+    top : 18.3%;
+    left : 22%;
+}
+
+.INICIO_item1 h1{
+    font-family: Farmhouse;
+    font-size: 3rem;
+}
+
+.INICIO_item1 div{
+    height: 2px;
+    width: 400px;
+    background-color: white;
+}
+
+
+.INICIO_item1_texto{
+    max-width: 400px;
+    text-align: justify;
+    
+}
+
+#INICIO_acercaNosotros, #INICIO_terminosCondiciones, #INICIO_privacidadDatos, #INICIO_avisoLegal, #INICIO_politicaCookies {
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+    left : 00px;
+    top : 16px;
+    text-align: center;
+    padding: 10px;
+    margin: 8px;
+} 
+
+
+.INICIO_item2{
+    position: relative;
+    top : 44.5%;
+    left : 25%;
+}
+
+.INICIO_item2 h1{
+    font-family: Farmhouse;
+    font-size: 3rem;
+}
+
+.INICIO_item2_texto{
+    max-width: 400px;
+    text-align: justify;
+    
+}
+
+.INICIO_contactanos{
+
+    border-radius: 99px;
+    width: 182px;
+    height: 46px;
+    background-color: transparent;
+    border : 3px rgb(253, 253, 253) solid;
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: white;
+}
+
+.INICIO_contactanos:hover{
+    background-color: rgb(196, 200, 203);
+    transition: 0.3s;
+}
+
+.INICIO_ubicacion img{
+    position: relative;
+    top : -32px;
+}
+
+.INICIO_ubicacion p{
+    position: relative;
+    top : 36px;
+    left : 108px;
+    max-width: 200px;
+}
+
+.INICIO_telefono img{
+    position: relative;
+    top : -80px;
+}
+
+.INICIO_telefono p{
+    position: relative;
+    top : -16px;
+    left : 108px;
+    max-width: 200px;
+}
+
+.INICIO_correo img{
+    position: relative;
+    top : -122px;
+}
+
+.INICIO_correo p{
+    position: relative;
+    top : -58px;
+    left : 108px;
+    max-width: 200px;
+}
+
+.INICIO_rrss img{
+    position: relative;
+    top : -180px;
+    left : -456px;
+    height: 64px;
+    cursor : not-allowed;
+
+}

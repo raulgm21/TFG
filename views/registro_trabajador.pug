@@ -1,0 +1,21 @@
+extends layout.pug 
+
+block content
+
+    
+    div#REGISTRO_TRABAJADOR
+        button#REGISTRO_TRABAJADOR_BOTON Volver Atrás
+        div#REGISTRO_TRABAJADOR_IMAGEN 
+            img(src="../img/registrar_trabajador.png", alt="")
+        div#REGISTRO_TRABAJADOR_FORMULARIO
+            h1 Registro ~ Trabajador
+            p ¡Solicita tus credenciales al gestor de su empresa!. Una vez dentro podrá gestionar sus credenciales.
+
+            form
+                label Nombre Identificador
+                input(type="text" id="input_trabajador_nombre" name="input_trabajador_nombre" placeholder="Inserte su Nombre Identificador") 
+                label Contraseña
+                input(type="password" id="input_trabajador_password" name="input_trabajador_password" placeholder="Inserte su Contraseña") 
+                input(type="button" value="Registrarse" id="input_trabajador_submit") 
+    
+    script(type="text/javascript", src="../js/registro_trabajador.js")

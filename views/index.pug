@@ -1,0 +1,60 @@
+extends layout.pug 
+
+block content
+
+    img(src="./img/fondo_inicio.png" class="INICIO_imagen_inicio")
+    
+    div(class="INICIO_div_titulo_inicio")
+        h1(class="INICIO_titulo_inicio") ¿Buscas gestionar su empresa de una manera sencilla?
+        p(class="INICIO_texto_inicio") TeamWork es su mejor decisión, gestione su empresa a su manera cómo usted desee, desde gestionar a sus trabajadores, hasta planificar sus reuniones y actividades pendientes.
+        button(class="INICIO_iniciarsesion" , id="INICIO_iniciarsesion") Iniciar Sesión 
+        button(class="INICIO_registrarse", id="INICIO_registrarse") Registrarse
+    
+    div(class="INICIO_clasificacion INICIO_clasificacion_personal") PERSONAL
+        img(src="./img/icon/personal.png") 
+    div(class="INICIO_clasificacion INICIO_clasificacion_administracion") ADMINISTRACIÓN
+        img(src="./img/icon/administracion.png") 
+    div(class="INICIO_clasificacion INICIO_clasificacion_planificacion") PLANIFICACIÓN
+        img(src="./img/icon/planificacion.png") 
+
+    div(class="INICIO_div_titulo_externo")
+        h1(class="INCIO_texto_externo") ¡Númerosas empresas confían en nosotros!
+
+    div(class="INICIO_grid_container")
+        div(class="INICIO_grid_item1") 
+        div(class="INICIO_grid_item2") 
+        div(class="INICIO_grid_item3") 
+        div(class="INICIO_grid_item4") 
+        div(class="INICIO_grid_item5") 
+        div(class="INICIO_grid_item6") 
+
+    img(src="./img/footer_inicio.png" class="INICIO_imagen_footer")
+    div(class="INICIO_grid2_container")
+         
+        div(class="INICIO_item1") 
+            h1 Sobre Nosotros 
+            p(class="INICIO_item1_texto") TeamWork intenta facilitar su uso cotidiano a la población para aumentar así la productividad y organización de las diferentes empresas existentes a lo largo del mundo.
+            div 
+            p(id="INICIO_acercaNosotros") Acerca de Nosotros 
+            p(id="INICIO_terminosCondiciones") Términos y Condiciones 
+            p(id="INICIO_privacidadDatos") Privacidad de Datos 
+            p(id="INICIO_avisoLegal") Aviso Legal 
+            p(id="INICIO_politicaCookies") Política de Cookies
+        div(class="INICIO_item2")  
+            h1 Contacta con Nosotros 
+            p(class="INICIO_item2_texto") ¿Necesitas alguna ayuda?, estamos dispuestos para cualquier necesidad o duda que necesite.
+            button(class="INICIO_contactanos") CONTÁCTANOS 
+            div(class="INICIO_ubicacion") 
+                p Calle San Blas 25, 02430 Elche de la Sierra, Albacete
+                img(src="./img/icon/ubicacion.png")
+            div(class="INICIO_telefono")  
+                p +34 611 405 682
+                img(src="./img/icon/telefono.png")
+            div(class="INICIO_correo")   
+                p raulgomeeez21@gmail.com
+                img(src="./img/icon/correo.png")
+            div(class="INICIO_rrss") 
+                img(src="./img/icon/rrss.png")
+      
+
+    script(type="text/javascript", src="./js/inicio.js")
