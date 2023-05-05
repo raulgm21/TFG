@@ -96,6 +96,88 @@ const bcrypt = require('bcrypt');               // Módulo para encriptación de
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos registra un oferente en la BDD
+    // ------------------------------------------------------ //
+
+    Controller.registro_oferente_submit = (req, res, next) => {
+
+        const datos = req.body;
+
+        var nombre          = datos.nombre.trim();
+        var correo          = datos.correo.trim();
+        var password        = datos.password.trim();
+        var dni             = datos.dni.trim();
+        var actividad       = datos.actividad.trim();
+
+        const salting = 10;
+
+        bcrypt.hash(password,salting, (err,hashedPassword) => {
+
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Hash: " + hashedPassword)
+                
+                // Objeto Actualizado
+                datosActu = {
+                    nombre          : nombre ,
+                    correo          : correo,
+                    password        : hashedPassword,
+                    dni             : dni,
+                    actividad       : actividad
+                }
+
+                 // Expresiones Regulares
+                var solo_letras = /^[a-zA-Z]+$/;
+                // FUNCIONES
+
+                // Función para validar gmail (.com)
+                function validarGmail(correo) {
+                    var regexGmail = /^[\w.-]+@gmail\.com$/;
+                    return regexGmail.test(correo);
+                }
+
+                // Función para validad DNI
+                function validarDNI(dni) {
+                    var letras          = "TRWAGMYFPDXBNJZSQVHLCKE";
+                    var numero          = dni.substr(0,dni.length-1);
+                    var letra           = dni.substr(dni.length-1,1);
+                    var indice          = numero % 23;
+                    var letraCorrecta   = letras.charAt(indice);
+                    return letra === letraCorrecta;
+                }
+        
+                // Validando desde Servidor
+                if
+                (
+                    validarGmail(correo) && correo.length > 12 && nombre.length >= 3 && solo_letras.test(nombre) && password.length >= 8 
+                    && validarDNI(dni) && actividad != "Seleccione una categoría"
+                )
+                {
+        
+                    Model.dni(datosActu , (docs) => {
+                        
+                        console.log(docs)
+                        // No existe el DNI en la BDD, por lo cual es correcto
+                        if(docs == null){
+        
+                            Model.registro_oferente_submit(datosActu, () => { res.send("Correcto"); }) 
+        
+                        }else{
+                            res.send("Error");
+                        }
+                        
+                    })
+        
+                }else{
+                    res.send("Error");
+                }
+            }
+        })
+
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos revisará si existe o no el DNI en la BDD
     // para iniciar sesión, y nos dirigira al home del user.
     // ------------------------------------------------------ //

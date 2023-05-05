@@ -33,16 +33,18 @@
         .get('/', Controller.index)
 
         .get('/iniciarSesion', Controller.iniciarSesion)
-
+        .post('/home', Controller.sesion)
+        
         .get('/registro', Controller.registro)
         .get('/registro/empresario', Controller.registro_empresario)
         .get('/registro/trabajador', Controller.registro_trabajador)
         .get('/registro/oferente', Controller.registro_oferente)
 
         .post('/registro/empresario/submit', Controller.registro_empresario_submit)
+        .post('/registro/oferente/submit', Controller.registro_oferente_submit)
+
         
         
-        .post('/home', Controller.sesion)
         // Uso del Error 404
        // .use(Controller.error404)
 

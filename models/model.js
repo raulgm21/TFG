@@ -44,6 +44,30 @@ var conn = require('./model-connection'),
             
     }
 
+    // ---------------------------------------------------------- //
+    // Nos añade un nuevo oferente en la BDD.
+    // ---------------------------------------------------------- //
+
+    Model.registro_oferente_submit = (data, cb) => {
+
+        conn
+            .create(
+            {
+                nombre              : data.nombre,
+                correo              : data.correo,
+                password            : data.password,
+                dni                 : data.dni,
+                actividad_empresa   : data.actividad,
+                rol                 : 'oferente'
+            }, 
+            (err) => {
+                if(err) throw err
+                cb()
+            })
+            
+    }
+
+
 // ******************************************************************************************** //
 //                                      Exportación del Modulo
 // ******************************************************************************************** //
