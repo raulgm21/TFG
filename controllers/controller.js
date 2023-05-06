@@ -206,7 +206,7 @@ const bcrypt = require('bcrypt');               // Módulo para encriptación de
                     }else if (result) {
                         // Contraseñas Coinciden
                         let locals = {
-                            title : 'TeamWork ~ Inicio',
+                            title : 'TeamWork ~ Home',
                             description : '',
                             usuario : docs, // pasamos el objeto de la bdd
                         }

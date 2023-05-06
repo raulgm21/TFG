@@ -1,0 +1,124 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+
+#div_home{
+    width: 100%;
+    height: 100%;
+    display: grid;
+
+    grid-template-areas :
+    "menu header header header header header"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "menu body body body body body"
+    "footer footer footer footer footer footer"
+}
+
+#home_header{
+    /*background-color: gray;*/
+    grid-area : header;
+    position: relative;
+    left : -25%;
+    width: 125%;
+    height: 128px;
+    display : flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#HOME_foto_perfil{
+    height: 64px;
+    width: 64px;
+    border-radius: 9999px;
+    margin : 8px;
+}
+
+#HOME_idioma{
+    height: 24px;
+    width: 24px;
+    border-radius: 9999px;
+    position: absolute;
+    margin : 6px;
+    top : 44px;
+}
+
+#home_menu{
+    background-color: rgb(71,138,201);
+    grid-area : menu;
+    width: 45%;
+    
+}
+
+#HOME_nombre{
+    position: relative;
+    top : 18px;
+    font-size: 16px;
+    color : rgb(77, 77, 77);
+    text-decoration: underline;
+    font-family: monospace;
+}
+
+#HOME_flechita{
+    width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgb(77, 77, 77);
+  position: relative;
+  top : 44px;
+  left : 4px;
+}
+
+#home_menu p {
+    text-align: center;
+    color : white;
+    font-family: Farmhouse;
+    font-size: 24px;
+}
+
+
+
+
+.HOME_menu_imagen{
+    height: 96px;
+    width: 96px;
+    place-self: center;
+    position: relative;
+    left : 20%;
+    top : 1%;
+}
+
+
+#home_menu h1{
+    text-align: center;
+    font-family: Farmhouse;
+    font-size: 32px;
+    color: white;
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+}
+
+#home_body{
+    background-color: rebeccapurple;
+    grid-area : body;
+    position: relative;
+    left : -15%;
+    width: 125%;
+    top : 5%;
+    height: 172vh;
+}
+
+#home_footer{
+    background-color: rgb(64, 201, 0);
+    grid-area : footer;
+}
+

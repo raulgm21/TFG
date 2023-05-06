@@ -6,8 +6,39 @@ block content
 
         //- PERFIL ADMIN
         -if(usuario.rol == "admin")
+            div#div_home
+                
+                div#home_header
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/icon/vacio.png")
+                    img#HOME_header_opcion(src="./img/modulo/colores.png")
 
-            p Hola estas en ADMIN :)
+                    p#HOME_nombre=usuario.nombre
+                    div#HOME_flechita
+                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
+                    img#HOME_idioma(src="./img/flag/Spain.png")
+
+                    
+                div#home_menu
+                    h1 Le damos la bienvenida a TeamWork
+                    
+                    img(src="./img/icon/inicio.png", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Inicio
+                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Empresa
+
+                    
+                div#home_body
+                div#home_footer
+
+            
 
         //- PERFIL EMPRESARIO
         -if(usuario.rol == "empresario")
@@ -22,7 +53,27 @@ block content
         //- PERFIL EMPRESARIO
         -if(usuario.rol == "oferente")
 
-            p Hola estas en OFERENTE 
+            div#div_home
+                
+                div#home_header
+                    p#HOME_nombre=usuario.nombre
+                    div#HOME_flechita
+                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
+                    
+                div#home_menu
+                    h1 Le damos la bienvenida a TeamWork
+                    
+                    img(src="./img/icon/inicio.png", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Inicio
+                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Empresa
+                    img(src="", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Chat
+                    img(src="", class="HOME_menu_imagen")
+                    p.HOME_menu_texto Calendario
+                    
+                div#home_body
+                div#home_footer
 
 
     //- No existe el usuario    
