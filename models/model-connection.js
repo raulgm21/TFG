@@ -36,6 +36,11 @@ var mongoose = require('mongoose'),
         // --- CLAVES PRIMARIAS --- //
         dni                 : "string",
 
+        // ------------ CHAT -------
+        group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+        sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        content: String,
+        date: { type: Date, default: Date.now }
 
       
         

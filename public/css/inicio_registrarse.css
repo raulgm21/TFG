@@ -84,17 +84,38 @@
 #REGISTRO_boton_empresario{
     border : rgb(0, 0, 0) solid 6px;
     color : rgb(0, 0, 0);
+    box-shadow: 0 12px 18px rgb(176, 79, 96);
+}
+
+#REGISTRO_boton_empresario:hover{
+    transition: 1s;
+    box-shadow: 0 24px 36px rgb(176, 79, 96);
 }
 
 #REGISTRO_boton_trabajador{
     border : rgb(0, 0, 0) solid 6px;
     color : rgb(0, 0, 0);
+    box-shadow: 0 12px 18px rgb(90, 28, 150);
+
 }
+
+#REGISTRO_boton_trabajador:hover{
+    transition: 1s;
+    box-shadow: 0 24px 36px rgb(90, 28, 150);
+}
+
 
 #REGISTRO_boton_oferente{
     border : rgb(0, 0, 0) solid 6px;
     color : rgb(0, 0, 0);
+    box-shadow: 0 12px 18px rgb(36, 62, 27);
 }
+
+#REGISTRO_boton_oferente:hover{
+    transition: 1s;
+    box-shadow: 0 24px 36px rgb(36, 62, 27);
+}
+
 
 #REGISTRO_ATRAS{
   
@@ -111,4 +132,3 @@
     font-weight: bold;
     cursor: pointer;
 }
-/* EMPRESARIO */

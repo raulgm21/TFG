@@ -256,6 +256,81 @@ const bcrypt = require('bcrypt');               // Módulo para encriptación de
     }
 
     // ------------------------------------------------------ //
+    // Vista del Footer que nos mostrará los Términos y Condiciones
+    // ------------------------------------------------------ //
+
+    Controller.terminos_condiciones = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~ Términos y Condiciones',
+            description : ''
+        }
+        
+        res.render('terminos-condiciones', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
+    // Vista del Footer que nos mostrará la Privacidad de Datos
+    // ------------------------------------------------------ //
+
+    Controller.privacidad_datos = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~  Privacidad de Datos',
+            description : ''
+        }
+        
+        res.render('privacidad-datos', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
+    // Vista del Footer que nos mostrará el Aviso Legal
+    // ------------------------------------------------------ //
+
+    Controller.aviso_legal = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~  Aviso Legal',
+            description : ''
+        }
+        
+        res.render('aviso-legal', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
+    // Vista del Footer que nos mostrará la Política de Cookies
+    // ------------------------------------------------------ //
+
+    Controller.politica_cookies = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~  Política de Cookies',
+            description : ''
+        }
+        
+        res.render('politica-cookies', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
+    // Vista del Formulario de Contacto
+    // ------------------------------------------------------ //
+
+    Controller.contacto = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~  Contacto',
+            description : ''
+        }
+        
+        res.render('contacto', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
     // Vista de Iniciar Sesión
     // ------------------------------------------------------ //
 

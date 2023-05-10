@@ -22,8 +22,9 @@
     //----------------------------------------------------------------------//
     
     // Creamos una variable para disponer del MÓDULO que hemos exportado en el fichero app.js
-
+ 
     var app    = require('./app.js'),
+        
         
     // El funcionamiento de la variable 'server' es la siguiente:
     // --> Mediante app.listen, le diremos que escuche el Puerto que usaremos para la conexión a Internet.
@@ -33,4 +34,7 @@
             console.log(`Iniciando Proyecto TFG desde el puerto ${app.get('port')}`)
         })
 
+    // Socket
+    
+        
        

@@ -32,13 +32,21 @@
 
         .get('/', Controller.index)
 
+        .get('/terminos-condiciones', Controller.terminos_condiciones)
+        .get('/privacidad-datos', Controller.privacidad_datos)
+        .get('/aviso-legal', Controller.aviso_legal)
+        .get('/politica-cookies', Controller.politica_cookies)
+
+        .get('/contacto', Controller.contacto)
+
         .get('/iniciarSesion', Controller.iniciarSesion)
-        .post('/home', Controller.sesion)
         
         .get('/registro', Controller.registro)
         .get('/registro/empresario', Controller.registro_empresario)
         .get('/registro/trabajador', Controller.registro_trabajador)
         .get('/registro/oferente', Controller.registro_oferente)
+
+        .post('/home', Controller.sesion)
 
         .post('/registro/empresario/submit', Controller.registro_empresario_submit)
         .post('/registro/oferente/submit', Controller.registro_oferente_submit)

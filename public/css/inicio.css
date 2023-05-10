@@ -294,7 +294,7 @@ body{
     
 }
 
-#INICIO_acercaNosotros, #INICIO_terminosCondiciones, #INICIO_privacidadDatos, #INICIO_avisoLegal, #INICIO_politicaCookies {
+#INICIO_condicionesVenta, #INICIO_terminosCondiciones, #INICIO_privacidadDatos, #INICIO_avisoLegal, #INICIO_politicaCookies {
     text-decoration: underline;
     cursor: pointer;
     position: relative;
@@ -323,7 +323,7 @@ body{
     
 }
 
-.INICIO_contactanos{
+#INICIO_contactanos{
 
     border-radius: 99px;
     width: 182px;
@@ -333,6 +333,9 @@ body{
     font-size: 1.2rem;
     font-family: monospace;
     color: white;
+    cursor: pointer;
+    position: relative;
+    top : 12px;
 }
 
 .INICIO_contactanos:hover{

@@ -2,10 +2,12 @@ extends layout.pug
 
 block content
 
-    h1 Iniciar sesión
-        form(method="POST" action='/home')
-            label DNI
-            input(type="text" id="dni" name="dni" placeholder="Inserte su DNI") 
-            label Contraseña
-            input(type="password" id="password" name="password" placeholder="Inserte su Contraseña") 
-            input(type="submit" value="Iniciar Sesión" id="input_submit_sesion") 
+    div#INICIAR_SESION.scrollable
+        div#INICIO_SESION_CONTENEDOR
+            h1 Iniciar sesión
+            form(method="POST" action='/home')
+                input(type="text" id="dni" name="dni" placeholder="Inserte su DNI") 
+                input(type="password" id="password" name="password" placeholder="Inserte su Contraseña") 
+                input(type="submit" value="Iniciar Sesión" id="input_submit_sesion") 
+            p#INICIAR_SESION_ATRAS(onclick="window.location.href = '/'") Volver Atrás
+            

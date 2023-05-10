@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+#INICIAR_SESION{
+    background-image: url("../img/iniciar_sesion.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 102%;
+    height: 102vh;
+    position: absolute;
+    top : -8px;
+    left : -4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#INICIO_SESION_CONTENEDOR{
+    background-color: rgba(158, 114, 114, 0.15);  
+    backdrop-filter: blur(5px);
+    height: 70%;
+    width: 40%;
+
+}
+
+#INICIO_SESION_CONTENEDOR h1{
+    font-family : Farmhouse;
+    text-align: center;
+    font-size: 4.5rem;
+    color : rgb(0, 0, 0);
+}
+
+#INICIO_SESION_CONTENEDOR input{
+    display : block;
+    margin : 4px;
+    padding: 4px;
+    border-radius: 24px;
+    width: 280px;
+    height: 32px;
+    position: relative;
+    left : 25%;
+    border : none;
+}
+#INICIO_SESION_CONTENEDOR input::placeholder{
+    font-size: 15px;
+    font-family: monospace;
+    font-style: italic;
+}
+
+#input_submit_sesion{
+    position: relative;
+    top : 48px;
+    background-color: rgb(71,138,201);
+    color : white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    cursor : pointer;
+}
+
+#password{
+    position: relative;
+    top : 16px;
+}
+
+#INICIAR_SESION_ATRAS{
+    font-family: monospace;
+    font-size: 16px;
+    color : rgb(255, 255, 255);
+    text-decoration: underline;
+    font-style: italic;
+    position: relative;
+    top : 64px;
+    left : 40%;
+    cursor: pointer;
+}

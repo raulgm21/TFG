@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+
+#FOOTER_DIV div{
+    background: rgb(150,166,236);
+    background: linear-gradient(135deg, rgba(150,166,236,1) 12%, rgba(188,214,226,1) 55%, rgba(198,127,236,1) 100%);
+    width: 90%;
+    text-align: justify;
+    position: absolute;
+    top : 8px;
+    left : 5%;
+    background-color: rgba(158, 114, 114, 0.15);  
+    backdrop-filter: blur(5px);
+}
+
+#FOOTER_TEXTO{
+    font-family : Farmhouse;
+    text-align: center;
+    font-size: 4.5rem;
+    color : rgb(0, 0, 0);
+}
+
+#FOOTER_ATRAS{
+    position: relative;
+    left : 41%;
+    top : -24px;
+    padding: 16px;
+    width: 256px;
+    border-radius: 9999px;
+    font-size : 24px;
+    font-family : monospace;
+    color : #000;
+    text-decoration : none;
+    font-weight: bold;
+    cursor: pointer;
+}
