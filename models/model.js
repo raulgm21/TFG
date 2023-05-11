@@ -20,6 +20,23 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos consulta el correo que le pasamos por formulario. Sirve
+    // para mandar correos, inicio de sesión y registro.
+    // ---------------------------------------------------------- //
+
+    Model.correo = (data, cb) => {
+            
+        conn
+            .findOne({
+                correo   : data.correo,
+            })
+            .exec((err, docs) => {
+                if(err) throw err
+                cb(docs)
+            })
+    }
+    
+    // ---------------------------------------------------------- //
     // Nos añade un nuevo empresario en la BDD.
     // ---------------------------------------------------------- //
 

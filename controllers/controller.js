@@ -4,6 +4,7 @@ var Model = require('../models/model'),
     Controller = () => {} 
 
 const bcrypt = require('bcrypt');               // Módulo para encriptación de contraseñas
+const nodemailer = require('nodemailer');       // Módulo para mandar correos
 
 // ******************************************************************************************** //
 // ******************************************************************************************** //
@@ -232,6 +233,78 @@ const bcrypt = require('bcrypt');               // Módulo para encriptación de
             }
 
         })
+    }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos envia un correo sobre opciones de Contacto
+    // ------------------------------------------------------ //
+
+    Controller.contacto_correo = (req, res, next) => {
+
+        const datos     = req.body;
+
+        var correo      = datos.correo.trim();
+        var asunto      = datos.asunto.trim();
+        var descripcion = datos.descripcion.trim();
+
+        var locals = {
+            title : 'TeamWork ~  Contacto',
+            description : '',
+            
+        }
+
+        // Verificación desde servidor
+        if(correo.length != 0 && asunto.length != 0 && descripcion.length != 0){
+
+            Model.correo(datos , (docs) => {
+                
+                console.log(docs)
+                if(docs != null){
+                    
+                    res.render('contacto', locals)
+                
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'raulgomeeez21@gmail.com',
+                            pass: 'frnslfimulbxfdbr'
+                        }
+                    });
+                    
+                    const mailOptions = {
+                        from: 'raulgomeeez21@gmail.com', 
+                        to: 'raulgomeeez21@gmail.com',
+                        subject: `TeamWork: ${correo} - ${asunto}`,
+                        html: 
+                        `
+                        <h1>Más información sobre el correo recibido:</h1> 
+                        ${descripcion}
+                        `
+                    };
+        
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Correo electrónico enviado: ' + info.response);
+                            
+                        }
+                    });
+
+
+                }else{
+                    res.render('contacto', locals)
+                }
+                
+            })
+
+        }else{
+            console.log("MAL");
+            res.render('index', locals)
+        }
+
+       
+
     }
 
 // ******************************************************************************************** //

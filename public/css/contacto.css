@@ -1,0 +1,129 @@
+@font-face {
+    font-family: Farmhouse;
+    src: url("./fonts/Farmhouse.otf") format("opentype");
+}
+
+#DIV_CONTACTO{
+    background-image: url('../img/fondo_contacto.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#CONTACTO_FORMULARIO{
+    width: 50%;
+    height: 100vh;
+    background-color: rgba(158, 114, 114, 0.15);  
+    backdrop-filter: blur(5px);
+}
+
+#CONTACTO_FORMULARIO h1{
+    font-family : Farmhouse;
+    text-align: center;
+    font-size: 4.5rem;
+    color : rgb(0, 0, 0);
+    padding: 4px;
+    margin: 4px;
+}
+
+#CONTACTO_FORMULARIO p{
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+    text-align: center;
+    font-size: 1.2rem;
+    color : white;
+}
+
+#CONTACTO_FORMULARIO form label{
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#contacto_correo_label{
+    position: absolute;
+    top : 232px;
+    left : 46%;
+}
+
+#correo_contacto{
+    position: absolute;
+    top : 256px;
+    left : 32%;
+}
+
+#contacto_asunto_label{
+    position: absolute;
+    top : 332px;
+    left : 45%;
+}
+
+#asunto_contacto{
+    position: absolute;
+    top : 356px;
+    left : 32%;
+}
+
+#contacto_descripcion_label{
+    position: absolute;
+    top : 432px;
+    left : 33%;
+    
+}
+
+#submit_contacto{
+    position: absolute;
+    top : 600px;
+    left : 33%;
+    font-size: 24px;
+}
+
+#CONTACTO_VOLVER_ATRAS{
+    position: absolute;
+    top : 656px;
+    left : 25%;
+    background-color: rgba(1, 1, 1, 0.523);  
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+    text-align: center;
+    font-size: 1.2rem;
+    color : white;
+    width: 50%;
+    cursor: pointer;
+}
+#descripcion_contacto{
+    position: absolute;
+    top : 456px;
+    left : 32%;
+    border-radius: 8px;
+    height: 128px;
+}
+
+#CONTACTO_IMAGEN{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    top : 0%;
+    left : 50%;
+}
+
+#CONTACTO_IMAGEN img{
+    height: 480px;
+    width: 640px;
+    position: relative;
+    left : 56px;
+    top : 18%;
+    box-shadow: 0 24px 18px -6px black;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 128px ;
+}
+
+.input_contacto{
+    border-radius: 99px;
+    width: 256px;
+    height: 56px;
+    font-size: 1.2rem;
+    font-family: monospace;
+   
+    cursor : pointer;
+}

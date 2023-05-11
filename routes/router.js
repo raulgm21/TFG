@@ -38,6 +38,7 @@
         .get('/politica-cookies', Controller.politica_cookies)
 
         .get('/contacto', Controller.contacto)
+        .post('/contacto/correo', Controller.contacto_correo)
 
         .get('/iniciarSesion', Controller.iniciarSesion)
         

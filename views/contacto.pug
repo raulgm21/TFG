@@ -1,1 +1,25 @@
-h1 Contacto
+extends layout.pug 
+
+block content
+
+    div#DIV_CONTACTO
+        div#CONTACTO_FORMULARIO
+            h1 ¡ Tus comentarios siempre son importantes ! 
+            p Escriba cualquier duda, sugerencia o inconventiene que desee.
+            form(method="POST", action='/contacto/correo')
+                label#contacto_correo_label Correo 
+                input(type="text", name="correo", id="correo_contacto", class="input_contacto", placeholder="Inserte su correo", value=correo)
+                label#contacto_asunto_label Asunto 
+                select(name="asunto", id="asunto_contacto", class="input_contacto", value=asunto)
+                    option(value="Sugerencias") Sugerencias 
+                    option(value="Sugerencias") Inconvenientes 
+                    option(value="Sugerencias") Dudas 
+                label#contacto_descripcion_label Descripción del Asunto
+                textarea(type="text", name="descripcion", id="descripcion_contacto", class="input_contacto", placeholder="Inserte más información sobre el asunto.", value=descripcion)
+                input(type="submit", id="submit_contacto", class="input_contacto")
+            p#CONTACTO_VOLVER_ATRAS(onclick="window.location.href = '/'") Volver Atrás
+    div#CONTACTO_IMAGEN
+        img(src="./img/imagen_contacto.png")
+
+
+    script(type="text/javascript", src="../js/contacto.js")
