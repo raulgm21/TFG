@@ -112,8 +112,9 @@ body{
 
 .INICIO_clasificacion_personal img{
     top : 32px;
-    height: 120px;
+    height: 100px;
     left : 120px;
+    filter: invert(1) sepia(0) hue-rotate(20deg) saturate(1000%);
     position: absolute;
 }
 
@@ -126,8 +127,9 @@ body{
 
 .INICIO_clasificacion_administracion img{
     top : 32px;
-    height: 120px;
-    left : 120px;
+    height: 100px;
+    left : 132px;
+    filter: invert(1) sepia(0) hue-rotate(20deg) saturate(1000%);
     position: absolute;
 }
 
@@ -140,8 +142,9 @@ body{
 
 .INICIO_clasificacion_planificacion img{
     top : 32px;
-    height: 120px;
-    left : 120px;
+    height: 100px;
+    filter: invert(1) sepia(0) hue-rotate(20deg) saturate(1000%);
+    left : 132px;
     position: absolute;
 }
 
