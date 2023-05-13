@@ -7,7 +7,20 @@ block content
         //- PERFIL ADMIN
         -if(usuario.rol == "admin")
             div#div_home
-                
+                nav#HOME_MENU
+                    div.HOME_menu-item
+                        img(src="./img/icon/casa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Inicio   
+                    div.HOME_menu-item
+                        img(src="./img/icon/mail.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Correo    
+                    div.HOME_menu-item
+                        img(src="./img/icon/modulo.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Módulos   
+                    div.HOME_menu-item
+                        img(src="./img/icon/estadisticas.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Estadisticas  
+            //-    
                 div#home_header
                     img#HOME_header_opcion(src="./img/icon/vacio.png")
                     img#HOME_header_opcion(src="./img/icon/vacio.png")
@@ -18,7 +31,7 @@ block content
                     img#HOME_header_opcion(src="./img/icon/vacio.png")
                     img#HOME_header_opcion(src="./img/icon/vacio.png")
                     img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/modulo/colores.png")
+                    img#HOME_header_opcion(src="./img/icon/color.png")
 
                     p#HOME_nombre=usuario.nombre
                     div#HOME_flechita

@@ -4,7 +4,7 @@
 }
 
 #INICIAR_SESION{
-    background-image: url("../img/iniciar_sesion.png");
+    background-image: url("../img/fondo_inicio.png");
     background-repeat: no-repeat;
     background-size: 100%;
     width: 102%;
@@ -30,7 +30,10 @@
     font-family : Farmhouse;
     text-align: center;
     font-size: 4.5rem;
-    color : rgb(0, 0, 0);
+    color : white;
+    text-shadow: 3px 6px #04182b;
+    
+    
 }
 
 #INICIO_SESION_CONTENEDOR input{
