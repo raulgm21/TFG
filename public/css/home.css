@@ -151,7 +151,7 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-    height: 128px;
+    height: 80px;
 
 }
 
@@ -162,25 +162,25 @@
     text-align: center;
     position: relative;
     font-family: Farmhouse;
-    font-size: 24px;
+    font-size: 20px;
     
 }
 
 .HOME_menu-item p {
     position: relative;
-    left : 26px;
-    top : -12px;
+    left : 22px;
+    top : -20px;
     cursor: pointer;
 }
 .HOME_menu_imagen {
-    width: 64px;
-    height: 64px;
+    width: 40px;
+    height: 40px;
     height: auto;
     object-fit: cover;
     object-position: center;
     margin: 32px;
     position: relative;
-    top : 32px;
+    top : 24px;
     filter: invert(1) sepia(0) hue-rotate(20deg) saturate(1000%);
     cursor: pointer;
 }

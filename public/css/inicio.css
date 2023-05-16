@@ -390,3 +390,54 @@ body{
     cursor : not-allowed;
 
 }
+
+
+
+/* MENSAJE ASISTENTE */
+
+#INICIO_ASISTENTE{
+    
+    height: 96px;
+    width: 96px;
+    position: fixed;
+    top : 86.5%;
+    left : 93%;
+    cursor: pointer;
+}
+
+#mensaje {
+    display: none;
+    position: fixed;
+    background-color: rgb(219, 213, 213);
+    border-radius: 32px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    width: 220px;
+    top : 81%;
+    left : 76%;
+  }
+
+  #mensaje p{
+    position: relative;
+    top : -8px;
+  }
+  
+  #mensaje:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-left: 30px solid rgb(219, 213, 213); 
+    border-bottom: 20px solid transparent;
+    margin: 10px 0 0 220px; 
+  }
+
+  #mensajeNO img{
+    height: 24px;
+    width: 24px;
+    position: relative;
+    left : 320px;
+    cursor: pointer;
+  }

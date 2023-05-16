@@ -1,0 +1,58 @@
+#ASISTENTE_FOTO{
+    height: 380px;
+    width: 300px;
+    position: relative;
+    left : 5%;
+    top : 55%;
+    cursor: pointer;
+    position: fixed;
+}
+
+#ASISTENTE_DIV{
+    background-image: url("../img/fondo_asistente.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 102%;
+    height: 102vh;
+    position: absolute;
+    top : -8px;
+    left : -4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+#mensajeAsistente{
+    background-color: white;
+    width: 55%;
+    position: relative;
+    left : 500px;
+    top : 32px;
+    text-align: center;
+    position: fixed;
+}
+
+#mensajeAsistente h1{
+    font-weight: 600;
+    
+    font-size: 48px; 
+    color : rgb(0, 0, 0);
+    text-shadow: 3px 3px #878787;
+}
+
+#mensajeAsistenteAtras {
+    position: fixed;
+    background-color: rgb(219, 213, 213);
+    border-radius: 32px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 1.2em;
+    width: 220px;
+    top : 40%;
+    left : 7%;
+    text-align: center;
+  }
+
+
+  

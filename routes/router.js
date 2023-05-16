@@ -32,6 +32,8 @@
 
         .get('/', Controller.index)
 
+        .get('/asistente', Controller.asistente)
+        
         .get('/terminos-condiciones', Controller.terminos_condiciones)
         .get('/privacidad-datos', Controller.privacidad_datos)
         .get('/aviso-legal', Controller.aviso_legal)

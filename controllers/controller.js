@@ -329,6 +329,21 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
     }
 
     // ------------------------------------------------------ //
+    // Vista que nos mostrará las preguntas más frecuentes al asistente
+    // ------------------------------------------------------ //
+
+    Controller.asistente = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~ Asistente',
+            description : ''
+        }
+        
+        res.render('asistente', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
     // Vista del Footer que nos mostrará los Términos y Condiciones
     // ------------------------------------------------------ //
 

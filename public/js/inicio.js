@@ -28,5 +28,20 @@ window.onload = () => {
         window.location.href = '/contacto';
     })
 
+    setTimeout(saludarAsistente,2000)
+
+    function saludarAsistente (){
+        var mensaje_asistente = document.getElementById("mensaje");
+        mensaje_asistente.style.display = "block";
+    }
+
+    document.getElementById("mensajeNO").addEventListener("click", () => {
+        var mensaje_asistente = document.getElementById("mensaje");
+        mensaje_asistente.style.display = "none";
+    })
+
+    document.getElementById("INICIO_ASISTENTE").addEventListener("click", () => {
+        window.location.href = '/asistente';
+    })
     
 }
