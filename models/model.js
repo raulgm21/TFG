@@ -52,7 +52,8 @@ var conn = require('./model-connection'),
                 nombre_empresa      : data.nombreEmpresa,
                 actividad_empresa   : data.actividad,
                 id_empresa          : data.dni + "-" +data.nombreEmpresa,
-                rol                 : 'empresario'
+                rol                 : 'empresario',
+                tutorial            : 'none'
             }, 
             (err) => {
                 if(err) throw err
@@ -75,7 +76,8 @@ var conn = require('./model-connection'),
                 password            : data.password,
                 dni                 : data.dni,
                 actividad_empresa   : data.actividad,
-                rol                 : 'oferente'
+                rol                 : 'oferente',
+                tutorial            : 'none'
             }, 
             (err) => {
                 if(err) throw err

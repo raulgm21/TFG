@@ -6,9 +6,30 @@ block content
 
         //- PERFIL ADMIN
         -if(usuario.rol == "admin")
+
             div#div_home
+
                 nav#HOME_HEADER 
-                
+                    p#HOME_nombre_empresa TeamWork
+                    p#HOME_nombre=usuario.nombre
+                    div#HOME_flechita
+                        div#HOME_menu_flechita
+                            nav 
+                                div Mi Cuenta 
+                                div Configuración 
+                                div Cerrar Sesión
+                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
+
+                div#HOME_cuerpo 
+                    h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a Innovatec !
+                    p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia Raúl Gómez Muñoz.
+                    p#HOME_cuerpo_texto_no_nombre ¿No eres Raúl Gómez Muñoz?
+                    p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
+                    img#HOME_cuerpo_imagen_empresa(src="./img/empresa1.png")
+                    button#HOME_tutorial_si SÍ
+                    img#HOME_asistente_tutorial(src="./img/asistente2.png")
+                    button#HOME_tutorial_no NO
+
                 nav#HOME_MENU
                     div.HOME_menu-item
                         img(src="./img/icon/casa.png", class="HOME_menu_imagen")
@@ -22,53 +43,54 @@ block content
                     div.HOME_menu-item
                         img(src="./img/icon/estadisticas.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto Estadisticas  
-            //-    
-                div#home_header
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/vacio.png")
-                    img#HOME_header_opcion(src="./img/icon/color.png")
-
-                    p#HOME_nombre=usuario.nombre
-                    div#HOME_flechita
-                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
-                    img#HOME_idioma(src="./img/flag/Spain.png")
-
-                    
-                div#home_menu
-                    h1 Le damos la bienvenida a TeamWork
-                    
-                    img(src="./img/icon/inicio.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Inicio
-                    img(src="./img/icon/contacto.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Chat
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    
-                div#home_body
-                div#home_footer
-
-            
 
         //- PERFIL EMPRESARIO
         -if(usuario.rol == "empresario")
+            input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
+            div#div_home
 
-            p Hola estas en EMPRESARIO 
+                nav#HOME_HEADER 
+                    p#HOME_nombre_empresa=usuario.nombre_empresa
+                    p#HOME_nombre=usuario.nombre
+                    div#HOME_flechita
+                        div#HOME_menu_flechita
+                            nav 
+                                div Mi Cuenta 
+                                div Configuración 
+                                div Cerrar Sesión
+                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
 
+                div#HOME_cuerpo 
+
+                    h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
+                    p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
+                    p#HOME_cuerpo_texto_no_nombre ¿No eres #{usuario.nombre}?
+                    img#HOME_cuerpo_imagen_empresa(src="./img/empresa1.png")
+                    -if(usuario.tutorial == "none")
+                        p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
+                        
+                        button#HOME_tutorial_si SÍ
+                        img#HOME_asistente_tutorial(src="./img/asistente2.png")
+                        button#HOME_tutorial_no NO
+                    
+
+
+                nav#HOME_MENU
+                    div.HOME_menu-item
+                        img(src="./img/icon/casa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Inicio   
+                    div.HOME_menu-item
+                        img(src="./img/icon/mail.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Correo    
+                    div.HOME_menu-item
+                        img(src="./img/icon/modulo.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Módulos   
+                    div.HOME_menu-item
+                        img(src="./img/icon/estadisticas.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto Estadisticas  
+
+        script(type="text/javascript", src="../js/home_empresario.js")
+       
         //- PERFIL TRABAJADOR
         -if(usuario.rol == "trabajador")
 

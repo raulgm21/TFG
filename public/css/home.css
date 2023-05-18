@@ -4,132 +4,163 @@
 }
 
 
-/*#div_home{
-    width: 100%;
-    height: 100%;
-    display: grid;
-
-    grid-template-areas :
-    "menu header header header header header"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "menu body body body body body"
-    "footer footer footer footer footer footer"
-}*/
-
-#home_header{
-    /*background-color: gray;*/
-    grid-area : header;
+#HOME_foto_perfil{
+    height: 64px;
+    width: 64px;
+    border-radius: 9999px;
+    margin : 8px;
     position: relative;
+    top : 6px;
+}
+
+#HOME_nombre{
+    position: relative;
+    top : 22px;
+    font-size: 16px;
+    color : rgb(255, 255, 255);
+    text-decoration: underline;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+#HOME_nombre_empresa{
+    position: fixed;
+    top : -8px;
+    font-size: 32px;
+    left : 2%;
+    color : rgb(255, 255, 255);
+    letter-spacing: 0.15em;
+    font-family: Farmhouse;
+}
+
+#HOME_flechita{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(255, 254, 254);
+    position: relative;
+    top : 48px;
+    left : 4px;
+    cursor: pointer;
+}
+#HOME_menu_flechita{
+    display: none;
+}
+#HOME_menu_flechita nav div{
+    width: 128px;
+    padding: 4px;
+    margin: 4px;
+    position: relative;
+    left : -148px;
+    top : 4px;
+    text-align: center;
+    background-color: rgb(216, 216, 216);
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+}
+#HOME_HEADER{
+    background-color: rgb(71,138,201);
+    grid-area : header;
+    position: fixed;
     left : -25%;
     width: 125%;
-    height: 128px;
+    height: 88px;
+    top : -8px;
     display : flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
 }
 
-#HOME_foto_perfil{
-    height: 64px;
-    width: 64px;
-    border-radius: 9999px;
-    margin : 8px;
+
+
+
+#HOME_cuerpo{
+    position: fixed;
+    top : 84px;
+    height: 532px;
+    width: 75%;
+    background-color: rgb(255, 255, 255);
+    z-index: -1;
+    border : 4px solid black;
+    border-radius: 32px;
+    box-shadow: 0 6px 10px rgb(71,138,201);
 }
 
-#HOME_idioma{
+#HOME_cuerpo_titulo{
+    text-align: center;
+    font-family: Farmhouse;
+    font-size: 54px;
+}
+
+#HOME_cuerpo_texto_nombre{
+    text-align: center;
+    font-size: 16px;
+}
+
+#HOME_cuerpo_texto_no_nombre{
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    color : rgb(71,138,201);
+    text-decoration: underline;
+}
+
+#HOME_cuerpo_imagen_empresa{
+    height: 236px;
+    border-radius: 32px;
+    margin: auto;
+    display: block;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+}
+
+#HOME_tutorial_si{
+    width: 48px;
     height: 24px;
-    width: 24px;
-    border-radius: 9999px;
-    position: absolute;
-    margin : 6px;
-    top : 44px;
+    border-radius: 16px;
+    border: none;
+    background-color: rgb(93, 245, 146);
+    font-family: monospace;
+    font-weight: 600;
+    position: relative;
+    top : 48px;
+    left : 41.7%;
+    cursor: pointer;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
 }
 
-#home_menu{
-    background-color: rgb(71,138,201);
-    grid-area : menu;
-    width: 45%;
+#HOME_tutorial_no{
+    width: 48px;
+    height: 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: rgb(245, 106, 93);
+    font-family: monospace;
+    font-weight: 600;
+    position: relative;
+    top : -56px;
+    left : 54.8%;
+    cursor: pointer;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+}
+
+#HOME_asistente_tutorial{
+    height: 80px;
+    margin: auto;
+    display: block;
+    cursor : pointer;
+}
+
+#HOME_cuerpo_texto_tutorial{
+    position: absolute;
+    top : 79.5%;
+    left: 40.9%;
+    font-size: 14px;
+    font-style: italic;
+    cursor : pointer;
+    font-weight: bold;
     
 }
-
-#HOME_nombre{
-    position: relative;
-    top : 18px;
-    font-size: 16px;
-    color : rgb(77, 77, 77);
-    text-decoration: underline;
-    font-family: monospace;
-}
-
-#HOME_flechita{
-    width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid rgb(77, 77, 77);
-  position: relative;
-  top : 44px;
-  left : 4px;
-}
-
-#home_menu p {
-    text-align: center;
-    color : white;
-    font-family: Farmhouse;
-    font-size: 24px;
-}
-
-
-
-
-.HOME_menu_imagen{
-    height: 96px;
-    width: 96px;
-    place-self: center;
-    position: relative;
-    left : 20%;
-    top : 1%;
-}
-
-
-#home_menu h1{
-    text-align: center;
-    font-family: Farmhouse;
-    font-size: 32px;
-    color: white;
-    background-color: rgba(1, 1, 1, 0.523);  
-    backdrop-filter: blur(5px);
-}
-
-#home_body{
-    background-color: rebeccapurple;
-    grid-area : body;
-    position: relative;
-    left : -15%;
-    width: 125%;
-    top : 0%;
-    height: 172vh;
-}
-
-#home_footer{
-    background-color: rgb(64, 201, 0);
-    grid-area : footer;
-}
-
-
-
-
-
-
-
-
-
 
 #div_home{
     margin: 0;
@@ -142,6 +173,7 @@
 }
 
 #HOME_MENU{
+    
     background-color: rgb(71,138,201);
 	color: #fff;
 	padding: 10px 20px;
@@ -154,6 +186,8 @@
     height: 80px;
 
 }
+
+
 
 .HOME_menu-item {
     display: flex;
@@ -168,7 +202,7 @@
 
 .HOME_menu-item p {
     position: relative;
-    left : 22px;
+    left : 0px;
     top : -20px;
     cursor: pointer;
 }
@@ -184,7 +218,6 @@
     filter: invert(1) sepia(0) hue-rotate(20deg) saturate(1000%);
     cursor: pointer;
 }
-
 
 
 
