@@ -307,6 +307,28 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
 
     }
 
+    // ------------------------------------------------------ //
+    // Modelo que nos actualizará el tutorial del usuario a NO.
+    // ------------------------------------------------------ //
+
+    Controller.tutorialNO = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var dni     = datos.dni.trim();
+        
+        OBJDATOS = { dni : dni }
+
+        Model.tutorialNO(OBJDATOS , (docs) => {
+            
+            if(docs){
+                res.send("Correcto");
+            }else{
+                res.send("Error");
+            }
+            
+        })
+    }
 // ******************************************************************************************** //
 // ******************************************************************************************** //
 //                                              Vistas

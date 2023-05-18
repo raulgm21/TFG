@@ -51,6 +51,8 @@
 
         .post('/home', Controller.sesion)
 
+        .put('/tutorialNO', Controller.tutorialNO)
+
         .post('/registro/empresario/submit', Controller.registro_empresario_submit)
         .post('/registro/oferente/submit', Controller.registro_oferente_submit)
 

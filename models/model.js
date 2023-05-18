@@ -86,6 +86,27 @@ var conn = require('./model-connection'),
             
     }
 
+    // ---------------------------------------------------------- //
+    // Nos edita al usuario activo para ponerle el tutorial en NO
+    // ---------------------------------------------------------- //
+
+    Model.tutorialNO= (data, cb) => {
+            
+        conn
+            .findOneAndUpdate(
+                {
+                    dni : data.dni
+                },
+
+                {
+                    tutorial : "NO"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
 
 // ******************************************************************************************** //
 //                                      Exportación del Modulo
