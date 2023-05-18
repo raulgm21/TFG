@@ -47,7 +47,7 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
                 }
 
                  // Expresiones Regulares
-                var solo_letras = /^[a-zA-Z]+$/;
+                var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
                 // FUNCIONES
 
                 // Función para validar gmail (.com)
@@ -109,7 +109,7 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
         var password        = datos.password.trim();
         var dni             = datos.dni.trim();
         var actividad       = datos.actividad.trim();
-
+        console.log(nombre);
         const salting = 10;
 
         bcrypt.hash(password,salting, (err,hashedPassword) => {
@@ -118,7 +118,6 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
                 console.log(err);
             }else{
                 console.log("Hash: " + hashedPassword)
-                
                 // Objeto Actualizado
                 datosActu = {
                     nombre          : nombre ,
@@ -128,8 +127,8 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
                     actividad       : actividad
                 }
 
-                 // Expresiones Regulares
-                var solo_letras = /^[a-zA-Z]+$/;
+                // Expresiones Regulares
+                var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
                 // FUNCIONES
 
                 // Función para validar gmail (.com)

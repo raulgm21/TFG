@@ -21,7 +21,7 @@ window.onload = () => {
         var label_actividad       = document.getElementById("REGISTRO_empresario_select_label");
 
         // Expresióm Regular -> Solo letras
-        var solo_letras = /^[a-zA-Z]+$/;
+        var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
             
         // ------------------------------------------------------ //
         //                        FUNCIONES
