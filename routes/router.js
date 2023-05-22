@@ -58,7 +58,8 @@
 
         .post('/registro/empresario/submit', Controller.registro_empresario_submit)
         .post('/registro/oferente/submit', Controller.registro_oferente_submit)
-
+        .post('/registro/trabajador/submit', Controller.registro_trabajador_submit)
+        .post('/consultar/trabajador/identificador', Controller.consultar_trabajador_identificador)
         
         
         // Uso del Error 404

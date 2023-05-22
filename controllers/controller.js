@@ -178,6 +178,87 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos registra un trabajador en la BDD
+    // ------------------------------------------------------ //
+
+    Controller.registro_trabajador_submit = (req, res, next) => {
+
+        const datos = req.body;
+
+        var nombre          = datos.nombre.trim();
+        var correo          = datos.correo.trim();
+        var password        = datos.password.trim();
+        var dni             = datos.dni.trim();
+        var identificador   = datos.identificador.trim();
+        console.log(nombre);
+        const salting = 10;
+
+        bcrypt.hash(password,salting, (err,hashedPassword) => {
+
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Hash: " + hashedPassword)
+                // Objeto Actualizado
+                datosActu = {
+                    nombre          : nombre ,
+                    correo          : correo,
+                    password        : hashedPassword,
+                    dni             : dni,
+                    identificador   : identificador
+                }
+
+                // Expresiones Regulares
+                var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
+                // FUNCIONES
+
+                // Función para validar gmail (.com)
+                function validarGmail(correo) {
+                    var regexGmail = /^[\w.-]+@gmail\.com$/;
+                    return regexGmail.test(correo);
+                }
+
+                // Función para validad DNI
+                function validarDNI(dni) {
+                    var letras          = "TRWAGMYFPDXBNJZSQVHLCKE";
+                    var numero          = dni.substr(0,dni.length-1);
+                    var letra           = dni.substr(dni.length-1,1);
+                    var indice          = numero % 23;
+                    var letraCorrecta   = letras.charAt(indice);
+                    return letra === letraCorrecta;
+                }
+        
+                // Validando desde Servidor
+                if
+                (
+                    validarGmail(correo) && correo.length > 12 && nombre.length >= 3 && solo_letras.test(nombre) 
+                    && password.length >= 8 && validarDNI(dni)
+                )
+                {
+        
+                    Model.dni(datosActu , (docs) => {
+                        
+                        console.log(docs)
+                        // No existe el DNI en la BDD, por lo cual es correcto
+                        if(docs == null){
+        
+                            Model.registro_trabajador_submit(datosActu, () => { res.send("Correcto"); }) 
+        
+                        }else{
+                            res.send("Error");
+                        }
+                        
+                    })
+        
+                }else{
+                    res.send("Error");
+                }
+            }
+        })
+
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos inserta un trabajador IDENTIFICADOR
     // ------------------------------------------------------ //
 
@@ -283,6 +364,48 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
                     description : ''
                 }
                 res.render("home", locals);
+            }
+
+        })
+    }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos comprobará si existe o no el usuario identificado 
+    // para asi empezar a registrar a nuestro trabajador con sus datos
+    // ------------------------------------------------------ //
+
+    Controller.consultar_trabajador_identificador = (req, res, next) => {
+        
+        comprobar = {
+            identificador      : req.body.identificador,
+            password           : req.body.password
+        }
+
+        Model.identificador(comprobar , (docs) => {
+           
+            // Si no existe en la BDD
+            if(docs != null){
+
+                // Obtengo las contraseña de la BDD
+                var contraseña = docs.password;
+
+                // Comparo la contraseña encriptada con la contraseña del formulario
+                bcrypt.compare(req.body.password, contraseña, (err, result) => {
+
+                    if(err){
+                        console.log(err);
+
+                    }else if (result) {
+                        res.send("Correcto");
+                    }else{
+                        res.send("Error");
+                    }
+
+                })
+
+            }else{
+                
+                res.send("Error");
             }
 
         })

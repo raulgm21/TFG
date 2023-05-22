@@ -32,6 +32,7 @@ var mongoose = require('mongoose'),
         // --- Atributos: Trabajador --- //
         cargo               : "string",
         identificador       : "string",
+        identificador_activo: "string",
 
         // --- Atributos: Oferente --- //
 

@@ -18,8 +18,8 @@ window.onload = () => {
         var label_password        = document.getElementById("REGISTRO_oferente_password_label");
         var label_actividad       = document.getElementById("REGISTRO_oferente_select_label");
 
-        // Expresióm Regular -> Solo letras
-        var solo_letras = /^[a-zA-Z]+$/;
+        // Expresión Regular -> Solo letras
+        var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
 
         // ------------------------------------------------------ //
         //                        FUNCIONES

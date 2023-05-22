@@ -27,7 +27,8 @@ var conn = require('./model-connection'),
             
         conn
             .findOne({
-                identificador   : data.identificador,
+                identificador        : data.identificador,
+                identificador_activo : "SI"
             })
             .exec((err, docs) => {
                 if(err) throw err
@@ -88,13 +89,16 @@ var conn = require('./model-connection'),
         conn
             .create(
             {
-                id_empresa          : data.id_empresa,
-                nombre_empresa      : data.nombre_empresa,
-                password            : data.password,
-                identificador       : data.identificador,
-                cargo               : data.cargo,
-                color               : data.color,
-                tutorial            : "none"
+                id_empresa           : data.id_empresa,
+                nombre_empresa       : data.nombre_empresa,
+                password             : data.password,
+                identificador        : data.identificador,
+                cargo                : data.cargo,
+                color                : data.color,
+                tutorial             : "none",
+                rol                  : "trabajador",
+                identificador_activo : "SI",
+
             }, 
             (err) => {
                 if(err) throw err
@@ -119,13 +123,39 @@ var conn = require('./model-connection'),
                 actividad_empresa   : data.actividad,
                 rol                 : 'oferente',
                 tutorial            : 'none',
-                color               : "#478AC9"
+                color               : "#478AC9",
             }, 
             (err) => {
                 if(err) throw err
                 cb()
             })
             
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos edita al usuario activo para ponerle el DNI, nombre, etc
+    // ---------------------------------------------------------- //
+
+    Model.registro_trabajador_submit= (data, cb) => {
+            
+        conn
+            .findOneAndUpdate(
+                {
+                    identificador : data.identificador
+                },
+
+                {
+                    nombre               : data.nombre,
+                    correo               : data.correo,
+                    password             : data.password,
+                    dni                  : data.dni,
+                    identificador_activo : "NO"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
     }
 
     // ---------------------------------------------------------- //
