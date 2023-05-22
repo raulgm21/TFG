@@ -149,63 +149,87 @@ window.onload = () => {
     })
 
 
-    // CR*D del Listado
+    // LISTADO
     document.getElementById("HOME_PERSONAL").addEventListener("click", () => {
         vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "Hola, le damos la bienvenida a la gestión de su Personal";
+        CUERPO.appendChild(titulo);
+
+        var contenedor_principal = document.createElement("div");
+        contenedor_principal.setAttribute("id","HOME_DIV_PRINCIPAL_PERSONAL")
+        CUERPO.appendChild(contenedor_principal);
+
+        var contenedor = document.createElement("div");
+        contenedor_principal.appendChild(contenedor);
 
         var PERSONAL_AÑADIR = document.createElement("img");
         PERSONAL_AÑADIR.setAttribute("id", "PERSONAL_AÑADIR");
         PERSONAL_AÑADIR.setAttribute("class","PERSONAL_CRUD");
         PERSONAL_AÑADIR.setAttribute("src", "./img/personal_añadir.png");
-        CUERPO.appendChild(PERSONAL_AÑADIR);
+        contenedor.appendChild(PERSONAL_AÑADIR);
+
+        var texto_añadir = document.createElement("p");
+        texto_añadir.innerHTML = "Introducir Empleado";
+        contenedor.appendChild(texto_añadir);
+
+        var contenedor = document.createElement("div");
+        contenedor_principal.appendChild(contenedor);
+
+        var PERSONAL_ELIMINAR = document.createElement("img");
+        PERSONAL_ELIMINAR.setAttribute("id", "PERSONAL_ELIMINAR");
+        PERSONAL_ELIMINAR.setAttribute("class","PERSONAL_CRUD");
+        PERSONAL_ELIMINAR.setAttribute("src", "./img/personal_eliminar.png");
+        contenedor.appendChild(PERSONAL_ELIMINAR);
+
+        var texto_eliminar = document.createElement("p");
+        texto_eliminar.innerHTML = "Eliminar Empleado";
+        contenedor.appendChild(texto_eliminar);
+
+        var contenedor = document.createElement("div");
+        contenedor_principal.appendChild(contenedor);
+
+        var PERSONAL_CONSULTAR = document.createElement("img");
+        PERSONAL_CONSULTAR.setAttribute("id", "PERSONAL_CONSULTAR");
+        PERSONAL_CONSULTAR.setAttribute("class","PERSONAL_CRUD");
+        PERSONAL_CONSULTAR.setAttribute("src", "./img/personal_consultar.png");
+        contenedor.appendChild(PERSONAL_CONSULTAR);
+
+        var texto_consultar = document.createElement("p");
+        texto_consultar.innerHTML = "Consultar Empleados";
+        contenedor.appendChild(texto_consultar);
+
+
+
+        // AÑADIR
+
+        PERSONAL_AÑADIR.addEventListener("click", () => { añadir_personal(); })
+
+        // ELIMINAR
+
+        PERSONAL_ELIMINAR.addEventListener("click", () => {
+            alert("ELIMINAR");
+        })
+
+        // CONSULTAR
+
+        PERSONAL_CONSULTAR.addEventListener("click", () => { mostrar_personal(); })
+
+
+
     })
 
-    // Listar Personal
-    /*document.getElementById("HOME_LISTADO").addEventListener("click", () => {
+    function añadir_personal(){
         
-        var dni = document.getElementById("HOME_DNI_USUARIO").value;
-        var empresa = document.getElementById("HOME_nombre_empresa").textContent;
-        var ID = dni+"-"+empresa;
-        alert("Entro y es: " + ID);
-
-        DATOS = { id_empresa : ID,}
-
-            fetch('/mostrar-personal', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(DATOS)
-            })
-
-            .then(response => {
-
-                if (response.ok){return response.json();}
-                else{console.log("Error");}
-                
-            })
-
-            .then(textoRespuesta => {
-                alert(textoRespuesta[0].nombre);
-            })
-
-            .catch(error => {
-                console.error('Error al enviar los datos:' + error);
-            });
-    })
-
-    // Añadir Empleado
-    document.getElementById("HOME_PERSONAL").addEventListener("click", () => {
-        var CUERPO = document.getElementById("HOME_cuerpo");
         vaciar_cuerpo(CUERPO);
-
-        var empresa = document.getElementById("HOME_nombre_empresa").textContent;
 
         var TITULO = document.createElement("h1");
         TITULO.setAttribute("id","HOME_cuerpo_titulo");
-        TITULO.innerHTML = "¡ Estas apunto de añadir un empleado nuevo en " + empresa + " !";
+        TITULO.innerHTML = "¡ Estas apunto de añadir un empleado nuevo en " + EMPRESA + " !";
         CUERPO.appendChild(TITULO);
-        
+
         var TEXTO = document.createElement("p");
         TEXTO.setAttribute("id","HOME_cuerpo_texto_nombre");
         TEXTO.innerHTML = "Rellene este simple fomulario."
@@ -235,21 +259,90 @@ window.onload = () => {
         INPUT_SUBMIT.value = "Añadir"
         FORMULARIO.appendChild(INPUT_SUBMIT);
 
-        document.getElementById("NUEVO_PERSONAL_SUBMIT").addEventListener("click", () => {
+        document.getElementById("NUEVO_PERSONAL_SUBMIT").addEventListener("click", () => { añadir_personal_submit(); })
+
+    }
+
+    function añadir_personal_submit(){
+
+        var IDENTIFICADOR = document.getElementById("NUEVO_PERSONAL_ID").value;
+        var PASSWORD      = document.getElementById("NUEVO_PERSONAL_PASSWORD").value;
+        var CARGO         = document.getElementById("NUEVO_PERSONAL_CARGO").value;
+
+        alert("ID " + IDENTIFICADOR + " PASS " + PASSWORD +  "CARGO " + CARGO);
         
-            var ID = document.getElementById("NUEVO_PERSONAL_ID").value;
-            var PASSWORD = document.getElementById("NUEVO_PERSONAL_PASSWORD").value;
-            var CARGO = document.getElementById("NUEVO_PERSONAL_CARGO").value;
+        DATOS = { 
+            id_empresa : ID,
+            nombre_empresa : EMPRESA, 
+            identificador : IDENTIFICADOR,
+            password : PASSWORD,
+            cargo : CARGO,
+            color : COLOR,
 
-            alert("ID " + ID + " PASS " + PASSWORD +  "CARGO " + CARGO);
+        }
+        if(IDENTIFICADOR.length > 0 && PASSWORD.length >= 8 && CARGO.length > 0){
 
+            fetch('/insertar-personal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(DATOS)
+            })
+
+            .then(response => {
+
+                if (response.ok){return response.text();}
+                else{console.log("Error");}
+                    
+            })
+
+            .then(textoRespuesta => {
+                if(textoRespuesta == "Correcto"){
+                    alert("Introducido");
+                }
+                if(textoRespuesta == "Existe el Identificador"){
+                    alert("Ese Identificador esta ocupado");
+                }
+                
+            })
+
+            .catch(error => {
+                console.error('Error al enviar los datos:' + error);
+            });
+        
+        }else{
+            alert("No puedes dejar un campo vacío");
+        }
+    }
+
+    function mostrar_personal(){
+
+        DATOS = { id_empresa : ID, }
+
+        fetch('/mostrar-personal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
         })
 
-    })
+        .then(response => {
 
-    */
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+                
+        })
 
-      
+        .then(textoRespuesta => {
+            alert(textoRespuesta[0].nombre);
+        })
 
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+
+    }
     
 }

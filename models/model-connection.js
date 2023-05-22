@@ -30,7 +30,8 @@ var mongoose = require('mongoose'),
         imagen_empresa      : "string",
         
         // --- Atributos: Trabajador --- //
-        departamento        : "string",
+        cargo               : "string",
+        identificador       : "string",
 
         // --- Atributos: Oferente --- //
 

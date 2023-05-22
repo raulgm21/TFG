@@ -20,6 +20,22 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos consulta si existe o no el IDENTIFICADOR que le pasamos por formulario. 
+    // ---------------------------------------------------------- //
+
+    Model.identificador = (data, cb) => {
+            
+        conn
+            .findOne({
+                identificador   : data.identificador,
+            })
+            .exec((err, docs) => {
+                if(err) throw err
+                cb(docs)
+            })
+    }
+
+    // ---------------------------------------------------------- //
     // Nos consulta el correo que le pasamos por formulario. Sirve
     // para mandar correos, inicio de sesión y registro.
     // ---------------------------------------------------------- //
@@ -63,6 +79,30 @@ var conn = require('./model-connection'),
             
     }
 
+    // ---------------------------------------------------------- //
+    // Nos añade un nuevo trabajador por parte de IDENTIFICADOR
+    // ---------------------------------------------------------- //
+
+    Model.registro_agregar_personal = (data, cb) => {
+
+        conn
+            .create(
+            {
+                id_empresa          : data.id_empresa,
+                nombre_empresa      : data.nombre_empresa,
+                password            : data.password,
+                identificador       : data.identificador,
+                cargo               : data.cargo,
+                color               : data.color,
+                tutorial            : "none"
+            }, 
+            (err) => {
+                if(err) throw err
+                cb()
+            })
+            
+    }
+    
     // ---------------------------------------------------------- //
     // Nos añade un nuevo oferente en la BDD.
     // ---------------------------------------------------------- //

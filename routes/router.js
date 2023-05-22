@@ -51,7 +51,7 @@
 
         .post('/home', Controller.sesion)
 
-        
+        .post('/insertar-personal', Controller.insertar_personal)
         .post('/mostrar-personal', Controller.mostrar_personal)
 
         .put('/tutorialNO', Controller.tutorialNO)

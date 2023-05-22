@@ -178,6 +178,60 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos inserta un trabajador IDENTIFICADOR
+    // ------------------------------------------------------ //
+
+    Controller.insertar_personal = (req, res, next) => {
+
+        const datos = req.body;
+
+        var id_empresa           = datos.id_empresa.trim();
+        var nombre_empresa       = datos.nombre_empresa.trim();
+        var identificador        = datos.identificador.trim();
+        var password             = datos.password.trim();
+        var cargo                = datos.cargo.trim();
+        var color                = datos.color.trim();
+        
+        const salting = 10;
+
+        bcrypt.hash(password,salting, (err,hashedPassword) => {
+
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Hash: " + hashedPassword)
+                // Objeto Actualizado
+                datosActu = {
+                    id_empresa      : id_empresa ,
+                    nombre_empresa  : nombre_empresa,
+                    password        : hashedPassword,
+                    identificador   : identificador,
+                    cargo           : cargo,
+                    color           : color
+                }
+
+               
+                // Comprobamos si no existe un identificador igual en la base de datos
+                Model.identificador(datosActu , (docs) => {
+                        
+                    console.log(docs)
+                    // No existe el Identificador en la BDD, por lo cual es correcto
+                    if(docs == null){
+        
+                        Model.registro_agregar_personal(datosActu, () => { res.send("Correcto"); }) 
+        
+                    }else{
+                        res.send("Existe el Identificador");
+                    }
+                        
+                })
+           
+            }
+        })
+
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos revisará si existe o no el DNI en la BDD
     // para iniciar sesión, y nos dirigira al home del user.
     // ------------------------------------------------------ //
