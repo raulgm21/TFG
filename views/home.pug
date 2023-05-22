@@ -48,6 +48,7 @@ block content
         -if(usuario.rol == "empresario")
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
+            
             div#div_home
                
                 nav#HOME_HEADER 
@@ -79,12 +80,9 @@ block content
                 nav#HOME_MENU
                     div.HOME_menu-item
                         img#HOME_INICIO(src="./img/icon/casa.png", class="HOME_menu_imagen")
-                        p.HOME_menu_texto#HOME_INICIO Inicio   
+                        p.HOME_menu_texto#HOME_INICIO Inicio    
                     div.HOME_menu-item
-                        img#HOME_LISTADO(src="./img/icon/contacto.png", class="HOME_menu_imagen")
-                        p.HOME_menu_texto#HOME_LISTADO Listado   
-                    div.HOME_menu-item
-                        img#HOME_PERSONAL(src="./img/icon/personal.png", class="HOME_menu_imagen")
+                        img#HOME_PERSONAL(src="./img/icon/contacto.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto#HOME_PERSONAL Personal 
                     div.HOME_menu-item
                         img(src="./img/icon/mail.png", class="HOME_menu_imagen")
