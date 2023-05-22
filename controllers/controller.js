@@ -328,6 +328,31 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
             
         })
     }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos obtiene todos los trabajadores de la empresa
+    // ------------------------------------------------------ //
+
+    Controller.mostrar_personal = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var id_empresa = datos.id_empresa.trim();
+        
+        OBJDATOS = { id_empresa : id_empresa }
+
+        Model.mostrar_personal(OBJDATOS , (docs) => {
+            
+            console.log(docs);
+            if(docs){
+                res.send(docs);
+            }else{
+                res.send("Error");
+            }
+            
+        })
+    }
+
 // ******************************************************************************************** //
 // ******************************************************************************************** //
 //                                              Vistas

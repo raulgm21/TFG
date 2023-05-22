@@ -3,6 +3,21 @@ window.onload = () => {
     document.getElementById("HOME_flechita").addEventListener("click", cambiar_menu);
     document.getElementById("HOME_nombre").addEventListener("click", cambiar_menu);
 
+    // Color Personalizado
+
+    var COLOR = document.getElementById("HOME_COLOR_USUARIO").value;
+
+    var HEADER = document.getElementById("HOME_HEADER");
+    var CUERPO = document.getElementById("HOME_cuerpo")
+    var TextoNO = document.getElementById("HOME_cuerpo_texto_no_nombre");
+    var MENU    = document.getElementById("HOME_MENU");
+
+    HEADER.style.backgroundColor = COLOR;
+    CUERPO.style.boxShadow = "0 6px 10px " + COLOR;
+    TextoNO.style.color = COLOR;
+    MENU.style.backgroundColor = COLOR;
+
+    // Mostrar y Ocultar Menú
     function cambiar_menu() 
     {
         var menu = document.getElementById("HOME_menu_flechita");
@@ -94,7 +109,40 @@ window.onload = () => {
         })
     }
 
- 
+    // Cerrar Sesión
+    document.getElementById("HOME_cerrar_sesion").addEventListener("click", () => { window.location.href = "/iniciarSesion"; } )
 
-    
+    // Listar Personal
+    document.getElementById("HOME_LISTADO").addEventListener("click", () => {
+        
+        var dni = document.getElementById("HOME_DNI_USUARIO").value;
+        var empresa = document.getElementById("HOME_nombre_empresa").textContent;
+        var ID = dni+"-"+empresa;
+        alert("Entro y es: " + ID);
+
+        DATOS = { id_empresa : ID,}
+
+            fetch('/mostrar-personal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(DATOS)
+            })
+
+            .then(response => {
+
+                if (response.ok){return response.json();}
+                else{console.log("Error");}
+                
+            })
+
+            .then(textoRespuesta => {
+                alert(textoRespuesta[0].nombre);
+            })
+
+            .catch(error => {
+                console.error('Error al enviar los datos:' + error);
+            });
+    })
 }

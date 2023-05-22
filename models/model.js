@@ -53,7 +53,8 @@ var conn = require('./model-connection'),
                 actividad_empresa   : data.actividad,
                 id_empresa          : data.dni + "-" +data.nombreEmpresa,
                 rol                 : 'empresario',
-                tutorial            : 'none'
+                tutorial            : 'none',
+                color               : "#478AC9"
             }, 
             (err) => {
                 if(err) throw err
@@ -77,7 +78,8 @@ var conn = require('./model-connection'),
                 dni                 : data.dni,
                 actividad_empresa   : data.actividad,
                 rol                 : 'oferente',
-                tutorial            : 'none'
+                tutorial            : 'none',
+                color               : "#478AC9"
             }, 
             (err) => {
                 if(err) throw err
@@ -106,6 +108,27 @@ var conn = require('./model-connection'),
                 if(err) throw err
                 cb()
             })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos muestra todo el personal que hay en la empresa
+    // ---------------------------------------------------------- //
+
+    Model.mostrar_personal= (data, cb) => {
+            
+        conn
+            .find
+            (
+                {
+                    id_empresa : data.id_empresa
+                }
+            )
+            .exec((err, docs) => {
+
+                if(err) throw err
+                cb(docs)
+            })
+            
     }
 
 // ******************************************************************************************** //

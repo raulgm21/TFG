@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
         foto_perfil         : "string",
         rol                 : "string",
         tutorial            : "string",
+        color               : "string",
 
         // --- Atributos -> Empresario & Oferente --- //
         actividad_empresa   : "string",
