@@ -541,7 +541,7 @@ const fs = require('fs');                       // Módulo para interactuar con 
         const datos     = req.body;
 
         var dni         = datos.dni.trim();
-
+       
         const extension         = path.extname(req.file.originalname);
         const nombreArchivo     = dni + extension;
         const rutaArchivo       = path.join('./public/img/perfil/', nombreArchivo);

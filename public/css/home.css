@@ -279,3 +279,57 @@
     max-width: 256px;
     font-family: monospace;
 }
+
+
+#HOME_CONTENEDOR_FILE{
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 0;
+    min-height: 15px;
+    overflow: hidden;
+    padding: 10px;
+    top : 16px;
+    position: relative;
+    text-align: center;
+    width: 400px;
+}
+
+#HOME_CONTENEDOR_FILE #HOME_SUBIR_FOTO_INPUT{
+    border: 10px solid transparent;
+    cursor: pointer;
+    font-size: 10px;
+    margin: 0;
+    opacity: 0;
+    outline: 0 none;
+    padding: 0;
+}
+
+#HOME_SUBIR_FOTO_LABEL{
+    display: inline-block;
+    pointer-events: none;
+    user-select: none;
+    position: relative;
+    left : -108px;
+}
+
+#HOME_SUBIR_FOTO_SUBMIT{
+    position: relative;
+    height: 32px;
+    width: 128px;
+    border-radius: 48px;
+    border : transparent;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 600;
+    top : 48px;
+    left : 44.5%;
+    cursor: pointer;
+}
+
+#HOME_SUBIR_FOTO_SUBMIT:hover {
+    background-color: gray;
+    transition: 0.5s;
+}
