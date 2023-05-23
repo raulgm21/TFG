@@ -6,9 +6,36 @@ window.onload = () => {
         
         // --- VARIABLES ---
         var identificador          = document.getElementById("input_trabajador_nombre").value;
-        var password            = document.getElementById("input_trabajador_password").value;
+        var password               = document.getElementById("input_trabajador_password").value;
+
+        var label_identificador    = document.getElementById("REGISTRO_trabajador_identificador_label");
+        var label_password         = document.getElementById("REGISTRO_trabajador_password_label");
 
        // ---------------------------------------------------------------------------------------------------- //
+
+        if(identificador.length > 0){
+           // Correcto
+           label_identificador.style.background = "green";
+           label_identificador.style.color = "white";
+           label_identificador.style.fontWeight = "bold";
+       }else{
+           // Error
+           label_identificador.style.background = "red";
+           label_identificador.style.color = "white";
+           label_identificador.style.fontWeight = "bold";
+       }
+
+       if(password.length >= 8){
+            // Correcto
+            label_password.style.background = "green";
+            label_password.style.color = "white";
+            label_password.style.fontWeight = "bold";
+        }else{
+            // Error
+            label_password.style.background = "red";
+            label_password.style.color = "white";
+            label_password.style.fontWeight = "bold";
+        }
 
        if(identificador.length > 0 && password >= 8 ){
 
@@ -57,8 +84,6 @@ window.onload = () => {
                     texto.style.fontFamily = "monospace";
                     modal.appendChild(texto);
 
-                    // nombre, correo, contraseña y DNI
-
                     var formulario = document.createElement("form");
                     modal.appendChild(formulario);
 
@@ -101,7 +126,9 @@ window.onload = () => {
                }
 
                if(textoRespuesta === 'Error') { 
-                alert("erroe");
+                    label_identificador.style.background = "red";
+                    label_identificador.style.color = "white";
+                    label_identificador.style.fontWeight = "bold";
                 }
                  
             })

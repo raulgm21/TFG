@@ -330,6 +330,42 @@
 }
 
 #HOME_SUBIR_FOTO_SUBMIT:hover {
-    background-color: gray;
+    background-color: rgb(102,109,114);
     transition: 0.5s;
+}
+
+#NUEVO_PERSONAL_FORMULARIO input{
+    display: block;
+    width: 512px;
+    padding: 16px;
+    margin: auto;
+    border-radius: 16px;
+    border : transparent;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+    font-family: monospace;
+    
+}
+
+#NUEVO_PERSONAL_SUBMIT{
+    position: relative;
+    top : 16px;
+    cursor : pointer;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+
+}
+
+#NUEVO_PERSONAL_SUBMIT:hover{
+    background-color: rgb(102,109,114);
+    transition: 0.5s;
+    color : white;
+}
+
+#AÑADIR_PERSONAL_TEXTO_RESPUESTA{
+    text-align: center;
+    position: relative;
+    top : 16px;
+    font-size: 16px;
+    font-family: monospace;
+    text-decoration: underline;
 }

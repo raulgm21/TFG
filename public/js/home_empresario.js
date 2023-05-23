@@ -145,21 +145,25 @@ window.onload = () => {
         CUERPO.appendChild(TEXTO);
         
         var FORMULARIO = document.createElement("form");
+        FORMULARIO.setAttribute("id","NUEVO_PERSONAL_FORMULARIO")
         CUERPO.appendChild(FORMULARIO);
 
         var INPUT_NOMBRE_ID = document.createElement("input");
         INPUT_NOMBRE_ID.setAttribute("id","NUEVO_PERSONAL_ID");
+        INPUT_NOMBRE_ID.setAttribute("placeholder", "Inserte un código identificador")
         INPUT_NOMBRE_ID.setAttribute("type","text");
         FORMULARIO.appendChild(INPUT_NOMBRE_ID);
 
         var INPUT_PASSWORD = document.createElement("input");
         INPUT_PASSWORD.setAttribute("id","NUEVO_PERSONAL_PASSWORD");
         INPUT_PASSWORD.setAttribute("type","password");
+        INPUT_PASSWORD.setAttribute("placeholder", "Inserte una contraseña (min 8 caract.)")
         FORMULARIO.appendChild(INPUT_PASSWORD);
 
         var INPUT_CARGO = document.createElement("input");
         INPUT_CARGO.setAttribute("id","NUEVO_PERSONAL_CARGO");
         INPUT_CARGO.setAttribute("type","text");
+        INPUT_CARGO.setAttribute("placeholder", "Inserte su cargo en la empresa")
         FORMULARIO.appendChild(INPUT_CARGO);
 
         var INPUT_SUBMIT = document.createElement("input");
@@ -182,8 +186,6 @@ window.onload = () => {
         var PASSWORD      = document.getElementById("NUEVO_PERSONAL_PASSWORD").value;
         var CARGO         = document.getElementById("NUEVO_PERSONAL_CARGO").value;
 
-        alert("ID " + IDENTIFICADOR + " PASS " + PASSWORD +  "CARGO " + CARGO);
-        
         DATOS = { 
             id_empresa : ID,
             nombre_empresa : EMPRESA, 
@@ -211,11 +213,33 @@ window.onload = () => {
             })
 
             .then(textoRespuesta => {
+                
                 if(textoRespuesta == "Correcto"){
-                    alert("Introducido");
+
+                    if(document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                        CUERPO.removeChild(CUERPO.lastChild)
+                    }
+
+                    if(!document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                        var texto = document.createElement("p");
+                        texto.innerHTML = "Añadido con éxito.";
+                        texto.setAttribute("id","AÑADIR_PERSONAL_TEXTO_RESPUESTA");
+                        CUERPO.appendChild(texto);
+                    }
+                    
                 }
                 if(textoRespuesta == "Existe el Identificador"){
-                    alert("Ese Identificador esta ocupado");
+                    
+                    if(document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                        CUERPO.removeChild(CUERPO.lastChild)
+                    }
+
+                    if(!document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                        var texto = document.createElement("p");
+                        texto.innerHTML = "El Identificador está ocupado actualmente.";
+                        texto.setAttribute("id","AÑADIR_PERSONAL_TEXTO_RESPUESTA");
+                        CUERPO.appendChild(texto);
+                    }
                 }
                 
             })
@@ -225,7 +249,17 @@ window.onload = () => {
             });
         
         }else{
-            alert("No puedes dejar un campo vacío");
+
+            if(document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                CUERPO.removeChild(CUERPO.lastChild)
+            }
+            
+            if(!document.getElementById("AÑADIR_PERSONAL_TEXTO_RESPUESTA")){
+                var texto = document.createElement("p");
+                texto.innerHTML = "No puedes dejar ningún campo vacío.";
+                texto.setAttribute("id","AÑADIR_PERSONAL_TEXTO_RESPUESTA");
+                CUERPO.appendChild(texto);
+            }
         }
     }
 
