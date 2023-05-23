@@ -2,7 +2,7 @@ window.onload = () => {
 
     document.getElementById("REGISTRO_OFERENTE_BOTON").addEventListener("click", () => {window.location.href = '/registro'});
     
-    document.getElementById("input_oferente_submit"),addEventListener("click", () => {
+    document.getElementById("input_oferente_submit").addEventListener("click", () => {
 
          // --- VARIABLES ---
          var nombre          = document.getElementById("input_oferente_nombre").value;

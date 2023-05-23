@@ -99,8 +99,8 @@ var conn = require('./model-connection'),
                 color                : data.color,
                 tutorial             : "none",
                 rol                  : "trabajador",
-                identificador_activo : "SI",
-                foto_perfil          : "./img/perfil/nofoto.png"
+                foto_perfil          : "./img/perfil/nofoto.png",
+                identificador_activo : "SI"
 
             }, 
             (err) => {
@@ -145,7 +145,8 @@ var conn = require('./model-connection'),
         conn
             .findOneAndUpdate(
                 {
-                    identificador : data.identificador
+                    identificador : data.identificador,
+                    identificador_activo : "SI"
                 },
 
                 {

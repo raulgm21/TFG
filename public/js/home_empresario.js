@@ -328,31 +328,33 @@ window.onload = () => {
 
             for(i = 0 ; i < textoRespuesta.length ; i++){
 
-                var fila = document.createElement("tr");
-                tabla.appendChild(fila);
+                if(textoRespuesta[i].nombre != undefined){
 
-                var columna = document.createElement("td");
-                columna.innerHTML = textoRespuesta[i].dni;
-                fila.appendChild(columna);
-                var columna = document.createElement("td");
-                columna.innerHTML = textoRespuesta[i].nombre;
-                fila.appendChild(columna);
-                var columna = document.createElement("td");
-                columna.innerHTML = textoRespuesta[i].correo;
-                fila.appendChild(columna);
-                var columna = document.createElement("td");
-                columna.innerHTML = textoRespuesta[i].cargo;
-                fila.appendChild(columna);
-                var foto = document.createElement("img");
-                foto.setAttribute("src",textoRespuesta[i].foto_perfil);
-                foto.style.height = "64px";
-                foto.style.width = "64px";
-                foto.style.borderRadius = "9999px";
-                foto.style.position = "relative";
-                foto.style.left = "72px";
-                fila.appendChild(foto);
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
 
-                console.log(textoRespuesta[i])
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].dni;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].nombre;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].correo;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].cargo;
+                    fila.appendChild(columna);
+                    var foto = document.createElement("img");
+                    foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                    foto.style.height = "64px";
+                    foto.style.width = "64px";
+                    foto.style.borderRadius = "9999px";
+                    foto.style.position = "relative";
+                    foto.style.left = "72px";
+                    fila.appendChild(foto);
+                }
+                
             }
         })
 

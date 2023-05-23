@@ -369,3 +369,16 @@
     font-family: monospace;
     text-decoration: underline;
 }
+
+#FORMULARIO_REGISTRO_TRABAJADOR_FINAL input{
+    display: block;
+    width: 512px;
+    padding: 16px;
+    margin: auto;
+    border-radius: 16px;
+    border : transparent;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+    font-family: monospace;
+    
+}
