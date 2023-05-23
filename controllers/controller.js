@@ -5,6 +5,8 @@ var Model = require('../models/model'),
 
 const bcrypt = require('bcrypt');               // Módulo para encriptación de contraseñas
 const nodemailer = require('nodemailer');       // Módulo para mandar correos
+const path = require('path');                   // Módulo para interactuar con las rutas
+const fs = require('fs');                       // Módulo para interactuar con los ficheros
 
 // ******************************************************************************************** //
 // ******************************************************************************************** //
@@ -530,6 +532,27 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
         })
     }
 
+    // ------------------------------------------------------ //
+    // Modelo que nos permite subir una foto de perfil
+    // ------------------------------------------------------ //
+
+    Controller.subir_foto = (req, res, next) => {
+
+        const extension         = path.extname(req.file.originalname);
+        const nombreArchivo     = "hola" + extension;
+        const rutaArchivo       = path.join('./public/img/perfil/', nombreArchivo);
+        
+        fs.rename(req.file.path, rutaArchivo, (error) => {
+            if(error) {
+                console.log(error);
+                res.send('Error al subir la imagen');
+            } else {
+                res.send('Imagen subida correctamente');
+            }
+        });
+
+    }
+
 // ******************************************************************************************** //
 // ******************************************************************************************** //
 //                                              Vistas
@@ -713,6 +736,21 @@ const nodemailer = require('nodemailer');       // Módulo para mandar correos
         }
         
         res.render('registro', locals)
+                
+    }
+
+    // ------------------------------------------------------ //
+    // Vista del PRUEBA
+    // ------------------------------------------------------ //
+    
+    Controller.prueba = (req, res, next) => {
+        
+        let locals = {
+            title : 'TeamWork ~ PRUEBA',
+            description : ''
+        }
+        
+        res.render('prueba', locals)
                 
     }
 

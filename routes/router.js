@@ -18,8 +18,26 @@
     // aplicación.                                                          //
     //----------------------------------------------------------------------//
 
+   
+    const multer = require('multer');               // Módulo para subir imágenes
+    const upload = multer({ 
+        dest: './public/img/perfil/',
+        limits: {
+            fileSize: 2097152 // 2MB
+        },
+        fileFilter: (req, file, callback) => {
+            if(file.mimetype === 'image/png') {
+                callback(null, true);
+            } else {
+                callback(new Error('La imagen debe ser de la extensión PNG'));
+            }
+        }
+    });
+    
     // Creamos una variable para el Framework Express, y otra variable para su módulo Router.
     
+    
+
     var Controller = require('../controllers/controller'),
         express = require('express'),
         router  = express.Router()
@@ -31,6 +49,9 @@
     router
 
         .get('/', Controller.index)
+
+        .get('/prueba', Controller.prueba)
+        .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
 
         .get('/asistente', Controller.asistente)
         

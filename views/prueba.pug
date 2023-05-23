@@ -1,0 +1,8 @@
+extends layout.pug 
+
+block content
+    p Prueba
+    form(action="/subir-foto", method="POST", enctype="multipart/form-data")
+        input(type="file", name="imagen")
+        input(type="submit", value="Enviar")
+        

@@ -71,7 +71,8 @@ var conn = require('./model-connection'),
                 id_empresa          : data.dni + "-" +data.nombreEmpresa,
                 rol                 : 'empresario',
                 tutorial            : 'none',
-                color               : "#478AC9"
+                color               : "#478AC9",
+                cargo               : "Empresario",
             }, 
             (err) => {
                 if(err) throw err

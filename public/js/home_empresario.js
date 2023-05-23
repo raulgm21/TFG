@@ -201,8 +201,6 @@ window.onload = () => {
         texto_consultar.innerHTML = "Consultar Empleados";
         contenedor.appendChild(texto_consultar);
 
-
-
         // AÑADIR
 
         PERSONAL_AÑADIR.addEventListener("click", () => { añadir_personal(); })
@@ -221,6 +219,7 @@ window.onload = () => {
 
     })
 
+    // Interfaz
     function añadir_personal(){
         
         vaciar_cuerpo(CUERPO);
@@ -263,6 +262,7 @@ window.onload = () => {
 
     }
 
+    // Submit
     function añadir_personal_submit(){
 
         var IDENTIFICADOR = document.getElementById("NUEVO_PERSONAL_ID").value;
@@ -336,7 +336,68 @@ window.onload = () => {
         })
 
         .then(textoRespuesta => {
-            alert(textoRespuesta[0].nombre);
+          
+            vaciar_cuerpo(CUERPO);
+
+            var titulo = document.createElement("h1");
+            titulo.setAttribute("id", "HOME_cuerpo_titulo");
+            titulo.innerHTML = "Hola, le damos la bienvenida a su Personal";
+            CUERPO.appendChild(titulo);
+
+            var tabla = document.createElement("table");
+            tabla.setAttribute("id","HOME_PERSONAL_EMPRESARIO");
+            CUERPO.appendChild(tabla);
+
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "DNI";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Nombre";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Correo";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Cargo";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Foto";
+            fila.appendChild(columna);
+
+
+            // DNI, Nombre, Correo, Cargo, Foto
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                var fila = document.createElement("tr");
+                tabla.appendChild(fila);
+
+                var columna = document.createElement("td");
+                columna.innerHTML = textoRespuesta[i].dni;
+                fila.appendChild(columna);
+                var columna = document.createElement("td");
+                columna.innerHTML = textoRespuesta[i].nombre;
+                fila.appendChild(columna);
+                var columna = document.createElement("td");
+                columna.innerHTML = textoRespuesta[i].correo;
+                fila.appendChild(columna);
+                var columna = document.createElement("td");
+                columna.innerHTML = textoRespuesta[i].cargo;
+                fila.appendChild(columna);
+                var columna = document.createElement("td");
+                columna.innerHTML = textoRespuesta[i].foto;
+                fila.appendChild(columna);
+
+                console.log(textoRespuesta[i])
+            }
         })
 
         .catch(error => {
