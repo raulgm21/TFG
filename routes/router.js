@@ -18,12 +18,12 @@
     // aplicación.                                                          //
     //----------------------------------------------------------------------//
 
-   
-    const multer = require('multer');               // Módulo para subir imágenes
+    // Módulo para subir imágenes
+    const multer = require('multer');               
     const upload = multer({ 
         dest: './public/img/perfil/',
         limits: {
-            fileSize: 2097152 // 2MB
+            fileSize: 1048576 // 1MB
         },
         fileFilter: (req, file, callback) => {
             if(file.mimetype === 'image/png') {
@@ -36,8 +36,6 @@
     
     // Creamos una variable para el Framework Express, y otra variable para su módulo Router.
     
-    
-
     var Controller = require('../controllers/controller'),
         express = require('express'),
         router  = express.Router()
@@ -49,9 +47,6 @@
     router
 
         .get('/', Controller.index)
-
-        .get('/prueba', Controller.prueba)
-        .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
 
         .get('/asistente', Controller.asistente)
         
@@ -70,19 +65,22 @@
         .get('/registro/trabajador', Controller.registro_trabajador)
         .get('/registro/oferente', Controller.registro_oferente)
 
-        .post('/home', Controller.sesion)
-
-        .post('/insertar-personal', Controller.insertar_personal)
-        .post('/mostrar-personal', Controller.mostrar_personal)
-
-        .put('/tutorialNO', Controller.tutorialNO)
-
         .post('/registro/empresario/submit', Controller.registro_empresario_submit)
         .post('/registro/oferente/submit', Controller.registro_oferente_submit)
         .post('/registro/trabajador/submit', Controller.registro_trabajador_submit)
         .post('/consultar/trabajador/identificador', Controller.consultar_trabajador_identificador)
+
+        .post('/home', Controller.sesion)
+
+        .post('/insertar-personal', Controller.insertar_personal)
+        .post('/mostrar-personal', Controller.mostrar_personal)
+        .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
+
+        .put('/tutorialNO', Controller.tutorialNO)
+
         
         
+        .get('/prueba', Controller.prueba)
         // Uso del Error 404
        // .use(Controller.error404)
 

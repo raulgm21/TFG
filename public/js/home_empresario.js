@@ -148,6 +148,58 @@ window.onload = () => {
 
     })
 
+    // Foto Perfil
+    document.getElementById("HOME_foto_perfil").addEventListener("click", () => {
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Vas a cambiar tu foto de perfil !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "La imagen debe ser en un formato PNG y pesar menos de 1MB.";
+        CUERPO.appendChild(texto);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_no_nombre");
+        texto.innerHTML = "Ten en cuenta que cuando cambies tu foto de perfil, se te cerrará la sesión para así guardar los cambios.";
+        CUERPO.appendChild(texto);
+
+        var formulario = document.createElement("form");
+        formulario.setAttribute("action", "/subir-foto");
+        formulario.setAttribute("method", "POST");
+        formulario.setAttribute("enctype","multipart/form-data")
+        CUERPO.appendChild(formulario);
+
+        var input_dni = document.createElement("input");
+        input_dni.setAttribute("type","text");
+        input_dni.setAttribute("name","dni");
+        input_dni.setAttribute("value",DNI);
+        input_dni.style.display = "none";
+        formulario.appendChild(input_dni);
+
+        var input_file = document.createElement("input");
+        input_file.setAttribute("type","file");
+        input_file.setAttribute("name","imagen");
+        formulario.appendChild(input_file);
+
+        var input_submit = document.createElement("input");
+        input_submit.setAttribute("type", "submit");
+        input_submit.setAttribute("value", "Enviar");
+        formulario.appendChild(input_submit);
+
+        var imagen = document.createElement("img");
+        var fotoID = document.getElementById("HOME_foto_perfil");
+        imagen.setAttribute("src", fotoID.src);
+        imagen.style.height = "64px";
+        imagen.style.width = "64px";
+        imagen.style.borderRadius = "9999px";
+        imagen.style.position = "relative";
+        CUERPO.appendChild(imagen);
+
+    })
 
     // LISTADO
     document.getElementById("HOME_PERSONAL").addEventListener("click", () => {
@@ -316,6 +368,7 @@ window.onload = () => {
         }
     }
 
+    // Mostrar personal
     function mostrar_personal(){
 
         DATOS = { id_empresa : ID, }
@@ -392,9 +445,14 @@ window.onload = () => {
                 var columna = document.createElement("td");
                 columna.innerHTML = textoRespuesta[i].cargo;
                 fila.appendChild(columna);
-                var columna = document.createElement("td");
-                columna.innerHTML = textoRespuesta[i].foto;
-                fila.appendChild(columna);
+                var foto = document.createElement("img");
+                foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                foto.style.height = "64px";
+                foto.style.width = "64px";
+                foto.style.borderRadius = "9999px";
+                foto.style.position = "relative";
+                foto.style.left = "72px";
+                fila.appendChild(foto);
 
                 console.log(textoRespuesta[i])
             }
@@ -406,4 +464,6 @@ window.onload = () => {
 
     }
     
+    
+
 }

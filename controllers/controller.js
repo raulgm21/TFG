@@ -538,18 +538,27 @@ const fs = require('fs');                       // Módulo para interactuar con 
 
     Controller.subir_foto = (req, res, next) => {
 
+        const datos     = req.body;
+
+        var dni         = datos.dni.trim();
+
         const extension         = path.extname(req.file.originalname);
-        const nombreArchivo     = "hola" + extension;
+        const nombreArchivo     = dni + extension;
         const rutaArchivo       = path.join('./public/img/perfil/', nombreArchivo);
-        
+
         fs.rename(req.file.path, rutaArchivo, (error) => {
             if(error) {
                 console.log(error);
                 res.send('Error al subir la imagen');
-            } else {
-                res.send('Imagen subida correctamente');
-            }
+            } 
         });
+
+        // Modificar el documento añadiendo la foto de pefil
+        OBJDATOS = { dni : dni,}
+
+        Model.foto_perfil(OBJDATOS , (docs) => { })
+
+        res.redirect(307, req.headers.referer);
 
     }
 

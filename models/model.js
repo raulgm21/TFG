@@ -73,6 +73,7 @@ var conn = require('./model-connection'),
                 tutorial            : 'none',
                 color               : "#478AC9",
                 cargo               : "Empresario",
+                foto_perfil         : "./img/perfil/nofoto.png"
             }, 
             (err) => {
                 if(err) throw err
@@ -99,6 +100,7 @@ var conn = require('./model-connection'),
                 tutorial             : "none",
                 rol                  : "trabajador",
                 identificador_activo : "SI",
+                foto_perfil          : "./img/perfil/nofoto.png"
 
             }, 
             (err) => {
@@ -125,6 +127,7 @@ var conn = require('./model-connection'),
                 rol                 : 'oferente',
                 tutorial            : 'none',
                 color               : "#478AC9",
+                foto_perfil         : "./img/perfil/nofoto.png"
             }, 
             (err) => {
                 if(err) throw err
@@ -173,6 +176,28 @@ var conn = require('./model-connection'),
 
                 {
                     tutorial : "NO"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos edita al usuario añadiendo la foto que le hemos asignado
+    // ---------------------------------------------------------- //
+
+    Model.foto_perfil= (data, cb) => {
+            
+        conn
+            .findOneAndUpdate(
+                {
+                    dni : data.dni
+                },
+
+                {
+                    foto_perfil : "./img/perfil/" + data.dni + ".png"
                 }, 
 
                 (err, docs) =>{

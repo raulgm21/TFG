@@ -11,6 +11,7 @@
     margin : 8px;
     position: relative;
     top : 6px;
+    cursor: pointer;
 }
 
 #HOME_nombre{
