@@ -31,7 +31,10 @@ window.onload = () => {
     // Sección de código que nos carga la sección de INICIO
     // ---------------------------------------------------------------------- //
 
-    document.getElementById("HOME_INICIO").addEventListener("click", () => {
+    document.getElementById("HOME_INICIO").addEventListener("click", () => { pantalla_inicio() })
+
+    function pantalla_inicio(){
+
         vaciar_cuerpo(CUERPO);
         var titulo = document.createElement("h1");
         titulo.setAttribute("id", "HOME_cuerpo_titulo");
@@ -45,7 +48,7 @@ window.onload = () => {
 
         var texto2 = document.createElement("p");
         texto2.setAttribute("id","HOME_cuerpo_texto_no_nombre");
-        texto2.innerHTML = "¿No eres " + NOMBRE + "?"
+        texto2.innerHTML = "";
         CUERPO.appendChild(texto2);
 
         var imagen = document.createElement("img");
@@ -53,8 +56,7 @@ window.onload = () => {
         imagen.setAttribute("src", "./img/empresa1.png");
         CUERPO.appendChild(imagen);
 
-
-    })
+    }
 
 // ----------------------------------------------------------------------------------------------- // 
 

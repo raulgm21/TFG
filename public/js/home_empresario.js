@@ -48,7 +48,7 @@ window.onload = () => {
 
         var texto2 = document.createElement("p");
         texto2.setAttribute("id","HOME_cuerpo_texto_no_nombre");
-        texto2.innerHTML = "¿No eres " + NOMBRE + "?"
+        texto2.innerHTML = "";
         CUERPO.appendChild(texto2);
 
         var imagen = document.createElement("img");
