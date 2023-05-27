@@ -597,7 +597,7 @@ const fs = require('fs');                       // Módulo para interactuar con 
 
         Model.foto_perfil(OBJDATOS , (docs) => { })
 
-        res.redirect(307, req.headers.referer);
+        res.redirect('/iniciarSesion');
 
     }
 
