@@ -63,7 +63,7 @@ window.onload = () => {
    
                if(textoRespuesta === 'Correcto') { 
                     var modal = document.createElement("div");
-                    modal.style.height = "380px";
+                    modal.style.height = "420px";
                     modal.style.width = "45%";
                     modal.style.border = "none";
                     modal.style.position = "fixed";
@@ -117,8 +117,25 @@ window.onload = () => {
                     input_submit.setAttribute("type", "button");
                     input_submit.style.cursor = "pointer";
                     input_submit.style.position = "relative";
+                    input_submit.style.background = "gray";
+                    input_submit.style.color = "white";
                     input_submit.style.top = "16px";
                     formulario.appendChild(input_submit);
+
+                    var input_atras = document.createElement("input");
+                    input_atras.value = "Volver Atrás";
+                    input_atras.setAttribute("type", "button");
+                    input_atras.style.cursor = "pointer";
+                    input_atras.style.position = "relative";
+                    input_atras.style.top = "32px";
+                    formulario.appendChild(input_atras);  
+
+                    // SALIR
+                    input_atras.addEventListener("click",() => { 
+                        
+                        BODY.removeChild(modal);
+                        
+                    })
 
                     // ENVIAR
                     input_submit.addEventListener("click", () => {
