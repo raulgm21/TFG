@@ -31,7 +31,10 @@ window.onload = () => {
     // Sección de código que nos carga la sección de INICIO
     // ---------------------------------------------------------------------- //
     
-    document.getElementById("HOME_INICIO").addEventListener("click", () => {
+    document.getElementById("HOME_INICIO").addEventListener("click", () => { pantalla_inicio() })
+
+    function pantalla_inicio(){
+
         vaciar_cuerpo(CUERPO);
         var titulo = document.createElement("h1");
         titulo.setAttribute("id", "HOME_cuerpo_titulo");
@@ -53,7 +56,7 @@ window.onload = () => {
         imagen.setAttribute("src", "./img/empresa1.png");
         CUERPO.appendChild(imagen);
 
-    })
+    }
 
 // ----------------------------------------------------------------------------------------------- // 
    
@@ -117,9 +120,7 @@ window.onload = () => {
         PERSONAL_AÑADIR.addEventListener("click", () => { añadir_personal(); })
         
         // ELIMINAR
-        PERSONAL_ELIMINAR.addEventListener("click", () => {
-            alert("ELIMINAR");
-        })
+        PERSONAL_ELIMINAR.addEventListener("click", () => { eliminar_personal(); })
 
         // CONSULTAR
         PERSONAL_CONSULTAR.addEventListener("click", () => { mostrar_personal(); })
@@ -264,6 +265,346 @@ window.onload = () => {
     }
 
     // ---------------------------------------------------------------------- //
+    // Sección de código que nos eliminará el usuario seleccionado en la BBD.
+    // ---------------------------------------------------------------------- //
+    
+    function eliminar_personal(){
+
+        DATOS = { id_empresa : ID, }
+
+        fetch('/mostrar-personal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+                
+        })
+
+        .then(textoRespuesta => {
+          
+            vaciar_cuerpo(CUERPO);
+
+            var titulo = document.createElement("h1");
+            titulo.setAttribute("id", "HOME_cuerpo_titulo");
+            titulo.innerHTML = "¡ Cuidado ! los trabajadores que borres no se podrán recuperar";
+            CUERPO.appendChild(titulo);
+
+            var tabla = document.createElement("table");
+            tabla.setAttribute("id","HOME_PERSONAL_EMPRESARIO");
+            tabla.style.position = "relative";
+            tabla.style.left = "48px";
+            CUERPO.appendChild(tabla);
+
+            // LOS USUARIOS
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "DNI";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Nombre";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Foto";
+            fila.appendChild(columna);
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                if(textoRespuesta[i].nombre != undefined){
+
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
+
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].dni;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].nombre;
+                    fila.appendChild(columna);
+                    var foto = document.createElement("img");
+                    foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                    foto.style.height = "64px";
+                    foto.style.width = "64px";
+                    foto.style.borderRadius = "9999px";
+                    foto.style.position = "relative";
+                    foto.style.left = "96px";
+                    fila.appendChild(foto);
+                    var boton = document.createElement("button");
+                    boton.setAttribute("class",textoRespuesta[i].dni);
+                    boton.setAttribute("id","EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
+                    boton.innerHTML = "Eliminar";
+                    fila.appendChild(boton);
+
+                }
+                
+            }
+
+            // LOS IDENTIFICADORES
+
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Identificador";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Cargo";
+            fila.appendChild(columna);
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                if(textoRespuesta[i].nombre == undefined && textoRespuesta[i].identificador_activo == "SI"){
+
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
+
+                    var columna = document.createElement("td");
+                    columna.innerHTML = "";
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].identificador;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].cargo;
+                    columna.style.height = "64px";
+                    columna.style.width = "64px";
+                    fila.appendChild(columna);
+                    var boton = document.createElement("button");
+                    boton.setAttribute("class",textoRespuesta[i].identificador);
+                    boton.setAttribute("id","EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
+                    boton.style.position = "relative";
+                    boton.style.left = "68px";
+                    boton.style.top = "24px";
+                    boton.innerHTML = "Eliminar";
+                    fila.appendChild(boton);
+
+                }
+                
+            }
+
+          
+
+            // obtener el valor para luego hacer el modal
+            var boton = document.querySelectorAll("button#EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
+
+                for (boton_seleccionado of boton) {
+
+                    boton_seleccionado.addEventListener("click", (e) => {
+
+                        var hijo = e.target;
+                        var VALOR = hijo.getAttribute("class")
+                       
+                        validarDNI(VALOR) ? submit_eliminar_DNI(VALOR) : submit_eliminar_ID(VALOR);
+                      
+                    });
+                }
+
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+    }
+
+    function submit_eliminar_DNI(DNI){
+       
+        var modal = document.createElement("div");
+                modal.style.height = "88px";
+                modal.style.width = "40%";
+                modal.style.border = "none";
+                modal.style.position = "fixed";
+                modal.style.top = "50%";
+                modal.style.left = "50%";
+                modal.style.transform = "translate(-50%, -50%)";
+                modal.style.backgroundColor = "#fff";
+                modal.style.zIndex = "1000";
+                modal.style.padding = "20px";
+                modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            var BODY = document.body;
+            BODY.appendChild(modal);
+
+            var texto = document.createElement("p");
+            
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            texto.innerHTML = "¿Estás seguro de eliminar al usuario <strong>"+DNI+"</strong>?. Una vez que aceptes no se podrá volver a atrás.";
+            modal.appendChild(texto);
+
+            var aceptar = document.createElement("button");
+            aceptar.style.display = "block";
+            aceptar.style.textAlign = "center";
+            aceptar.style.margin = "0 auto";
+            aceptar.style.border = "none";
+            aceptar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            aceptar.style.color = "#F9260D";
+            aceptar.style.width = "64px";
+            aceptar.style.marginBottom = "8px";
+            aceptar.style.cursor = "pointer";
+            aceptar.innerHTML = "Aceptar";
+
+            modal.appendChild(aceptar);
+
+            var cancelar = document.createElement("button");
+            cancelar.style.display = "block";
+            cancelar.style.textAlign = "center";
+            cancelar.style.margin = "0 auto";
+            cancelar.style.border = "none";
+            cancelar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            cancelar.style.cursor = "pointer";
+            cancelar.style.width = "64px";
+            cancelar.innerHTML = "Cancelar";
+
+            modal.appendChild(cancelar);
+
+            cancelar.addEventListener("click", () => {
+                modal.remove();
+            });
+
+            aceptar.addEventListener("click", () => {
+
+                DATOS = { dni : DNI,}
+
+                fetch('/eliminar-personal/dni', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+    
+                .then(response => {
+    
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                    
+                })
+    
+                .then(textoRespuesta => {
+    
+                    if(textoRespuesta === "Correcto"){
+                        alert("Se ha borrado con éxito");
+                        modal.remove();
+                        pantalla_inicio();
+                    }
+                })
+    
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+            })
+            
+
+    }
+
+    function submit_eliminar_ID(IDENTIFICADOR){
+       
+        var modal = document.createElement("div");
+                modal.style.height = "88px";
+                modal.style.width = "40%";
+                modal.style.border = "none";
+                modal.style.position = "fixed";
+                modal.style.top = "50%";
+                modal.style.left = "50%";
+                modal.style.transform = "translate(-50%, -50%)";
+                modal.style.backgroundColor = "#fff";
+                modal.style.zIndex = "1000";
+                modal.style.padding = "20px";
+                modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            var BODY = document.body;
+            BODY.appendChild(modal);
+
+            var texto = document.createElement("p");
+            
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            texto.innerHTML = "¿Estás seguro de eliminar el identificador <strong>"+IDENTIFICADOR+"</strong>?. Una vez que aceptes no se podrá volver a atrás.";
+            modal.appendChild(texto);
+
+            var aceptar = document.createElement("button");
+            aceptar.style.display = "block";
+            aceptar.style.textAlign = "center";
+            aceptar.style.margin = "0 auto";
+            aceptar.style.border = "none";
+            aceptar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            aceptar.style.color = "#F9260D";
+            aceptar.style.width = "64px";
+            aceptar.style.marginBottom = "8px";
+            aceptar.style.cursor = "pointer";
+            aceptar.innerHTML = "Aceptar";
+
+            modal.appendChild(aceptar);
+
+            var cancelar = document.createElement("button");
+            cancelar.style.display = "block";
+            cancelar.style.textAlign = "center";
+            cancelar.style.margin = "0 auto";
+            cancelar.style.border = "none";
+            cancelar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            cancelar.style.cursor = "pointer";
+            cancelar.style.width = "64px";
+            cancelar.innerHTML = "Cancelar";
+
+            modal.appendChild(cancelar);
+
+            cancelar.addEventListener("click", () => {
+                modal.remove();
+            });
+
+            aceptar.addEventListener("click", () => {
+
+                DATOS = { identificador : IDENTIFICADOR,}
+
+                fetch('/eliminar-personal/id', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+    
+                .then(response => {
+    
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                    
+                })
+    
+                .then(textoRespuesta => {
+    
+                    if(textoRespuesta === "Correcto"){
+                        alert("Se ha borrado con éxito");
+                        modal.remove();
+                        pantalla_inicio();
+                    }
+                })
+    
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+            })
+
+    }
+
+    // ---------------------------------------------------------------------- //
     // Sección de código que nos muestra a todos los trabajadores de la empresa.
     // ---------------------------------------------------------------------- //
     
@@ -292,7 +633,7 @@ window.onload = () => {
 
             var titulo = document.createElement("h1");
             titulo.setAttribute("id", "HOME_cuerpo_titulo");
-            titulo.innerHTML = "Hola, le damos la bienvenida a su Personal";
+            titulo.innerHTML = "Hola le damos la bienvenida a su Personal";
             CUERPO.appendChild(titulo);
 
             var tabla = document.createElement("table");
@@ -364,6 +705,22 @@ window.onload = () => {
 
     }
     
+// ----------------------------------------------------------------------------------------------- // 
+
+    // ---------------------------------------------------------------------- //
+    // Función para validad DNI
+    // ---------------------------------------------------------------------- //
     
+    function validarDNI(dni) {
+        var letras          = "TRWAGMYFPDXBNJZSQVHLCKE";
+        var numero          = dni.substr(0,dni.length-1);
+        var letra           = dni.substr(dni.length-1,1);
+        var indice          = numero % 23;
+        var letraCorrecta   = letras.charAt(indice);
+        return letra === letraCorrecta;
+    }
 
 }
+
+
+

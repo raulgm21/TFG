@@ -525,6 +525,51 @@ const fs = require('fs');                       // Módulo para interactuar con 
             
         })
     }
+    
+    // ------------------------------------------------------ //
+    // Modelo que nos elimina un trabajador mediante DNI.
+    // ------------------------------------------------------ //
+
+    Controller.eliminar_personal_dni = (req, res, next) => {
+        
+        const datos = req.body;
+       
+        var dni = datos.dni.trim();
+        
+        OBJDATOS = {
+            dni : dni
+        }
+
+        Model.eliminar_personal_dni(OBJDATOS , (docs) => {
+            
+            res.send("Correcto");
+
+        })
+
+    }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos elimina un trabajador mediante ID.
+    // ------------------------------------------------------ //
+
+    Controller.eliminar_personal_id = (req, res, next) => {
+        
+        const datos = req.body;
+       
+        var identificador = datos.identificador.trim();
+        
+        OBJDATOS = {
+            identificador : identificador
+        }
+
+        Model.eliminar_personal_id(OBJDATOS , (docs) => {
+            
+            res.send("Correcto");
+
+        })
+
+    }
+
 
     // ------------------------------------------------------ //
     // Modelo que nos permite subir una foto de perfil

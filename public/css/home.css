@@ -387,3 +387,19 @@
     font-family: monospace;
     
 }
+
+
+#EMPRESARIO_PERSONAL_ELIMINAR_BOTON{
+    background-color: rgb(202, 57, 32);
+    border : none;
+    border-radius: 24px;
+    width: 128px;
+    height: 32px;
+    color : white;
+    position: relative;
+    top : -30px;
+    left : 264px;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+    cursor : pointer;
+    font-weight: bolder;
+}

@@ -228,6 +228,43 @@ var conn = require('./model-connection'),
             
     }
 
+    // ------------------------------------------------------ //
+    // Nos elimina un trabajador mediante DNI.
+    // ------------------------------------------------------ //
+
+    Model.eliminar_personal_dni= (data, cb) => {
+            
+        conn
+            .findOneAndDelete(
+                {
+                    dni : data.dni
+                }, 
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ------------------------------------------------------ //
+    // Nos elimina un trabajador mediante IDENTIFICADOR.
+    // ------------------------------------------------------ //
+
+    Model.eliminar_personal_id= (data, cb) => {
+            
+        conn
+            .findOneAndDelete(
+                {
+                    identificador        : data.identificador,
+                    identificador_activo : "SI"
+                }, 
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+
+
 // ******************************************************************************************** //
 //                                      Exportación del Modulo
 // ******************************************************************************************** //

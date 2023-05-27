@@ -74,6 +74,9 @@
 
         .post('/insertar-personal', Controller.insertar_personal)
         .post('/mostrar-personal', Controller.mostrar_personal)
+        .delete('/eliminar-personal/dni', Controller.eliminar_personal_dni)
+        .delete('/eliminar-personal/id', Controller.eliminar_personal_id)
+
         .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
 
         .put('/tutorialNO', Controller.tutorialNO)
