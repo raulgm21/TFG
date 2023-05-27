@@ -1,56 +1,69 @@
-window.onlodad = () => {
+window.onload = () => {
 
-    let correo                  = document.getElementById("correo_contacto").value;
-    let asunto                  = document.getElementById("asunto_contacto").value;
-    let descripcion             = document.getElementById("descripcion_contacto").value;
-
-    var labelCorreo             = document.getElementById("label_correo_contacto");
-    var labelAsunto             = document.getElementById("label_asunto_contacto");
-    var labelDescripcion        = document.getElementById("label_descripcion_contacto");
-
-    let inputCorreo             = document.getElementById("correo_contacto");
-    let inputAsunto             = document.getElementById("asunto_contacto");
-    let inputDescripcion        = document.getElementById("descripcion_contacto");
-
-
-    if(correo.lenght != 0 && asunto.lenght != 0 && descripcion.lenght != 0){
-
-        if(correo.lenght!= 0){
-            labelCorreo.style.color      = "green";
-            labelCorreo.style.fontWeight = "green";
+    document.getElementById("submit_contacto").addEventListener("click", () => {
+        
+        let correo                  = document.getElementById("correo_contacto").value;
+        let asunto                  = document.getElementById("asunto_contacto").value;
+        let descripcion             = document.getElementById("descripcion_contacto").value;
+          
+        let input_correo            = document.getElementById("correo_contacto");
+        let input_descripcion       = document.getElementById("descripcion_contacto");
+          
+        // ENVIAR CORREO
+        DATOS = {
+            correo        : correo,
+            asunto        : asunto,
+            descripcion   : descripcion,
         }
 
-        if(asunto.lenght != 0){
-            labelAsunto.style.color      = "green";
-            labelAsunto.style.fontWeight = "green";
-        }
+        fetch('/contacto/correo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
+        })
 
-        if(descripcion.lenght != 0){
-            labelDescripcion.style.color      = "green";
-            labelDescripcion.style.fontWeight = "green";
-        }
+        .then(response => {
 
-        alert("Correo Enviado");
+            if (response.ok){return response.text();}
+            else{console.log("Error");}
+                
+        })
 
-    }else{
+        .then(textoRespuesta => {
 
-        if(correo.lenght == 0){
-            labelCorreo.style.color      = "red";
-            labelCorreo.style.fontWeight = "red";
-        }
+            var respuesta = document.getElementById("RESPUESTA_CORREO");
+            respuesta.style.position = "relative";
+            respuesta.style.top = "480px";
 
-        if(asunto.lenght == 0){
-            labelAsunto.style.color      = "red";
-            labelAsunto.style.fontWeight = "red";
-        }
+            if (textoRespuesta === 'Correcto') {
+                respuesta.innerHTML = "Correo envíado correctamente.";
+                respuesta.style.background = "green";
 
-        if(descripcion.lenght == 0){
-            labelDescripcion.style.color      = "red";
-            labelDescripcion.style.fontWeight = "red";
-        }
+                input_correo.value = "";
+                input_descripcion.value = "";
 
-    }
+            }else{ 
+                respuesta.innerHTML = "Ese correo no existe o has dejado algún campo vacío.";
+                respuesta.style.background = "red";
+            }
+                
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+
+    })
+
+    document.getElementById("correo_contacto").addEventListener("change", vaciar);
+    document.getElementById("asunto_contacto").addEventListener("change", vaciar);
+    document.getElementById("descripcion_contacto").addEventListener("change", vaciar);
     
-   
+    function vaciar(){
+        var respuesta = document.getElementById("RESPUESTA_CORREO");
+        respuesta.innerHTML = "";
+    }
 
 }

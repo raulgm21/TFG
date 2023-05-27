@@ -425,12 +425,6 @@ const fs = require('fs');                       // Módulo para interactuar con 
         var asunto      = datos.asunto.trim();
         var descripcion = datos.descripcion.trim();
 
-        var locals = {
-            title : 'TeamWork ~  Contacto',
-            description : '',
-            
-        }
-
         // Verificación desde servidor
         if(correo.length != 0 && asunto.length != 0 && descripcion.length != 0){
 
@@ -439,8 +433,6 @@ const fs = require('fs');                       // Módulo para interactuar con 
                 console.log(docs)
                 if(docs != null){
                     
-                    res.render('contacto', locals)
-                
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
@@ -469,16 +461,18 @@ const fs = require('fs');                       // Módulo para interactuar con 
                         }
                     });
 
+                    res.send("Correcto");
+
 
                 }else{
-                    res.render('contacto', locals)
+                    res.send("Error");
                 }
                 
             })
 
         }else{
             console.log("MAL");
-            res.render('index', locals)
+            res.send("Vacio");
         }
 
        

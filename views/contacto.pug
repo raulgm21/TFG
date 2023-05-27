@@ -6,7 +6,7 @@ block content
         div#CONTACTO_FORMULARIO
             h1 ¡ Tus comentarios siempre son importantes ! 
             p Escriba cualquier duda, sugerencia o inconventiene que desee.
-            form(method="POST", action='/contacto/correo')
+            form(method="POST")
                 label#contacto_correo_label Correo 
                 input(type="text", name="correo", id="correo_contacto", class="input_contacto", placeholder="Inserte su correo", value=correo)
                 label#contacto_asunto_label Asunto 
@@ -16,7 +16,8 @@ block content
                     option(value="Sugerencias") Dudas 
                 label#contacto_descripcion_label Descripción del Asunto
                 textarea(type="text", name="descripcion", id="descripcion_contacto", class="input_contacto", placeholder="Inserte más información sobre el asunto.", value=descripcion)
-                input(type="submit", id="submit_contacto", class="input_contacto")
+                input(type="button", id="submit_contacto", class="input_contacto", value="Envíar") 
+            p#RESPUESTA_CORREO
             p#CONTACTO_VOLVER_ATRAS(onclick="window.location.href = '/'") Volver Atrás
     div#CONTACTO_IMAGEN
         img(src="./img/imagen_contacto.png")
