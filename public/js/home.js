@@ -4,6 +4,9 @@
     const EMPRESA   = document.getElementById("HOME_nombre_empresa").textContent;
     const NOMBRE    = document.getElementById("HOME_nombre").textContent;
     const ID        = document.getElementById("HOME_ID_EMPRESA").value;
+    const DATE      = document.getElementById("HOME_DATE_USUARIO").value;
+    const CORREO    = document.getElementById("HOME_CORREO_USUARIO").value;
+    const CARGO     = document.getElementById("HOME_CARGO_USUARIO").value;
 
     const COLOR     = document.getElementById("HOME_COLOR_USUARIO").value;
     const HEADER    = document.getElementById("HOME_HEADER");
@@ -219,4 +222,70 @@
                 fileInfo.textContent = `Archivo seleccionado: ${inputFile.files[0].name}`;
             }
         })
+    })
+
+// ----------------------------------------------------------------------------------------------- //
+
+    // ---------------------------------------------------------------------- //
+    // Sección de código que nos permite consultar información sobre la cuenta
+    // ---------------------------------------------------------------------- //
+
+    document.getElementById("HOME_mi_cuenta").addEventListener("click", () => {
+       
+        const FECHA_ACTUAL  = new Date();
+        const FECHA_USUARIO = new Date(DATE);
+        const DIFERENCIA = Math.floor( (FECHA_ACTUAL - FECHA_USUARIO) / (1000 * 60 * 60 * 24) );
+
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = " Mi cuenta ";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "¡Toda la información sobre su cuenta está disponible aquí!";
+        CUERPO.appendChild(texto);
+
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_MI_CUENTA_DIV");
+        CUERPO.appendChild(contenedor);
+
+        var dni_texto = document.createElement("p");
+        dni_texto.innerHTML = "<strong>DNI</strong>     : " + DNI;
+        contenedor.appendChild(dni_texto);
+
+        var nombre_texto = document.createElement("p");
+        nombre_texto.innerHTML = "<strong>NOMBRE</strong>: " + NOMBRE;
+        contenedor.appendChild(nombre_texto);
+
+        var CORREO_texto = document.createElement("p");
+        CORREO_texto.innerHTML = "<strong>CORREO</strong>: " + CORREO;
+        contenedor.appendChild(CORREO_texto);
+
+        var CARGO_texto = document.createElement("p");
+        CARGO_texto.innerHTML = "<strong>CARGO</strong>   : " + CARGO;
+        contenedor.appendChild(CARGO_texto);
+
+        var dias_texto = document.createElement("p");
+        if(DIFERENCIA == 1){
+            dias_texto.innerHTML = "<em>Tu cuenta lleva un total de <strong> " + DIFERENCIA + " día </strong> desde que fue creada.</em>";
+            contenedor.appendChild(dias_texto);
+        }else{
+            dias_texto.innerHTML = "<em>Tu cuenta lleva un total de <strong> " + DIFERENCIA + " días </strong> desde que fue creada.</em>";
+            contenedor.appendChild(dias_texto);
+        }
+
+        var imagen = document.createElement("img");
+        var fotoID = document.getElementById("HOME_foto_perfil");
+        imagen.setAttribute("src", fotoID.src);
+        imagen.style.height = "360px";
+        imagen.style.width = "360px";
+        imagen.style.top = "-264px";
+        imagen.style.left = "730px";
+        imagen.style.borderRadius = "9999px";
+        imagen.style.position = "relative";
+        CUERPO.appendChild(imagen);
+
     })

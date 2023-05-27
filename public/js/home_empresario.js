@@ -6,6 +6,9 @@ window.onload = () => {
     const EMPRESA   = document.getElementById("HOME_nombre_empresa").textContent;
     const NOMBRE    = document.getElementById("HOME_nombre").textContent;
     const ID        = document.getElementById("HOME_ID_EMPRESA").value;
+    const DATE      = document.getElementById("HOME_DATE_USUARIO").value;
+    const CORREO    = document.getElementById("HOME_CORREO_USUARIO").value;
+    const CARGO     = document.getElementById("HOME_CARGO_USUARIO").value;
 
     // --------------------------- Color Personalizado --------------------------- //
     const COLOR     = document.getElementById("HOME_COLOR_USUARIO").value;

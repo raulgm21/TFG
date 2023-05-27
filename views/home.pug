@@ -49,7 +49,10 @@ block content
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
             input#HOME_ID_EMPRESA(type="text", value=usuario.id_empresa)
-            
+            input#HOME_DATE_USUARIO(type="text", value=usuario.date)
+            input#HOME_CORREO_USUARIO(type="text", value=usuario.correo)
+            input#HOME_CARGO_USUARIO(type="text", value=usuario.cargo)
+
             div#div_home
                
                 nav#HOME_HEADER 
@@ -58,7 +61,7 @@ block content
                     div#HOME_flechita
                         div#HOME_menu_flechita
                             nav 
-                                div Mi Cuenta 
+                                div#HOME_mi_cuenta Mi Cuenta 
                                 div Configuración 
                                 div#HOME_cerrar_sesion Cerrar Sesión
                     img#HOME_foto_perfil(src=usuario.foto_perfil)
@@ -68,7 +71,7 @@ block content
                     h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
                     p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
                     p#HOME_cuerpo_texto_no_nombre
-                    img#HOME_cuerpo_imagen_empresa(src="./img/empresa1.png")
+                    img#HOME_cuerpo_imagen_empresa(src="./img/logo.png")
                     -if(usuario.tutorial == "none")
                         p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
                         
@@ -102,6 +105,9 @@ block content
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
             input#HOME_ID_EMPRESA(type="text", value=usuario.id_empresa)
+            input#HOME_DATE_USUARIO(type="text", value=usuario.date)
+            input#HOME_CORREO_USUARIO(type="text", value=usuario.correo)
+            input#HOME_CARGO_USUARIO(type="text", value=usuario.cargo)
 
             div#div_home
                
@@ -111,7 +117,7 @@ block content
                     div#HOME_flechita
                         div#HOME_menu_flechita
                             nav 
-                                div Mi Cuenta 
+                                div#HOME_mi_cuenta Mi Cuenta 
                                 div Configuración 
                                 div#HOME_cerrar_sesion Cerrar Sesión
                     img#HOME_foto_perfil(src=usuario.foto_perfil)
@@ -121,7 +127,7 @@ block content
                     h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
                     p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
                     p#HOME_cuerpo_texto_no_nombre
-                    img#HOME_cuerpo_imagen_empresa(src="./img/empresa1.png")
+                    img#HOME_cuerpo_imagen_empresa(src="./img/logo.png")
                     -if(usuario.tutorial == "none")
                         p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
                         
