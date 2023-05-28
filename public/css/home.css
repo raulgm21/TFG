@@ -1,6 +1,6 @@
 @font-face {
     font-family: Farmhouse;
-    src: url("./fonts/Farmhouse.otf") format("opentype");
+    src: url(./fonts/Farmhouse.otf) format(opentype);
 }
 
 
@@ -413,4 +413,47 @@
     font-family: monospace;
     text-align: justify;
     font-size: 20px;
+}
+
+#HOME_CONTENEDOR_MODULOS{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#HOME_MODULO_BOTON_PRECIO{
+    border : none;
+    height : 32px;
+    width : 128px;
+    border : none;
+    color : white;
+    box-shadow: 0 8px 8px rgb(102, 109, 114);
+    border-radius : 99px;
+    
+    position : relative;
+    top : -72px;
+    left : 132px;
+}
+#HOME_MODULO_TEXTO_DESCRIPCION{
+    position : relative;
+    top : -72px;
+    max-width: 480px;
+    height: 64px;
+    font-family: monospace;
+}
+
+#HOME_MODULO_PLANTILLA{
+    width : 45%;
+    text-align : justify;
+    margin : 8px;
+    
+    border-radius: 4px;
+    padding: 4px;
+}
+
+#HOME_MODULO_NOMBRE_MODULO{
+    position : relative;
+    top : -72px;
+    left : 80px;
+    font-family: Farmhouse;
 }

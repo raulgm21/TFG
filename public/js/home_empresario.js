@@ -73,7 +73,7 @@ window.onload = () => {
 
         var titulo = document.createElement("h1");
         titulo.setAttribute("id", "HOME_cuerpo_titulo");
-        titulo.innerHTML = "Hola, le damos la bienvenida a la gestión de su Personal";
+        titulo.innerHTML = "Hola le damos la bienvenida a la gestión de su Personal";
         CUERPO.appendChild(titulo);
 
         var contenedor_principal = document.createElement("div");
@@ -723,6 +723,149 @@ window.onload = () => {
         return letra === letraCorrecta;
     }
 
+// ----------------------------------------------------------------------------------------------- // 
+
+    // ---------------------------------------------------------------------- //
+    // Función que nos muestra la lista de módulos
+    // ---------------------------------------------------------------------- //
+
+    document.getElementById("HOME_MODULOS").addEventListener("click", () => {
+        vaciar_cuerpo(CUERPO);
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Sección de Modulos !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Aquí dispone de todo el listado de módulos de TeamWork disponibles actualmente.";
+        CUERPO.appendChild(texto);
+
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_CONTENEDOR_MODULOS");
+        CUERPO.appendChild(contenedor);
+
+        // --- > MODULO DE COLOR
+        MODULOS
+        (
+            "color",
+            "INTERFAZ CUSTOMIZABLE",
+            "Este módulo permite personalizar la interfaz del home de todos los usuarios que pertenezca a su empresa. Para acceder a este módulo deberás ir a <strong> Empresa. </strong>",
+            "MOD_COLOR",
+            "Gratis"
+        )
+
+        // --- > MODULO DE CHAT
+        MODULOS
+        (
+            "chat",
+            "CHAT",
+            "Este módulo permite establecer un chat grupal en tiempo real con todos los intengrantes de la empresa.",
+            "MOD_CHAT",
+            "1.99€"
+        )
+
+        // --- > MODULO DE CALENDARIO
+        MODULOS
+        (
+            "calendario",
+            "Calendario",
+            "Este módulo permite crear un mini calendario visual que aparecerá en la zona izquierda de la interfaz.",
+            "MOD_CALENDARIO",
+            "Gratis"
+        )
+
+        // --- > MODULO DE HORAS
+        MODULOS
+        (
+            "hora",
+            "Hora",
+            "Este módulo permite visualizar la hora en tiempo real y esta aparecerá en la zona izquierda de la interfaz.",
+            "MOD_CALENDARIO",
+            "Gratis"
+        )
+ 
+        
+    })
+
+    function MODULOS(FOTO, TITULO, TEXTO, IDENTIFICADOR, PRECIO){
+
+        var CONTENEDOR = document.getElementById("HOME_CONTENEDOR_MODULOS");
+
+        var BLOQUE = document.createElement("div");
+        BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+        CONTENEDOR.appendChild(BLOQUE);
+
+        var IMAGEN = document.createElement("img");
+        IMAGEN.style.height = "48px";
+        IMAGEN.style.width = "48px";
+        ICONO = "./img/icon/" + FOTO +".png";
+        IMAGEN.setAttribute("src", ICONO);
+        BLOQUE.appendChild(IMAGEN);
+
+        var NOMBRE = document.createElement("h1");
+        NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+        NOMBRE.innerHTML = TITULO;
+        BLOQUE.appendChild(NOMBRE);
+
+        var DESCRIPCION = document.createElement("p");
+        DESCRIPCION.setAttribute("id", "HOME_MODULO_TEXTO_DESCRIPCION");
+        DESCRIPCION.innerHTML = TEXTO;
+        BLOQUE.appendChild(DESCRIPCION);
+
+        var COMPRAR = document.createElement("button");
+        COMPRAR.setAttribute("id",IDENTIFICADOR);
+        COMPRAR.style.position = "relative";
+        COMPRAR.style.top = "-72px";
+        COMPRAR.style.left = "108px";
+        COMPRAR.style.border = "none";
+        COMPRAR.style.height = "32px";
+        COMPRAR.style.width = "128px";
+        COMPRAR.style.color = "black";
+        COMPRAR.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+        COMPRAR.style.borderRadius = "99px";
+        COMPRAR.style.cursor = "pointer";
+
+        COMPRAR.innerHTML = "No Adquirido";
+        BLOQUE.appendChild(COMPRAR);
+
+        var BOTON_PRECIO = document.createElement("button");
+        (PRECIO == "Gratis") ? BOTON_PRECIO.style.background = "#478AC9" : BOTON_PRECIO.style.background = "#e8b023";
+        BOTON_PRECIO.setAttribute("id", "HOME_MODULO_BOTON_PRECIO");
+        BOTON_PRECIO.innerHTML = PRECIO;
+        BLOQUE.appendChild(BOTON_PRECIO);
+
+        
+
+    }
+
+    /*function MODULO_CHAT(){
+
+        var CONTENEDOR = document.getElementById("HOME_CONTENEDOR_MODULOS");
+
+        var BLOQUE = document.createElement("div");
+        CONTENEDOR.appendChild(BLOQUE);
+
+        var IMAGEN = document.createElement("img");
+        IMAGEN.style.height = "48px";
+        IMAGEN.style.width = "48px";
+        IMAGEN.setAttribute("src", "./img/icon/chat.png");
+        CONTENEDOR.appendChild(IMAGEN);
+
+        var NOMBRE = document.createElement("h1");
+        NOMBRE.innerHTML = "CHAT";
+        CONTENEDOR.appendChild(NOMBRE);
+
+        var TEXTO = document.createElement("p");
+        TEXTO.innerHTML = 
+        CONTENEDOR.appendChild(TEXTO);
+
+        var COMPRAR = document.createElement("button");
+        COMPRAR.innerHTML = "GRATIS";
+        CONTENEDOR.appendChild(COMPRAR);
+
+    }
+*/
 }
 
 
