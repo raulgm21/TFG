@@ -82,6 +82,9 @@
         .put('/tutorialNO', Controller.tutorialNO)
 
         .put('/comprar-modulo', Controller.comprar_modulo)
+
+
+        .put('/modulos/color/cambiar-color', Controller.moduloColor_cambiarColor)
         
         .get('/prueba', Controller.prueba)
         // Uso del Error 404

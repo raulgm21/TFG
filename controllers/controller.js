@@ -524,6 +524,26 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // MODULO COLOR -> CAMBIAR COLOR
+    // ------------------------------------------------------ //
+
+    Controller.moduloColor_cambiarColor = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var ID     = datos.id_empresa.trim();
+        var COLOR  = datos.color.trim();
+
+        
+        OBJDATOS = { 
+            id_empresa : ID,
+            color      : COLOR
+        }
+        
+        Model.moduloColor_cambiarColor(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos obtiene todos los trabajadores de la empresa
     // ------------------------------------------------------ //
 

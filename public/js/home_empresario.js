@@ -9,6 +9,7 @@ window.onload = () => {
     const DATE      = document.getElementById("HOME_DATE_USUARIO").value;
     const CORREO    = document.getElementById("HOME_CORREO_USUARIO").value;
     const CARGO     = document.getElementById("HOME_CARGO_USUARIO").value;
+    const FOTO_EMP  = document.getElementById("HOME_cuerpo_imagen_empresa").src;
 
     // --------------------------- Color Personalizado --------------------------- //
     const COLOR     = document.getElementById("HOME_COLOR_USUARIO").value;
@@ -56,7 +57,7 @@ window.onload = () => {
 
         var imagen = document.createElement("img");
         imagen.setAttribute("id","HOME_cuerpo_imagen_empresa");
-        imagen.setAttribute("src", "./img/empresa1.png");
+        imagen.setAttribute("src", FOTO_EMP);
         CUERPO.appendChild(imagen);
 
     }
@@ -788,6 +789,10 @@ window.onload = () => {
         
     })
 
+    // ---------------------------------------------------------------------- //
+    // Función que actúa de plantilla para los módulos
+    // ---------------------------------------------------------------------- //
+
     function modulos(FOTO, TITULO, TEXTO, IDENTIFICADOR, PRECIO){
 
         var CONTENEDOR = document.getElementById("HOME_CONTENEDOR_MODULOS");
@@ -851,6 +856,10 @@ window.onload = () => {
         })
 
     }
+
+    // ---------------------------------------------------------------------- //
+    // Función que nos permite comprar un módulo.
+    // ---------------------------------------------------------------------- //
 
     function comprar_modulo(IDENTIFICADOR){
 
@@ -944,7 +953,84 @@ window.onload = () => {
         
     }
 
+// ----------------------------------------------------------------------------------------------- // 
+
+    document.getElementById("HOME_EMPRESA").addEventListener("click", () => {
+        
+        vaciar_cuerpo(CUERPO);
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Mi empresa !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Toda la configuración relacionada con tu empresa se encuentra aqui.";
+        CUERPO.appendChild(texto);
+
+        // Está el módulo de color adquirido
+        if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
+
+            var input = document.createElement("input");
+            input.setAttribute("id","MODULO_COLOR_INPUT");
+            input.setAttribute("value", COLOR);
+            input.setAttribute("list", "color-options");
+            input.setAttribute("type", "color");
+            CUERPO.appendChild(input);
+
+            var boton = document.createElement("button");
+            boton.innerHTML = "Cambiar Color";
+            CUERPO.appendChild(boton);
+
+            input.addEventListener("change", (e) => {
+              
+                var coloresValidos = 
+                [
+                    "#c94947", "#478ac9", "#26d836", "#ecee45", "#df951b",
+                    "#ef2ab6","#970f80","#0bb6ae","#b61b0b","#220594",
+                    "#60ac79","#a9612c","#aaaaaa","#666666","#000000"
+                ];
+
+                if (coloresValidos.indexOf(e.target.value.toLowerCase()) < 0) {
+                    e.target.value = COLOR;
+                    
+                }
+            })
+
+            boton.addEventListener("click", () => {
+
+                DATOS = { 
+                    id_empresa : ID,
+                    color : input.value
+                }
+
+                fetch('/modulos/color/cambiar-color', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+
+                .then(response => {
+
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                    
+                })
+
+                .then(textoRespuesta => { window.location.reload(); })
+
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+
+            })
+
+            
+
+        }
+    })
+
+
 }
-
-
-

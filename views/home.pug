@@ -105,8 +105,30 @@ block content
                         img#HOME_MODULOS(src="./img/icon/modulo.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto#HOME_MODULOS Módulos   
                     div.HOME_menu-item
-                        img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                        p.HOME_menu_texto Empresa   
+                        img#HOME_EMPRESA(src="./img/icon/empresa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto#HOME_EMPRESA Empresa   
+
+
+            datalist#color-options 
+                option(value="#C94947") Rojo 
+                option(value="#478ac9") Azul
+                option(value="#26d836") Verde
+                option(value="#ecee45") Amarillo
+                option(value="#df951b") Naranja
+
+                option(value="#ef2ab6") Rosa
+                option(value="#970f80") Morado
+                option(value="#0bb6ae") Cian
+                option(value="#b61b0b") Granate
+                option(value="#220594") Azul Marino
+
+                option(value="#60ac79") Verde 
+                option(value="#a9612c") Marron
+                option(value="#aaaaaa") Gris Claro 
+                option(value="#666666") Gris
+                option(value="#000000") Negro
+
+
 
             script(type="text/javascript", src="../js/home.js")   
             script(type="text/javascript", src="../js/home_empresario.js")

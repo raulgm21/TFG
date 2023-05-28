@@ -196,8 +196,6 @@ var conn = require('./model-connection'),
 
     Model.comprar_modulo= (data, cb) => {
          
-        console.log(data.id_empresa)
-        console.log([data.id_modulo])
         conn
             .updateMany(
                 {
@@ -206,6 +204,28 @@ var conn = require('./model-connection'),
 
                 {
                     [data.id_modulo] : "SI"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos cambia el color de la interfaz con MODULO COLOR
+    // ---------------------------------------------------------- //
+
+    Model.moduloColor_cambiarColor= (data, cb) => {
+         
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.id_empresa
+                },
+
+                {
+                    color : data.color
                 }, 
 
                 (err, docs) =>{
