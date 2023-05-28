@@ -46,6 +46,18 @@ block content
 
         //- PERFIL EMPRESARIO
         -if(usuario.rol == "empresario")
+
+            //- MODULOS
+            -if(usuario.MOD_COLOR == "SI")
+                p#MOD_COLOR_ADQUIRIDO(style="display : none")
+            -if(usuario.MOD_CHAT == "SI")
+                p#MOD_CHAT_ADQUIRIDO(style="display : none")
+            -if(usuario.MOD_CALENDARIO == "SI")
+                p#MOD_CALENDARIO_ADQUIRIDO(style="display : none")
+            -if(usuario.MOD_HORA == "SI")
+                p#MOD_HORA_ADQUIRIDO(style="display : none")
+
+            //- VARIABLES
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
             input#HOME_ID_EMPRESA(type="text", value=usuario.id_empresa)

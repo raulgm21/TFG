@@ -39,10 +39,16 @@ var mongoose = require('mongoose'),
         // --- CLAVES PRIMARIAS --- //
         dni                 : "string",
 
-        // ------------ CHAT -------
-        group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
-        sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        content: String,
+        // --- MODULOS --- //
+        MOD_COLOR           : "string",
+        MOD_CHAT            : "string",
+        MOD_CALENDARIO      : "string",
+        MOD_HORA            : "string",
+
+
+
+
+
         date: { type: Date, default: Date.now }
 
       

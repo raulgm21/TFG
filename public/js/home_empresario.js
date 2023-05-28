@@ -746,7 +746,7 @@ window.onload = () => {
         CUERPO.appendChild(contenedor);
 
         // --- > MODULO DE COLOR
-        MODULOS
+        modulos
         (
             "color",
             "INTERFAZ CUSTOMIZABLE",
@@ -756,7 +756,7 @@ window.onload = () => {
         )
 
         // --- > MODULO DE CHAT
-        MODULOS
+        modulos
         (
             "chat",
             "CHAT",
@@ -766,7 +766,7 @@ window.onload = () => {
         )
 
         // --- > MODULO DE CALENDARIO
-        MODULOS
+        modulos
         (
             "calendario",
             "Calendario",
@@ -776,19 +776,19 @@ window.onload = () => {
         )
 
         // --- > MODULO DE HORAS
-        MODULOS
+        modulos
         (
             "hora",
             "Hora",
             "Este módulo permite visualizar la hora en tiempo real y esta aparecerá en la zona izquierda de la interfaz.",
-            "MOD_CALENDARIO",
+            "MOD_HORA",
             "Gratis"
         )
  
         
     })
 
-    function MODULOS(FOTO, TITULO, TEXTO, IDENTIFICADOR, PRECIO){
+    function modulos(FOTO, TITULO, TEXTO, IDENTIFICADOR, PRECIO){
 
         var CONTENEDOR = document.getElementById("HOME_CONTENEDOR_MODULOS");
 
@@ -826,7 +826,17 @@ window.onload = () => {
         COMPRAR.style.borderRadius = "99px";
         COMPRAR.style.cursor = "pointer";
 
-        COMPRAR.innerHTML = "No Adquirido";
+        if(document.getElementById(IDENTIFICADOR + "_ADQUIRIDO")){
+            COMPRAR.innerHTML = "Adquirido";
+            COMPRAR.disabled = true;
+            COMPRAR.style.cursor = "not-allowed";
+            COMPRAR.style.background = "#6db840";
+            COMPRAR.style.color = "white";
+        }else{
+            COMPRAR.innerHTML = "No Adquirido";
+        }
+
+        
         BLOQUE.appendChild(COMPRAR);
 
         var BOTON_PRECIO = document.createElement("button");
@@ -836,36 +846,104 @@ window.onload = () => {
         BLOQUE.appendChild(BOTON_PRECIO);
 
         
+        COMPRAR.addEventListener("click", () => {
+            comprar_modulo(IDENTIFICADOR);
+        })
 
     }
 
-    /*function MODULO_CHAT(){
+    function comprar_modulo(IDENTIFICADOR){
 
-        var CONTENEDOR = document.getElementById("HOME_CONTENEDOR_MODULOS");
+        var modal = document.createElement("div");
+                modal.style.height = "80px";
+                modal.style.width = "40%";
+                modal.style.border = "none";
+                modal.style.position = "fixed";
+                modal.style.top = "50%";
+                modal.style.left = "50%";
+                modal.style.transform = "translate(-50%, -50%)";
+                modal.style.backgroundColor = "#fff";
+                modal.style.zIndex = "1000";
+                modal.style.padding = "20px";
+                modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
-        var BLOQUE = document.createElement("div");
-        CONTENEDOR.appendChild(BLOQUE);
+            var BODY = document.body;
+            BODY.appendChild(modal);
 
-        var IMAGEN = document.createElement("img");
-        IMAGEN.style.height = "48px";
-        IMAGEN.style.width = "48px";
-        IMAGEN.setAttribute("src", "./img/icon/chat.png");
-        CONTENEDOR.appendChild(IMAGEN);
+            var texto = document.createElement("p");
+            texto.innerHTML = "Estas apunto de comprar el módulo seleccionado anteriormente. ¿Estás de acuerdo?";
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            modal.appendChild(texto);
 
-        var NOMBRE = document.createElement("h1");
-        NOMBRE.innerHTML = "CHAT";
-        CONTENEDOR.appendChild(NOMBRE);
+            var aceptar = document.createElement("button");
+            aceptar.style.display = "block";
+            aceptar.style.textAlign = "center";
+            aceptar.style.margin = "0 auto";
+            aceptar.style.border = "none";
+            aceptar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            aceptar.style.width = "64px";
+            aceptar.style.marginBottom = "8px";
+            aceptar.style.cursor = "pointer";
+            aceptar.innerHTML = "Comprar";
 
-        var TEXTO = document.createElement("p");
-        TEXTO.innerHTML = 
-        CONTENEDOR.appendChild(TEXTO);
+            modal.appendChild(aceptar);
 
-        var COMPRAR = document.createElement("button");
-        COMPRAR.innerHTML = "GRATIS";
-        CONTENEDOR.appendChild(COMPRAR);
+            var cancelar = document.createElement("button");
+            cancelar.style.display = "block";
+            cancelar.style.textAlign = "center";
+            cancelar.style.margin = "0 auto";
+            cancelar.style.border = "none";
+            cancelar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            cancelar.style.cursor = "pointer";
+            cancelar.style.width = "64px";
+            cancelar.innerHTML = "Cancelar";
 
+            modal.appendChild(cancelar);
+
+            cancelar.addEventListener("click", () => {
+                modal.remove();
+            });
+
+            aceptar.addEventListener("click", () => {
+
+                DATOS = { 
+                    id_empresa          : ID,
+                    valor_identificador : IDENTIFICADOR
+                }
+        
+                fetch('/comprar-modulo', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+        
+                .then(response => {
+        
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                        
+                })
+        
+                .then(textoRespuesta => {
+        
+                    window.location.reload();
+                    modal.remove();
+                })
+        
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+
+            })
+
+
+
+        
     }
-*/
+
 }
 
 

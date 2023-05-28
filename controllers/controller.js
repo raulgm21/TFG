@@ -503,6 +503,27 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos comprará el módulo que hayamos seleccionado
+    // ------------------------------------------------------ //
+
+    Controller.comprar_modulo = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var ID     = datos.id_empresa.trim();
+        var MODULO = datos.valor_identificador.trim();
+
+        
+        OBJDATOS = { 
+            id_empresa : ID,
+            id_modulo : MODULO
+        }
+        console.log(OBJDATOS)
+        
+        Model.comprar_modulo(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos obtiene todos los trabajadores de la empresa
     // ------------------------------------------------------ //
 

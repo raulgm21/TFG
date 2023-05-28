@@ -73,7 +73,11 @@ var conn = require('./model-connection'),
                 tutorial            : 'none',
                 color               : "#478AC9",
                 cargo               : "Empresario",
-                foto_perfil         : "./img/perfil/nofoto.png"
+                foto_perfil         : "./img/perfil/nofoto.png",
+                MOD_COLOR           : "NO",
+                MOD_CHAT            : "NO",
+                MOD_CALENDARIO      : "NO",
+                MOD_HORA            : "NO",
             }, 
             (err) => {
                 if(err) throw err
@@ -154,7 +158,8 @@ var conn = require('./model-connection'),
                     correo               : data.correo,
                     password             : data.password,
                     dni                  : data.dni,
-                    identificador_activo : "NO"
+                    identificador_activo : "NO",
+                    
                 }, 
 
                 (err, docs) =>{
@@ -177,6 +182,30 @@ var conn = require('./model-connection'),
 
                 {
                     tutorial : "NO"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos edita a todos los usuarios de la empresa, y les compra el módulo.
+    // ---------------------------------------------------------- //
+
+    Model.comprar_modulo= (data, cb) => {
+         
+        console.log(data.id_empresa)
+        console.log([data.id_modulo])
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.id_empresa
+                },
+
+                {
+                    [data.id_modulo] : "SI"
                 }, 
 
                 (err, docs) =>{
