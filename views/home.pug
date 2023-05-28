@@ -66,7 +66,8 @@ block content
             input#HOME_CARGO_USUARIO(type="text", value=usuario.cargo)
 
             div#div_home
-               
+                div#HOME_CALENDARIO
+                p#HOME_HORA_ACTUAL    
                 nav#HOME_HEADER 
                     p#HOME_nombre_empresa=usuario.nombre_empresa
                     p#HOME_nombre=usuario.nombre
@@ -79,7 +80,7 @@ block content
                     img#HOME_foto_perfil(src=usuario.foto_perfil)
 
                 div#HOME_cuerpo 
-
+                    
                     h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
                     p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
                     p#HOME_cuerpo_texto_no_nombre

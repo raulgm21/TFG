@@ -457,3 +457,31 @@
     left : 80px;
     font-family: Farmhouse;
 }
+
+/*HORA*/
+
+#HOME_HORA_ACTUAL{
+    position: absolute;
+    top : 388px;
+    left : 22px;
+    font-family: Farmhouse;
+    font-weight: bold;
+    font-size: 64px;
+}
+
+#HOME_CALENDARIO{
+    position: absolute;
+    top : 216px;
+    left : 8px;
+    padding: 8px;
+    text-align: center;
+    font-family: Farmhouse;
+    font-size: 24px;
+}
+
+
+#HOME_CALENDARIO_HOY {
+    
+    color: #fff;
+
+}

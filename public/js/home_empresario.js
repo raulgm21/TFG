@@ -32,6 +32,75 @@ window.onload = () => {
 // ----------------------------------------------------------------------------------------------- //
 
     // ---------------------------------------------------------------------- //
+    // MÓDULO HORAS
+    // ---------------------------------------------------------------------- //
+
+    if(document.getElementById("MOD_HORA_ADQUIRIDO")){
+        
+        function imprimirHora() {
+            document.getElementById("HOME_HORA_ACTUAL").innerHTML = new Date().toLocaleTimeString();
+        }
+          
+        setInterval(imprimirHora, 1000);
+
+    }
+
+    // ---------------------------------------------------------------------- //
+    // MÓDULO CALENDARIO
+    // ---------------------------------------------------------------------- //
+
+    if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
+
+        function crearCalendario() {
+            // Variables
+            const hoy          = new Date();
+            const mes          = hoy.getMonth();
+            const ano          = hoy.getFullYear();
+            const primerDiaMes = new Date(ano, mes, 1);
+            const ultimoDiaMes = new Date(ano, mes + 1, 0);
+            const diasSemana   = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
+            const meses        = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+          
+            // Mes y Año ACTUAL
+            let tabla = `<table><caption style="background : ${COLOR} ; color : white">${meses[mes]} ${ano}</caption><thead><tr>`;
+          
+            // Mostrar Días de la Semana
+            for (let i = 0; i < 7; i++) {
+                const diaIndex = i % 7;
+                tabla += `<th>${diasSemana[diaIndex]}</th>`;
+            }
+            tabla += '</tr></thead><tbody><tr>';
+          
+            for (let i = 1; i < primerDiaMes.getDay(); i++) {
+                tabla += '<td></td>';
+            }
+
+            for (let dia = 1; dia <= ultimoDiaMes.getDate(); dia++) {
+    
+                const fechaActual = new Date(ano, mes, dia);
+                
+                if (fechaActual.getDay() === 1 && dia !== 1) {
+                tabla += '</tr><tr>';
+                }
+    
+                if (dia === hoy.getDate()) {
+                    tabla += `<td id="HOME_CALENDARIO_HOY" style="background : ${COLOR}">${dia}</td>`;
+                    
+                }else {
+                    tabla += `<td>${dia}</td>`;
+                }
+            }
+          
+            document.getElementById('HOME_CALENDARIO').innerHTML = tabla;
+        }
+    
+        crearCalendario();
+
+    }
+
+// ----------------------------------------------------------------------------------------------- //
+
+    // ---------------------------------------------------------------------- //
     // Sección de código que nos carga la sección de INICIO
     // ---------------------------------------------------------------------- //
     
@@ -771,7 +840,7 @@ window.onload = () => {
         (
             "calendario",
             "Calendario",
-            "Este módulo permite crear un mini calendario visual que aparecerá en la zona izquierda de la interfaz.",
+            "Este módulo permite crear un mini calendario visual dónde nos indicará el día y mes actual, y que aparecerá en la zona izquierda de la interfaz.",
             "MOD_CALENDARIO",
             "Gratis"
         )
@@ -954,6 +1023,10 @@ window.onload = () => {
     }
 
 // ----------------------------------------------------------------------------------------------- // 
+
+    // ---------------------------------------------------------------------- //
+    // Todo lo relacionado con la configuración de la empresa.
+    // ---------------------------------------------------------------------- //
 
     document.getElementById("HOME_EMPRESA").addEventListener("click", () => {
         
