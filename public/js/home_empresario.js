@@ -502,7 +502,6 @@ window.onload = () => {
                 .then(textoRespuesta => {
     
                     if(textoRespuesta === "Correcto"){
-                        alert("Se ha borrado con éxito");
                         modal.remove();
                         pantalla_inicio();
                     }
@@ -593,7 +592,6 @@ window.onload = () => {
                 .then(textoRespuesta => {
     
                     if(textoRespuesta === "Correcto"){
-                        alert("Se ha borrado con éxito");
                         modal.remove();
                         pantalla_inicio();
                     }
@@ -1018,9 +1016,55 @@ window.onload = () => {
         modificar_modulos.addEventListener("click", () => { funcion_modificar_modulo(); })
         busqueda_empleo.addEventListener("click", () => { funcion_busqueda_empleo();})
 
-        //Actualizar Módulos
+        
+
+
+    })
+
+
+    function funcion_modificar_empresa(){
+        alert("Modificar empresa");
+    }
+
+    function funcion_busqueda_empleo(){
+        alert("Busqueda de empleo");
+    }
+
+    // ---------------------------------------------------------------------- //
+    // Todo lo relacionado con la configuración de los módulos
+    // ---------------------------------------------------------------------- //
+
+    function funcion_modificar_modulo(){
+
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Configuración de Módulos !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Aquí podrás habilitar o deshabilitar tus módulos, o configurarlos.";
+        CUERPO.appendChild(texto);
+
+        // ---------------------------------------------------------------------- //
+        //  ACTUALIZAR TODOS LOS MÓDULOS PARA LOS QUE NO LO TIENEN
+        // ---------------------------------------------------------------------- //
         var boton = document.createElement("button");
         boton.innerHTML = "ACTUALIZAR MÓDULOS";
+        boton.style.position = "relative";
+        boton.style.top = "-64px";
+        boton.style.left = "36px";
+        boton.style.fontWeight = "bold";
+        boton.style.border = "none";
+        boton.style.height = "32px";
+        boton.style.width = "256px";
+        boton.style.color = "black";
+        boton.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+        boton.style.borderRadius = "99px";
+        boton.style.cursor = "pointer";
+        boton.innerHTML = "Actualizar Módulos";
         CUERPO.appendChild(boton);
 
         boton.addEventListener("click", () => {
@@ -1072,7 +1116,6 @@ window.onload = () => {
 
             .then(textoRespuesta => {
 
-                alert("MODULOS ACTUALIZADOS");
                 pantalla_inicio();
             })
 
@@ -1082,37 +1125,15 @@ window.onload = () => {
 
         })
 
-
-    })
-
-
-    function funcion_modificar_empresa(){
-        alert("Modificar empresa");
-    }
-
-    function funcion_busqueda_empleo(){
-        alert("Busqueda de empleo");
-    }
-
-    function funcion_modificar_modulo(){
-
-        vaciar_cuerpo(CUERPO);
-
-        var titulo = document.createElement("h1");
-        titulo.setAttribute("id", "HOME_cuerpo_titulo");
-        titulo.innerHTML = "¡ Configuración de Módulos !";
-        CUERPO.appendChild(titulo);
-
-        var texto = document.createElement("p");
-        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
-        texto.innerHTML = "Aquí podrás habilitar o deshabilitar tus módulos, o configurarlos.";
-        CUERPO.appendChild(texto);
+        // ---------------------------------------------------------------------- //
 
         var CONTENEDOR = document.createElement("div");
         CONTENEDOR.setAttribute("id","HOME_CONTENEDOR_MODULOS");
         CUERPO.appendChild(CONTENEDOR);
 
-        // COLOR 
+        // ---------------------------------------------------------------------- //
+        // MÓDULO COLOR
+        // ---------------------------------------------------------------------- //
         if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
 
             var BLOQUE = document.createElement("div");
@@ -1287,7 +1308,9 @@ window.onload = () => {
 
         }
 
-        // CHAT
+        // ---------------------------------------------------------------------- //
+        // MÓDULO CHAT
+        // ---------------------------------------------------------------------- //
         if(document.getElementById("MOD_CHAT_ADQUIRIDO")){
             
             var BLOQUE = document.createElement("div");
@@ -1385,7 +1408,9 @@ window.onload = () => {
 
         }
 
-        // CALENDARIO
+        // ---------------------------------------------------------------------- //
+        // MÓDULO CALENDARIO
+        // ---------------------------------------------------------------------- //
         if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
             
             var BLOQUE = document.createElement("div");
@@ -1483,7 +1508,9 @@ window.onload = () => {
 
         }
 
-        // HORA
+        // ---------------------------------------------------------------------- //
+        // MÓDULO HORA
+        // ---------------------------------------------------------------------- //
         if(document.getElementById("MOD_HORA_ADQUIRIDO")){
 
             var BLOQUE = document.createElement("div");
@@ -1581,7 +1608,10 @@ window.onload = () => {
 
         }
   
-        // obtener el valor para luego hacer el modal
+        // ---------------------------------------------------------------------- //
+        // OBTENEMOS EL VALOR DEL BOTÓN PRESIONADO
+        // ---------------------------------------------------------------------- //
+        
         var boton = document.querySelectorAll("button#CONFIGURACION_MODULOS");
 
         for (boton_seleccionado of boton) {
@@ -1596,8 +1626,10 @@ window.onload = () => {
         }
     }
 
-    // -----------------------
-    // habilita-deshabilita modulo
+    // ---------------------------------------------------------------------- //
+    // HABILITAR O DESHABILITAR EL MÓDULO QUE HAYAMOS PRESIONADO
+    // ---------------------------------------------------------------------- //
+    
     function habilitar_deshabilitar_modulo(MODULO){
         
         if(document.getElementById(MODULO+"_ADQUIRIDO").value == "SI"){
@@ -1637,10 +1669,7 @@ window.onload = () => {
             console.error('Error al enviar los datos:' + error);
         });
 
-    
-    
     }
 
-    
 
 }
