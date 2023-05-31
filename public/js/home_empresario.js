@@ -1021,69 +1021,6 @@ window.onload = () => {
         modificar_modulos.addEventListener("click", () => { funcion_modificar_modulo(); })
         busqueda_empleo.addEventListener("click", () => { funcion_busqueda_empleo();})
 
-        // Está el módulo de color adquirido
-        if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
-
-            var input = document.createElement("input");
-            input.setAttribute("id","MODULO_COLOR_INPUT");
-            input.setAttribute("value", COLOR);
-            input.setAttribute("list", "color-options");
-            input.setAttribute("type", "color");
-            CUERPO.appendChild(input);
-
-            var boton = document.createElement("button");
-            boton.innerHTML = "Cambiar Color";
-            CUERPO.appendChild(boton);
-
-            input.addEventListener("change", (e) => {
-              
-                var coloresValidos = 
-                [
-                    "#c94947", "#478ac9", "#26d836", "#ecee45", "#df951b",
-                    "#ef2ab6","#970f80","#0bb6ae","#b61b0b","#220594",
-                    "#60ac79","#a9612c","#aaaaaa","#666666","#000000"
-                ];
-
-                if (coloresValidos.indexOf(e.target.value.toLowerCase()) < 0) {
-                    e.target.value = COLOR;
-                    
-                }
-            })
-
-            boton.addEventListener("click", () => {
-
-                DATOS = { 
-                    id_empresa : ID,
-                    color : input.value
-                }
-
-                fetch('/modulos/color/cambiar-color', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(DATOS)
-                })
-
-                .then(response => {
-
-                    if (response.ok){return response.text();}
-                    else{console.log("Error");}
-                    
-                })
-
-                .then(textoRespuesta => { window.location.reload(); })
-
-                .catch(error => {
-                    console.error('Error al enviar los datos:' + error);
-                });
-
-            })
-
-            
-
-        }
-
         //Actualizar Módulos
         var boton = document.createElement("button");
         boton.innerHTML = "ACTUALIZAR MÓDULOS";
@@ -1160,62 +1097,477 @@ window.onload = () => {
 
         vaciar_cuerpo(CUERPO);
 
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Configuración de Módulos !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Aquí podrás habilitar o deshabilitar tus módulos, o configurarlos.";
+        CUERPO.appendChild(texto);
+
         var CONTENEDOR = document.createElement("div");
         CONTENEDOR.setAttribute("id","HOME_CONTENEDOR_MODULOS");
         CUERPO.appendChild(CONTENEDOR);
 
         // COLOR 
         if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
-            var COLOR2 = "SI";
+
+            var BLOQUE = document.createElement("div");
+            BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            BLOQUE.style.border = "2px solid black";
+            BLOQUE.style.borderRadius = "8px";
+            CONTENEDOR.appendChild(BLOQUE);
+    
+            var IMAGEN = document.createElement("img");
+            IMAGEN.style.height = "48px";
+            IMAGEN.style.width = "48px";
+            IMAGEN.setAttribute("src", "./img/icon/color.png");
+            BLOQUE.appendChild(IMAGEN);
+    
+            var NOMBRE = document.createElement("h1");
+            NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+            NOMBRE.innerHTML = "Interfaz Customizable";
+            BLOQUE.appendChild(NOMBRE);
+
+            var HABILITADO = document.createElement("button");
+            HABILITADO.setAttribute("value", "MOD_COLOR");
+
+            var DESHABILITADO = document.createElement("button");
+            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+
+            if(document.getElementById("MOD_COLOR_ADQUIRIDO").value == "SI"){
+                
+                HABILITADO.innerHTML = "Habilitado";
+                HABILITADO.style.color = "green";
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "123px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.innerHTML = "Habilitado";
+                HABILITADO.disabled = true;
+                HABILITADO.style.cursor = "not-allowed";
+                HABILITADO.style.background = "#6db840";
+                HABILITADO.style.color = "white";
+                BLOQUE.appendChild(HABILITADO);
+                
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.style.cursor = "pointer";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                BLOQUE.appendChild(DESHABILITADO);
+
+
+
+                // FUNCIONALIDAD
+                var input = document.createElement("input");
+                input.setAttribute("id","MODULO_COLOR_INPUT");
+                input.setAttribute("value", COLOR);
+                input.setAttribute("list", "color-options");
+                input.setAttribute("type", "color");
+                input.style.position = "relative";
+                input.style.top = "-92px";
+                input.style.left = "40px";
+                BLOQUE.appendChild(input);
+
+                var boton = document.createElement("button");
+                boton.innerHTML = "Cambiar Color";
+                boton.style.position = "relative";
+                boton.style.top = "-96px";
+                boton.style.left = "52px";
+                boton.style.border = "none";
+                boton.style.height = "32px";
+                boton.style.width = "100px";
+                boton.style.color = "black";
+                boton.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                boton.style.borderRadius = "99px";
+                boton.style.cursor = "pointer";
+                BLOQUE.appendChild(boton);
+
+                input.addEventListener("change", (e) => {
+                
+                    var coloresValidos = 
+                    [
+                        "#c94947", "#478ac9", "#26d836", "#ecee45", "#df951b",
+                        "#ef2ab6","#970f80","#0bb6ae","#b61b0b","#220594",
+                        "#60ac79","#a9612c","#aaaaaa","#666666","#000000"
+                    ];
+
+                    if (coloresValidos.indexOf(e.target.value.toLowerCase()) < 0) {
+                        e.target.value = COLOR;
+                        
+                    }
+                })
+
+                boton.addEventListener("click", () => {
+
+                    DATOS = { 
+                        id_empresa : ID,
+                        color : input.value
+                    }
+
+                    fetch('/modulos/color/cambiar-color', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(DATOS)
+                    })
+
+                    .then(response => {
+
+                        if (response.ok){return response.text();}
+                        else{console.log("Error");}
+                        
+                    })
+
+                    .then(textoRespuesta => { window.location.reload(); })
+
+                    .catch(error => {
+                        console.error('Error al enviar los datos:' + error);
+                    });
+
+                })
+            }
+
+                
+            if(document.getElementById("MOD_COLOR_ADQUIRIDO").value == "INACTIVE"){
+                
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.style.cursor = "pointer";
+                HABILITADO.innerHTML = "Habilitado";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.color = "green";
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                DESHABILITADO.disabled = true;
+                DESHABILITADO.style.cursor = "not-allowed";
+                DESHABILITADO.style.background = "#6db840";
+                DESHABILITADO.style.color = "white";
+                BLOQUE.appendChild(DESHABILITADO);
+                
+                
+            }
+            
             
 
-
         }
+
+        // CHAT
         if(document.getElementById("MOD_CHAT_ADQUIRIDO")){
-            var CHAT = "SI";
-        }else{
-            var CHAT = "NO";
+            
+            var BLOQUE = document.createElement("div");
+            BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            CONTENEDOR.appendChild(BLOQUE);
+
+            var IMAGEN = document.createElement("img");
+            IMAGEN.style.height = "48px";
+            IMAGEN.style.width = "48px";
+            IMAGEN.setAttribute("src", "./img/icon/chat.png");
+            BLOQUE.appendChild(IMAGEN);
+
+            var NOMBRE = document.createElement("h1");
+            NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+            NOMBRE.innerHTML = "CHAT";
+            BLOQUE.appendChild(NOMBRE);
+
+            var HABILITADO = document.createElement("button");
+            HABILITADO.setAttribute("value", "MOD_COLOR");
+
+            var DESHABILITADO = document.createElement("button");
+            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+
+            if(document.getElementById("MOD_CHAT_ADQUIRIDO").value == "SI"){
+                
+                HABILITADO.style.color = "green";
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.innerHTML = "Habilitado";
+                HABILITADO.disabled = true;
+                HABILITADO.style.cursor = "not-allowed";
+                HABILITADO.style.background = "#6db840";
+                HABILITADO.style.color = "white";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.style.cursor = "pointer";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                BLOQUE.appendChild(DESHABILITADO);
+
+            }
+
+            if(document.getElementById("MOD_CHAT_ADQUIRIDO").value == "INACTIVE"){
+                
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.style.cursor = "pointer";
+                HABILITADO.innerHTML = "Habilitado";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.color = "green";
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                DESHABILITADO.disabled = true;
+                DESHABILITADO.style.cursor = "not-allowed";
+                DESHABILITADO.style.background = "#6db840";
+                DESHABILITADO.style.color = "white";
+                BLOQUE.appendChild(DESHABILITADO);
+                 
+            }
+
         }
+
+        // CALENDARIO
         if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
-            var CALENDARIO = "SI";
-        }else{
-            var CALENDARIO = "NO";
+            
+            var BLOQUE = document.createElement("div");
+            BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            BLOQUE.style.border = "2px solid black";
+            BLOQUE.style.borderRadius = "8px";
+            CONTENEDOR.appendChild(BLOQUE);
+
+            var IMAGEN = document.createElement("img");
+            IMAGEN.style.height = "48px";
+            IMAGEN.style.width = "48px";
+            IMAGEN.setAttribute("src", "./img/icon/calendario.png");
+            BLOQUE.appendChild(IMAGEN);
+
+            var NOMBRE = document.createElement("h1");
+            NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+            NOMBRE.innerHTML = "CALENDARIO";
+            BLOQUE.appendChild(NOMBRE);
+
+            var HABILITADO = document.createElement("button");
+            HABILITADO.setAttribute("value", "MOD_COLOR");
+
+            var DESHABILITADO = document.createElement("button");
+            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+
+            if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO").value == "SI"){
+                
+                HABILITADO.style.color = "green";
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.innerHTML = "Habilitado";
+                HABILITADO.disabled = true;
+                HABILITADO.style.cursor = "not-allowed";
+                HABILITADO.style.background = "#6db840";
+                HABILITADO.style.color = "white";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.style.cursor = "pointer";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                BLOQUE.appendChild(DESHABILITADO);
+
+            }
+
+            if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO").value == "INACTIVE"){
+                
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.style.cursor = "pointer";
+                HABILITADO.innerHTML = "Habilitado";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.color = "green";
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                DESHABILITADO.disabled = true;
+                DESHABILITADO.style.cursor = "not-allowed";
+                DESHABILITADO.style.background = "#6db840";
+                DESHABILITADO.style.color = "white";
+                BLOQUE.appendChild(DESHABILITADO);
+                 
+            }
+
         }
+
+        // HORA
         if(document.getElementById("MOD_HORA_ADQUIRIDO")){
-            var HORA = "SI";
-        }else{
-            var HORA = "NO";
+
+            var BLOQUE = document.createElement("div");
+            BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            CONTENEDOR.appendChild(BLOQUE);
+
+            var IMAGEN = document.createElement("img");
+            IMAGEN.style.height = "48px";
+            IMAGEN.style.width = "48px";
+            IMAGEN.setAttribute("src", "./img/icon/hora.png");
+            BLOQUE.appendChild(IMAGEN);
+
+            var NOMBRE = document.createElement("h1");
+            NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+            NOMBRE.innerHTML = "HORA";
+            BLOQUE.appendChild(NOMBRE);
+
+            var HABILITADO = document.createElement("button");
+            HABILITADO.setAttribute("value", "MOD_COLOR");
+
+            var DESHABILITADO = document.createElement("button");
+            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+
+            if(document.getElementById("MOD_HORA_ADQUIRIDO").value == "SI"){
+                
+                HABILITADO.style.color = "green";
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.innerHTML = "Habilitado";
+                HABILITADO.disabled = true;
+                HABILITADO.style.cursor = "not-allowed";
+                HABILITADO.style.background = "#6db840";
+                HABILITADO.style.color = "white";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.style.cursor = "pointer";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                BLOQUE.appendChild(DESHABILITADO);
+
+            }
+
+            if(document.getElementById("MOD_HORA_ADQUIRIDO").value == "INACTIVE"){
+                
+                HABILITADO.style.position = "relative";
+                HABILITADO.style.top = "-36px";
+                HABILITADO.style.left = "122px";
+                HABILITADO.style.border = "none";
+                HABILITADO.style.height = "32px";
+                HABILITADO.style.width = "128px";
+                HABILITADO.style.color = "black";
+                HABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                HABILITADO.style.borderRadius = "99px";
+                HABILITADO.style.cursor = "pointer";
+                HABILITADO.innerHTML = "Habilitado";
+                BLOQUE.appendChild(HABILITADO);
+
+                DESHABILITADO.style.color = "green";
+                DESHABILITADO.style.position = "relative";
+                DESHABILITADO.style.top = "-36px";
+                DESHABILITADO.style.left = "133px";
+                DESHABILITADO.style.border = "none";
+                DESHABILITADO.style.height = "32px";
+                DESHABILITADO.style.width = "128px";
+                DESHABILITADO.style.color = "black";
+                DESHABILITADO.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+                DESHABILITADO.style.borderRadius = "99px";
+                DESHABILITADO.innerHTML = "Deshabilitado";
+                DESHABILITADO.disabled = true;
+                DESHABILITADO.style.cursor = "not-allowed";
+                DESHABILITADO.style.background = "#6db840";
+                DESHABILITADO.style.color = "white";
+                BLOQUE.appendChild(DESHABILITADO);
+                 
+            }
+
         }
-
-        var BLOQUE = document.createElement("div");
-        BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
-        CONTENEDOR.appendChild(BLOQUE);
-
-        var IMAGEN = document.createElement("img");
-        IMAGEN.style.height = "48px";
-        IMAGEN.style.width = "48px";
-        IMAGEN.setAttribute("src", "./img/icon/color.png");
-        BLOQUE.appendChild(IMAGEN);
-
-        var NOMBRE = document.createElement("h1");
-        NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
-        NOMBRE.innerHTML = "Interfaz Customizable";
-        BLOQUE.appendChild(NOMBRE);
-
-        var BLOQUE = document.createElement("div");
-        BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
-        CONTENEDOR.appendChild(BLOQUE);
-
-        var IMAGEN = document.createElement("img");
-        IMAGEN.style.height = "48px";
-        IMAGEN.style.width = "48px";
-        IMAGEN.setAttribute("src", "./img/icon/color.png");
-        BLOQUE.appendChild(IMAGEN);
-
-        var NOMBRE = document.createElement("h1");
-        NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
-        NOMBRE.innerHTML = "Interfaz Customizable";
-        BLOQUE.appendChild(NOMBRE);
+  
 
     }
 
