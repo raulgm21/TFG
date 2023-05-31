@@ -1112,7 +1112,9 @@ window.onload = () => {
     // Correo
     // ---------------------------------------------------------------------- //
 
-    document.getElementById("HOME_CORREO").addEventListener("click", () => {
+    document.getElementById("HOME_CORREO").addEventListener("click", pantalla_correo)
+
+    function pantalla_correo(){
 
         vaciar_cuerpo(CUERPO);
         var titulo = document.createElement("h1");
@@ -1227,9 +1229,8 @@ window.onload = () => {
 
                     var hijo = e.target;
                     var VALOR = hijo.getAttribute("class")
-                
-                    alert(VALOR);
-                
+                    escribir_correo(VALOR);
+
                 });
             }
             
@@ -1239,6 +1240,118 @@ window.onload = () => {
             console.error('Error al enviar los datos:' + error);
         });
 
-    })
+    }
 
+    function escribir_correo(CORREO_QUIEN_RECIBE){
+
+        var CORREO_QUIEN_ENVIA = CORREO;
+
+        var modal = document.createElement("div");
+        modal.style.height = "240px";
+        modal.style.width = "40%";
+        modal.style.border = "none";
+        modal.style.position = "fixed";
+        modal.style.top = "50%";
+        modal.style.left = "50%";
+        modal.style.transform = "translate(-50%, -50%)";
+        modal.style.backgroundColor = "#fff";
+        modal.style.zIndex = "1000";
+        modal.style.padding = "20px";
+        modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+        var BODY = document.body;
+        BODY.appendChild(modal);
+
+        var texto = document.createElement("p");
+        texto.innerHTML = `De acuerdo vas a mandar un correo a <strong>${CORREO_QUIEN_RECIBE}</strong>. Escriba el mensaje que desees que reciba.`;
+        texto.style.textAlign = "center";
+        texto.style.fontFamily = "monospace";
+        modal.appendChild(texto);
+
+        var textarea = document.createElement("textarea");
+        textarea.setAttribute("id","CORREO_TEXTAREA");
+        modal.appendChild(textarea);
+
+
+        var enviar = document.createElement("button");
+        enviar.style.display = "block";
+        enviar.style.textAlign = "center";
+        enviar.style.margin = "0 auto";
+        enviar.style.border = "none";
+        enviar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+        enviar.innerHTML = "Enviar"
+        enviar.style.position = "relative";
+        enviar.style.top = "8px";
+        modal.appendChild(enviar);
+
+        // ---- ENVIAR ---- //
+        enviar.addEventListener("click", () => {
+            
+            if(CORREO_QUIEN_ENVIA == CORREO_QUIEN_RECIBE){
+
+                DATOS = { 
+                    envia   : CORREO_QUIEN_ENVIA,
+                    recibe  : CORREO_QUIEN_RECIBE,
+                    mensaje : textarea.value,
+                    estado  : "MISMO"
+                }
+
+            }else{
+
+                DATOS = { 
+                    envia   : CORREO_QUIEN_ENVIA,
+                    recibe  : CORREO_QUIEN_RECIBE,
+                    mensaje : textarea.value,
+                    estado  : "NO LEÍDO"
+                }
+
+            }
+        
+            fetch('/mandar-correo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(DATOS)
+            })
+
+            .then(response => {
+
+                if (response.ok){return response.text();}
+                else{console.log("Error");}
+                
+            })
+
+            .then(textoRespuesta => {
+
+                alert("mensaje envíado");
+
+                modal.remove();
+                pantalla_correo();
+            })
+
+            .catch(error => {
+                console.error('Error al enviar los datos:' + error);
+            });
+
+
+           
+        });
+
+        var salir = document.createElement("button");
+        salir.style.display = "block";
+        salir.style.textAlign = "center";
+        salir.style.margin = "0 auto";
+        salir.style.border = "none";
+        salir.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+        salir.innerHTML = "Atrás"
+        salir.style.position = "relative";
+        salir.style.top = "16px";
+        modal.appendChild(salir);
+
+        salir.addEventListener("click", () => {
+            modal.remove();
+        });
+
+    }
 }

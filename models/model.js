@@ -141,6 +141,29 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos añade un nuevo mensaje de correo
+    // ---------------------------------------------------------- //
+
+    Model.mandar_correo = (data, cb) => {
+
+        conn
+            .create(
+            {
+                envia   : data.envia,
+                recibe  : data.recibe,
+                mensaje : data.mensaje,
+                estado  : data.estado
+
+            }, 
+            (err) => {
+                if(err) throw err
+                cb()
+            })
+            
+    }
+
+
+    // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el DNI, nombre, etc
     // ---------------------------------------------------------- //
 

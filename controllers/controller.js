@@ -315,6 +315,31 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos manda un correo a un usuario de la empresa
+    // ------------------------------------------------------ //
+
+    Controller.mandar_correo = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var envia       = datos.envia.trim();
+        var recibe      = datos.recibe.trim();
+        var mensaje     = datos.mensaje.trim();
+        var estado      = datos.estado.trim();
+
+        OBJDATOS = { 
+            envia : envia,
+            recibe : recibe,
+            mensaje : mensaje,
+            estado : estado
+        }
+
+        console.log(OBJDATOS)
+        
+        Model.mandar_correo(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos revisará si existe o no el DNI en la BDD
     // para iniciar sesión, y nos dirigira al home del user.
     // ------------------------------------------------------ //

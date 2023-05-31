@@ -45,6 +45,11 @@ var mongoose = require('mongoose'),
         MOD_CALENDARIO      : "string",
         MOD_HORA            : "string",
 
+        // --- Mandar Correo --- //
+        envia               : "string",
+        recibe              : "string",
+        mensaje             : "string",
+        estado              : "string",
 
 
 

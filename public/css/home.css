@@ -489,11 +489,22 @@
 /* CORREO */
 #CORREO_DIV_IZQUIERDA{
     width: 55%;
- 
+    
 }
 
 #CORREO_DIV_DERECHA{
     width: 45%;
     background-color : rgb(255, 60, 0);
     height: 100px;
+}
+
+#CORREO_TEXTAREA{
+    resize: none;
+    overflow: scroll;
+    height: 128px;
+    width: 50%;
+    overflow-x: hidden;
+    border : 1px black solid;
+    position: relative;
+    left : 25%;
 }
