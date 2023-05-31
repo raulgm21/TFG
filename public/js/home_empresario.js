@@ -403,8 +403,6 @@ window.onload = () => {
                 
             }
 
-          
-
             // obtener el valor para luego hacer el modal
             var boton = document.querySelectorAll("button#EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
 
@@ -972,6 +970,57 @@ window.onload = () => {
         texto.innerHTML = "Toda la configuración relacionada con tu empresa se encuentra aqui.";
         CUERPO.appendChild(texto);
 
+        // OPCIONES
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_EMPRESA_DIV");
+        contenedor.style.display = "flex",
+        contenedor.style.marginTop = "48px";
+        contenedor.style.justifyContent = "space-around";
+        contenedor.style.textAlign = "center";
+        contenedor.style.fontFamily = "monospace";
+        contenedor.style.fontSize = "20px";
+        contenedor.style.cursor = "pointer";
+        CUERPO.appendChild(contenedor);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var modificar_empresa = document.createElement("img");
+        modificar_empresa.setAttribute("src","./img/icon/empresa.png");
+        modificar_empresa.style.height = "180px";
+        modificar_empresa.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Modificar la Empresa";
+        div.appendChild(modificar_empresa);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var modificar_modulos = document.createElement("img");
+        modificar_modulos.setAttribute("src","./img/icon/modulo.png");
+        modificar_modulos.style.height = "180px";
+        modificar_modulos.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Configuración de Módulos";
+        div.appendChild(modificar_modulos);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var busqueda_empleo = document.createElement("img");
+        busqueda_empleo.setAttribute("src","./img/icon/aparecer_oferente.png");
+        busqueda_empleo.style.height = "180px";
+        busqueda_empleo.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Búsqueda de Empleo";
+        div.appendChild(busqueda_empleo);
+        div.appendChild(texto);
+
+
+        // EVENTOS
+        modificar_empresa.addEventListener("click", () => { funcion_modificar_empresa(); })
+        modificar_modulos.addEventListener("click", () => { funcion_modificar_modulo(); })
+        busqueda_empleo.addEventListener("click", () => { funcion_busqueda_empleo();})
+
         // Está el módulo de color adquirido
         if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
 
@@ -1101,5 +1150,77 @@ window.onload = () => {
 
 
     })
+
+
+    function funcion_modificar_empresa(){
+        alert("Modificar empresa");
+    }
+
+    function funcion_modificar_modulo(){
+
+        vaciar_cuerpo(CUERPO);
+
+        var CONTENEDOR = document.createElement("div");
+        CONTENEDOR.setAttribute("id","HOME_CONTENEDOR_MODULOS");
+        CUERPO.appendChild(CONTENEDOR);
+
+        // COLOR 
+        if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
+            var COLOR2 = "SI";
+            
+
+
+        }
+        if(document.getElementById("MOD_CHAT_ADQUIRIDO")){
+            var CHAT = "SI";
+        }else{
+            var CHAT = "NO";
+        }
+        if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
+            var CALENDARIO = "SI";
+        }else{
+            var CALENDARIO = "NO";
+        }
+        if(document.getElementById("MOD_HORA_ADQUIRIDO")){
+            var HORA = "SI";
+        }else{
+            var HORA = "NO";
+        }
+
+        var BLOQUE = document.createElement("div");
+        BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+        CONTENEDOR.appendChild(BLOQUE);
+
+        var IMAGEN = document.createElement("img");
+        IMAGEN.style.height = "48px";
+        IMAGEN.style.width = "48px";
+        IMAGEN.setAttribute("src", "./img/icon/color.png");
+        BLOQUE.appendChild(IMAGEN);
+
+        var NOMBRE = document.createElement("h1");
+        NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+        NOMBRE.innerHTML = "Interfaz Customizable";
+        BLOQUE.appendChild(NOMBRE);
+
+        var BLOQUE = document.createElement("div");
+        BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+        CONTENEDOR.appendChild(BLOQUE);
+
+        var IMAGEN = document.createElement("img");
+        IMAGEN.style.height = "48px";
+        IMAGEN.style.width = "48px";
+        IMAGEN.setAttribute("src", "./img/icon/color.png");
+        BLOQUE.appendChild(IMAGEN);
+
+        var NOMBRE = document.createElement("h1");
+        NOMBRE.setAttribute("id","HOME_MODULO_NOMBRE_MODULO");
+        NOMBRE.innerHTML = "Interfaz Customizable";
+        BLOQUE.appendChild(NOMBRE);
+
+    }
+
+    function funcion_busqueda_empleo(){
+        alert("Busqueda de empleo");
+    }
 
 }

@@ -32,7 +32,7 @@
     // MÓDULO HORAS
     // ---------------------------------------------------------------------- //
 
-    if(document.getElementById("MOD_HORA_ADQUIRIDO")){
+    if(document.getElementById("MOD_HORA_ADQUIRIDO") && document.getElementById("MOD_HORA_ADQUIRIDO").value == "SI"){
         
         function imprimirHora() {
             document.getElementById("HOME_HORA_ACTUAL").innerHTML = new Date().toLocaleTimeString();
@@ -46,7 +46,7 @@
     // MÓDULO CALENDARIO
     // ---------------------------------------------------------------------- //
 
-    if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
+    if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO") && document.getElementById("MOD_CALENDARIO_ADQUIRIDO").value == "SI"){
 
         function crearCalendario() {
             // Variables

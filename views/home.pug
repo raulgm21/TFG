@@ -48,14 +48,14 @@ block content
         -if(usuario.rol == "empresario")
 
             //- MODULOS
-            -if(usuario.MOD_COLOR == "SI")
-                p#MOD_COLOR_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_CHAT == "SI")
-                p#MOD_CHAT_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_CALENDARIO == "SI")
-                p#MOD_CALENDARIO_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_HORA == "SI")
-                p#MOD_HORA_ADQUIRIDO(style="display : none")
+            -if(usuario.MOD_COLOR == "SI" || usuario.MOD_COLOR == "INACTIVE")
+                input#MOD_COLOR_ADQUIRIDO(style="display : none" value=usuario.MOD_COLOR)
+            -if(usuario.MOD_CHAT == "SI" || usuario.MOD_CHAT == "INACTIVE")
+                input#MOD_CHAT_ADQUIRIDO(style="display : none" value=usuario.MOD_CHAT)
+            -if(usuario.MOD_CALENDARIO == "SI" ||usuario.MOD_CALENDARIO == "INACTIVE")
+                input#MOD_CALENDARIO_ADQUIRIDO(style="display : none" value=usuario.MOD_CALENDARIO)
+            -if(usuario.MOD_HORA == "SI" ||usuario.MOD_HORA == "INACTIVE")
+                input#MOD_HORA_ADQUIRIDO(style="display : none" value=usuario.MOD_HORA)
 
             //- VARIABLES
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
@@ -138,15 +138,14 @@ block content
         -if(usuario.rol == "trabajador")
 
             //- MODULOS
-            -if(usuario.MOD_COLOR == "SI")
-                p#MOD_COLOR_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_CHAT == "SI")
-                p#MOD_CHAT_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_CALENDARIO == "SI")
-                p#MOD_CALENDARIO_ADQUIRIDO(style="display : none")
-            -if(usuario.MOD_HORA == "SI")
-                p#MOD_HORA_ADQUIRIDO(style="display : none")
-
+            -if(usuario.MOD_COLOR == "SI" || usuario.MOD_COLOR == "INACTIVE")
+                input#MOD_COLOR_ADQUIRIDO(style="display : none" value=usuario.MOD_COLOR)
+            -if(usuario.MOD_CHAT == "SI" || usuario.MOD_CHAT == "INACTIVE")
+                input#MOD_CHAT_ADQUIRIDO(style="display : none" value=usuario.MOD_CHAT)
+            -if(usuario.MOD_CALENDARIO == "SI" ||usuario.MOD_CALENDARIO == "INACTIVE")
+                input#MOD_CALENDARIO_ADQUIRIDO(style="display : none" value=usuario.MOD_CALENDARIO)
+            -if(usuario.MOD_HORA == "SI" ||usuario.MOD_HORA == "INACTIVE")
+                input#MOD_HORA_ADQUIRIDO(style="display : none" value=usuario.MOD_HORA)
 
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
