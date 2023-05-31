@@ -1106,4 +1106,139 @@ window.onload = () => {
     })
 
 
+// ----------------------------------------------------------------------------------------------- // 
+
+    // ---------------------------------------------------------------------- //
+    // Correo
+    // ---------------------------------------------------------------------- //
+
+    document.getElementById("HOME_CORREO").addEventListener("click", () => {
+
+        vaciar_cuerpo(CUERPO);
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Correo !";
+        CUERPO.appendChild(titulo);
+
+        var contenedor_correo = document.createElement("div");
+        contenedor_correo.style.display = "flex";
+        contenedor_correo.style.flexDirection = "row";
+        contenedor_correo.style.justifyContent = "center";
+        CUERPO.appendChild(contenedor_correo);
+
+        
+        var div_izquierda = document.createElement("div");
+        div_izquierda.setAttribute("id","CORREO_DIV_IZQUIERDA");
+        contenedor_correo.appendChild(div_izquierda);
+
+        var div_derecha = document.createElement("div");
+        div_derecha.setAttribute("id","CORREO_DIV_DERECHA");
+        contenedor_correo.appendChild(div_derecha);
+
+
+        // LADO IZQUIERDO -> USUARIOS
+
+        DATOS = { id_empresa : ID, }
+
+        fetch('/mostrar-personal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+                
+        })
+
+        .then(textoRespuesta => {
+          
+            var tabla = document.createElement("table");
+            tabla.setAttribute("id","HOME_PERSONAL_EMPRESARIO");
+            div_izquierda.appendChild(tabla);
+
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Nombre";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Correo";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Foto";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "";
+            fila.appendChild(columna);
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                if(textoRespuesta[i].nombre != undefined){
+
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
+
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].nombre;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].correo;
+                    fila.appendChild(columna);
+                    var foto = document.createElement("img");
+                    foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                    foto.style.height = "64px";
+                    foto.style.width = "64px";
+                    foto.style.borderRadius = "9999px";
+                    foto.style.position = "relative";
+                    foto.style.left = "40px";
+                    fila.appendChild(foto);
+
+                    var columna = document.createElement("img");
+                    columna.setAttribute("id","CORREO_MENSAJE");
+                    columna.setAttribute("class", textoRespuesta[i].correo);
+                    columna.style.height = "32px";
+                    columna.style.width = "32px";
+                    columna.style.position = "relative";
+                    columna.style.top = "-12px";
+                    columna.style.left = "140px";
+                    columna.style.cursor = "pointer";
+                    columna.setAttribute("src", "./img/icon/chat.png");
+                    fila.appendChild(columna);
+                }
+   
+            }
+
+            // obtener el valor para luego hacer el modal
+            var boton = document.querySelectorAll("img#CORREO_MENSAJE");
+
+            for (boton_seleccionado of boton) {
+
+                boton_seleccionado.addEventListener("click", (e) => {
+
+                    var hijo = e.target;
+                    var VALOR = hijo.getAttribute("class")
+                
+                    alert(VALOR);
+                
+                });
+            }
+            
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+
+    })
+
 }
