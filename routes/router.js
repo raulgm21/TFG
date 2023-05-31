@@ -84,6 +84,7 @@
 
         .put('/tutorialNO', Controller.tutorialNO)
         .put('/cambiar-nombre', Controller.cambiar_nombre)
+        .put('/cambiar-password', Controller.cambiar_password)
 
         .put('/comprar-modulo', Controller.comprar_modulo)
         .put('/actualizar-modulos', Controller.actualizar_modulos)

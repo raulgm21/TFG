@@ -255,6 +255,27 @@ var conn = require('./model-connection'),
             })
     }
 
+    // ---------------------------------------------------------- //
+    // Nos edita al usuario activo para ponerle la nueva contraseña
+    // ---------------------------------------------------------- //
+
+    Model.cambiar_password= (data, cb) => {
+            
+        conn
+            .findOneAndUpdate(
+                {
+                    dni : data.dni
+                },
+
+                {
+                    password : data.password
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
 
     // ---------------------------------------------------------- //
     // Nos edita a todos los usuarios de la empresa, y les compra el módulo.

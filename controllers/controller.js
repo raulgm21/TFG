@@ -111,7 +111,6 @@ const fs = require('fs');                       // Módulo para interactuar con 
         var password        = datos.password.trim();
         var dni             = datos.dni.trim();
         var actividad       = datos.actividad.trim();
-        console.log(nombre);
         const salting = 10;
 
         bcrypt.hash(password,salting, (err,hashedPassword) => {
@@ -572,6 +571,65 @@ const fs = require('fs');                       // Módulo para interactuar con 
 
         Model.cambiar_nombre(OBJDATOS , (docs) => { res.send("Correcto"); })
     }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos permite cambiar la contraseña
+    // ------------------------------------------------------ //
+
+    Controller.cambiar_password = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var dni          = datos.dni.trim();
+        var pass_actual  = datos.pass_actual.trim();
+        var pass_nueva   = datos.pass_nueva.trim();
+        
+        const salting = 10;
+
+
+        OBJDATOS = { 
+            dni      : dni, 
+            password : pass_actual
+        }
+
+        Model.dni(OBJDATOS , (docs) => {
+           
+            // Obtengo las contraseña actual de la BDD
+            var contraseña = docs.password;
+
+            // Comparo la contraseña encriptada con la contraseña actual
+            bcrypt.compare(pass_actual, contraseña, (err, result) => {
+
+                if(err){
+
+                    console.log(err);
+
+                }else if (result) {
+
+                    // Encriptamos la nueva contraseña
+                    bcrypt.hash(pass_nueva,salting, (err,hashedPassword) => {
+                    
+                        OBJDATOS = { 
+                            dni      : dni, 
+                            password : hashedPassword
+                        }
+
+                        // Contraseñas Coinciden
+                        Model.cambiar_password(OBJDATOS , (docs) => { res.send("Correcto"); })
+
+                    })
+                    
+
+                }else{
+                    // Contraseñas no Coinciden
+                    res.send("Error");
+                }
+
+                })
+        })
+
+    }
+
     // ------------------------------------------------------ //
     // Modelo que nos comprará el módulo que hayamos seleccionado
     // ------------------------------------------------------ //

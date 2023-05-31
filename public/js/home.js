@@ -454,6 +454,7 @@
 
             var textarea = document.createElement("textarea");
             textarea.setAttribute("id","CORREO_TEXTAREA");
+            textarea.style.overflow = "hidden";
             modal.appendChild(textarea);
 
             var enviar = document.createElement("button");
@@ -534,7 +535,122 @@
 
         // CAMBIAR PASSWORD
         cambiar_password.addEventListener("click", () => {
-            alert("Vas a cambiar la contraseña");
+            
+            var modal = document.createElement("div");
+            modal.style.height = "170px";
+            modal.style.width = "40%";
+            modal.style.border = "none";
+            modal.style.position = "fixed";
+            modal.style.top = "50%";
+            modal.style.left = "50%";
+            modal.style.transform = "translate(-50%, -50%)";
+            modal.style.backgroundColor = "#fff";
+            modal.style.zIndex = "1000";
+            modal.style.padding = "20px";
+            modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            var BODY = document.body;
+            BODY.appendChild(modal);
+
+            var texto = document.createElement("p");
+            texto.innerHTML = `Vas a cambiar su contraseña para su usuario <strong>${NOMBRE}</strong>.`;
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            modal.appendChild(texto);
+
+            var actual = document.createElement("input");
+            actual.setAttribute("id","CORREO_TEXTAREA");
+            actual.setAttribute("type", "password");
+            actual.setAttribute("placeholder", "Inserte su contraseña actual");
+            actual.style.height = "32px";
+            modal.appendChild(actual);
+
+            var nueva = document.createElement("input");
+            nueva.setAttribute("id","CORREO_TEXTAREA");
+            nueva.setAttribute("type", "password");
+            nueva.setAttribute("placeholder", "Inserte su contraseña nueva (min 8 caracts.)");
+            nueva.style.height = "32px";
+            nueva.style.marginTop = "12px";
+            modal.appendChild(nueva);
+
+
+            var enviar = document.createElement("button");
+            enviar.style.display = "block";
+            enviar.style.textAlign = "center";
+            enviar.style.margin = "0 auto";
+            enviar.style.border = "none";
+            enviar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            enviar.innerHTML = "Enviar"
+            enviar.style.position = "relative";
+            enviar.style.top = "8px";
+            modal.appendChild(enviar);
+
+            // ---- ENVIAR ---- //
+            enviar.addEventListener("click", () => {
+
+                if(nueva.value.length >= 8 && actual.value.length >= 8){
+
+                    DATOS = { 
+                        dni          : DNI,
+                        pass_actual  : actual.value,
+                        pass_nueva   : nueva.value
+                    }
+
+                    fetch('/cambiar-password', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(DATOS)
+                    })
+
+                    .then(response => {
+
+                        if (response.ok){return response.text();}
+                        else{console.log("Error");}
+                        
+                    })
+
+                    .then(textoRespuesta => {
+
+                        if(textoRespuesta == "Correcto"){
+                            modal.remove();
+                            window.location.reload();
+                        }else{
+                            if(textoRespuesta == "Error"){
+                                alert("La contraseña actual no es correcta");
+                            }else{
+                                alert("Ha ocurrido algún error a la hora de cambiar la contraseña, intentelo de nuevo");
+                            }
+                        }
+                         
+                    })
+
+                    .catch(error => {
+                        console.error('Error al enviar los datos:' + error);
+                    });
+
+                }else{
+                    alert("No puede tener menos de ocho caracteres");
+                }
+            
+            });
+
+            var salir = document.createElement("button");
+            salir.style.display = "block";
+            salir.style.textAlign = "center";
+            salir.style.margin = "0 auto";
+            salir.style.border = "none";
+            salir.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            salir.style.position = "relative";
+            salir.style.top = "16px";
+            salir.innerHTML = "Salir"
+            modal.appendChild(salir);
+
+            salir.addEventListener("click", () => {
+                modal.remove();
+            });
+
         })
         
         // MIRAR TUTORIAL
