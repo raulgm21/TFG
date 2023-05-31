@@ -74,6 +74,7 @@ var conn = require('./model-connection'),
                 color               : "#478AC9",
                 cargo               : "Empresario",
                 foto_perfil         : "./img/perfil/nofoto.png",
+                imagen_empresa      : "./img/perfil/logo.png",
                 aparece_oferente    : "NO",
                 MOD_COLOR           : "NO",
                 MOD_CHAT            : "NO",
@@ -105,6 +106,7 @@ var conn = require('./model-connection'),
                 tutorial             : "none",
                 rol                  : "trabajador",
                 foto_perfil          : "./img/perfil/nofoto.png",
+                imagen_empresa       : "./img/perfil/logo.png",
                 identificador_activo : "SI"
 
             }, 
@@ -428,6 +430,28 @@ var conn = require('./model-connection'),
 
                 {
                     foto_perfil : "./img/perfil/" + data.dni + ".png"
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos edita la imagen de la empresa de todos los trabajadores
+    // ---------------------------------------------------------- //
+
+    Model.foto_empresa= (data, cb) => {
+            
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.dni
+                },
+
+                {
+                    imagen_empresa : "./img/perfil/" + data.dni + ".png"
                 }, 
 
                 (err, docs) =>{

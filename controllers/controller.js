@@ -852,7 +852,12 @@ const fs = require('fs');                       // Módulo para interactuar con 
         // Modificar el documento añadiendo la foto de pefil
         OBJDATOS = { dni : dni,}
 
-        Model.foto_perfil(OBJDATOS , (docs) => { })
+        if(dni.length == 9){
+            Model.foto_perfil(OBJDATOS , (docs) => { })
+        }else{
+            Model.foto_empresa(OBJDATOS , (docs) => { })
+        }
+        
 
         res.redirect('/iniciarSesion');
 

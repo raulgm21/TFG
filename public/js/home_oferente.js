@@ -118,7 +118,7 @@ window.onload = () => {
 
 
             for(i = 0 ; i < textoRespuesta.length ; i++){
-                if(textoRespuesta[i].imagen_empresa != undefined){
+                if(textoRespuesta[i].imagen_empresa != undefined && textoRespuesta[i].rol == "empresario"){
 
                     var fila = document.createElement("tr");
                     tabla.appendChild(fila);

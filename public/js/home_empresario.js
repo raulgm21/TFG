@@ -981,11 +981,11 @@ window.onload = () => {
         var div = document.createElement("div");
         contenedor.appendChild(div);
         var modificar_empresa = document.createElement("img");
-        modificar_empresa.setAttribute("src","./img/icon/empresa.png");
+        modificar_empresa.setAttribute("src","./img/icon/empresa_imagen.png");
         modificar_empresa.style.height = "180px";
         modificar_empresa.style.width = "180px";
         var texto = document.createElement("p");
-        texto.innerHTML = "Modificar la Empresa";
+        texto.innerHTML = "Modificar foto de Empresa";
         div.appendChild(modificar_empresa);
         div.appendChild(texto);
 
@@ -1022,12 +1022,94 @@ window.onload = () => {
 
     })
 
+    // ---------------------------------------------------------------------- //
+    // Todo lo relacionado con la configuración de los módulos
+    // ---------------------------------------------------------------------- //
 
     function funcion_modificar_empresa(){
-        alert("Modificar empresa");
-
         
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Vas a cambiar la foto de tu empresa !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "La imagen debe ser en un formato PNG y pesar menos de 1MB.";
+        CUERPO.appendChild(texto);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_no_nombre");
+        texto.innerHTML = "Ten en cuenta que cuando cambies la foto de la empresa, se te cerrará la sesión para así guardar los cambios.";
+        CUERPO.appendChild(texto);
+
+        var formulario = document.createElement("form");
+        formulario.setAttribute("action", "/subir-foto");
+        formulario.setAttribute("method", "POST");
+        formulario.setAttribute("enctype","multipart/form-data")
+        CUERPO.appendChild(formulario);
+
+        var input_empresa = document.createElement("input");
+        input_empresa.setAttribute("type","text");
+        input_empresa.setAttribute("name","dni");
+        input_empresa.setAttribute("value",ID);
+        input_empresa.style.display = "none";
+        formulario.appendChild(input_empresa);
+
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_CONTENEDOR_FILE");
+        contenedor.style.backgroundColor = COLOR;
+        formulario.appendChild(contenedor);
+
+        var input_file = document.createElement("input");
+        input_file.setAttribute("type","file");
+        input_file.setAttribute("name","imagen");
+        input_file.setAttribute("id","HOME_SUBIR_FOTO_INPUT")
+        contenedor.appendChild(input_file);
+
+        var label_file = document.createElement("label");
+        label_file.setAttribute("id","HOME_SUBIR_FOTO_LABEL")
+        label_file.innerHTML = "Subir archivo...";
+        contenedor.appendChild(label_file);
+
+        var content_file = document.createElement("span");
+        content_file.setAttribute("id","HOME_SUBIR_FOTO_CONTENT")
+        contenedor.appendChild(content_file);
+
+        var input_submit = document.createElement("input");
+        input_submit.setAttribute("type", "submit");
+        input_submit.setAttribute("value", "Enviar");
+        input_submit.setAttribute("id","HOME_SUBIR_FOTO_SUBMIT")
+        formulario.appendChild(input_submit);
+
+        var imagen = document.createElement("img");
+        var fotoID = document.getElementById("HOME_cuerpo_imagen_empresa");
+        imagen.setAttribute("src", fotoID.src);
+        imagen.style.height = "128px";
+        imagen.style.width = "128px";
+        imagen.style.top = "64px";
+        imagen.style.left = "508px";
+        imagen.style.borderRadius = "9999px";
+        imagen.style.position = "relative";
+        CUERPO.appendChild(imagen);
+
+        document.getElementById("HOME_SUBIR_FOTO_INPUT").addEventListener("change", (event) => {
+            var fileInfo = document.getElementById("HOME_SUBIR_FOTO_CONTENT");
+            var inputFile = event.target;
+
+            if (inputFile.files.length === 0) {
+                fileInfo.textContent = "No se ha seleccionado ningún archivo.";
+            } else {
+                fileInfo.textContent = `Archivo seleccionado: ${inputFile.files[0].name}`;
+            }
+        })
     }
+
+    // ---------------------------------------------------------------------- //
+    // Permite mostrarse en la búsqueda de oferentes
+    // ---------------------------------------------------------------------- //
 
     function funcion_busqueda_empleo(){
         

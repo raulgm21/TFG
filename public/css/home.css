@@ -120,6 +120,7 @@
 
 #HOME_cuerpo_imagen_empresa{
     height: 236px;
+    width: 512px;
     border-radius: 32px;
     margin: auto;
     display: block;

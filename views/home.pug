@@ -85,7 +85,7 @@ block content
                     h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
                     p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
                     p#HOME_cuerpo_texto_no_nombre
-                    img#HOME_cuerpo_imagen_empresa(src="./img/logo.png")
+                    img#HOME_cuerpo_imagen_empresa(src=usuario.imagen_empresa)
                     -if(usuario.tutorial == "none")
                         p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
                         
@@ -174,7 +174,7 @@ block content
                     h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a #{usuario.nombre_empresa} !
                     p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
                     p#HOME_cuerpo_texto_no_nombre
-                    img#HOME_cuerpo_imagen_empresa(src="./img/logo.png")
+                    img#HOME_cuerpo_imagen_empresa(src=usuario.imagen_empresa)
                     -if(usuario.tutorial == "none")
                         p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
                         
