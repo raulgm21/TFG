@@ -759,18 +759,13 @@
 
             }else{
 
-                var columna = document.createElement("th");
-                columna.style.backgroundColor = COLOR;
-                columna.innerHTML = "Empresa";
-                fila.appendChild(columna);
-                var columna = document.createElement("th");
-                columna.style.backgroundColor = COLOR;
-                columna.innerHTML = "Correo";
-                fila.appendChild(columna);
-                var columna = document.createElement("th");
-                columna.style.backgroundColor = COLOR;
-                columna.innerHTML = "";
-                fila.appendChild(columna);
+                var foto = document.createElement("img");
+                foto.setAttribute("src","./img/correo_oferente.png");
+                foto.style.width = "100%";
+                foto.style.height = "480px";
+                foto.style.position = "relative";
+                foto.style.top = "-72px";
+                tabla.appendChild(foto);
 
             }
             for(i = 0 ; i < textoRespuesta.length ; i++){
@@ -878,7 +873,7 @@
                 texto.style.position = "relative";
                 texto.style.top = "-36px";
                 texto.style.left = "56px";
-
+                
                 var mensaje = document.createElement("p");
                 mensaje.style.fontFamily = "monospace";
                 mensaje.style.textAlign = "justify";
@@ -891,11 +886,10 @@
                     
                     imagen.setAttribute("src","./img/icon/enviar.png");
                     div.appendChild(imagen);
-                    
                     texto.style.color = "rgb(34,177,76)";
                     texto.innerHTML = "ENVÍADO a " + textoRespuesta[i].recibe;
                     div.appendChild(texto);
-                     
+                 
                 }
 
                 // RECIBIDO
@@ -908,7 +902,38 @@
                     texto.innerHTML = "RECIBIDO de " + textoRespuesta[i].envia;
                     div.appendChild(texto);
 
+                   
                 }
+
+                // OFERENTE
+                if(textoRespuesta[i].recibe == CORREO && textoRespuesta[i].estado == "OFERENTE"){
+                    
+                    imagen.setAttribute("src","./img/icon/oferente.png");
+                    div.appendChild(imagen);
+                    texto.setAttribute("id","CORREO_CORREO");
+                    texto.setAttribute("class",textoRespuesta[i].envia)
+
+                    texto.style.color = "rgb(223, 48, 238)";
+                    texto.innerHTML = "OFERENTE - " + textoRespuesta[i].envia;
+                    texto.style.cursor = "pointer";
+                    div.appendChild(texto);
+
+                    // obtener el valor para luego hacer el modal
+                    var boton = document.querySelectorAll("p#CORREO_CORREO");
+
+                    for (boton_seleccionado of boton) {
+
+                        boton_seleccionado.addEventListener("click", (e) => {
+
+                            var hijo = e.target;
+                            var VALOR = hijo.getAttribute("class");
+                            escribir_correo(VALOR);
+
+                        });
+                    }
+
+                }
+
 
                 // YO MISMO
                 if(textoRespuesta[i].recibe == textoRespuesta[i].envia && textoRespuesta[i].estado == "MISMO"){
@@ -920,6 +945,7 @@
                     texto.innerHTML = "ENVÍADO A MI MISMO";
                     div.appendChild(texto);
 
+                  
                 }
 
                 mensaje.innerHTML = textoRespuesta[i].mensaje;
