@@ -946,9 +946,6 @@ window.onload = () => {
 
             })
 
-
-
-        
     }
 
 // ----------------------------------------------------------------------------------------------- // 
@@ -1093,6 +1090,10 @@ window.onload = () => {
         alert("Modificar empresa");
     }
 
+    function funcion_busqueda_empleo(){
+        alert("Busqueda de empleo");
+    }
+
     function funcion_modificar_modulo(){
 
         vaciar_cuerpo(CUERPO);
@@ -1132,9 +1133,11 @@ window.onload = () => {
             BLOQUE.appendChild(NOMBRE);
 
             var HABILITADO = document.createElement("button");
+            HABILITADO.setAttribute("id","CONFIGURACION_MODULOS");
             HABILITADO.setAttribute("value", "MOD_COLOR");
 
             var DESHABILITADO = document.createElement("button");
+            DESHABILITADO.setAttribute("id", "CONFIGURACION_MODULOS");
             DESHABILITADO.setAttribute("value", "MOD_COLOR");
 
             if(document.getElementById("MOD_COLOR_ADQUIRIDO").value == "SI"){
@@ -1289,6 +1292,8 @@ window.onload = () => {
             
             var BLOQUE = document.createElement("div");
             BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            BLOQUE.style.border = "2px solid black";
+            BLOQUE.style.borderRadius = "8px";
             CONTENEDOR.appendChild(BLOQUE);
 
             var IMAGEN = document.createElement("img");
@@ -1303,10 +1308,12 @@ window.onload = () => {
             BLOQUE.appendChild(NOMBRE);
 
             var HABILITADO = document.createElement("button");
-            HABILITADO.setAttribute("value", "MOD_COLOR");
+            HABILITADO.setAttribute("id","CONFIGURACION_MODULOS");
+            HABILITADO.setAttribute("value", "MOD_CHAT");
 
             var DESHABILITADO = document.createElement("button");
-            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+            DESHABILITADO.setAttribute("id", "CONFIGURACION_MODULOS");
+            DESHABILITADO.setAttribute("value", "MOD_CHAT");
 
             if(document.getElementById("MOD_CHAT_ADQUIRIDO").value == "SI"){
                 
@@ -1399,10 +1406,12 @@ window.onload = () => {
             BLOQUE.appendChild(NOMBRE);
 
             var HABILITADO = document.createElement("button");
-            HABILITADO.setAttribute("value", "MOD_COLOR");
+            HABILITADO.setAttribute("id","CONFIGURACION_MODULOS");
+            HABILITADO.setAttribute("value", "MOD_CALENDARIO");
 
             var DESHABILITADO = document.createElement("button");
-            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+            DESHABILITADO.setAttribute("id", "CONFIGURACION_MODULOS");
+            DESHABILITADO.setAttribute("value","MOD_CALENDARIO");
 
             if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO").value == "SI"){
                 
@@ -1479,6 +1488,8 @@ window.onload = () => {
 
             var BLOQUE = document.createElement("div");
             BLOQUE.setAttribute("id", "HOME_MODULO_PLANTILLA");
+            BLOQUE.style.border = "2px solid black";
+            BLOQUE.style.borderRadius = "8px";
             CONTENEDOR.appendChild(BLOQUE);
 
             var IMAGEN = document.createElement("img");
@@ -1493,10 +1504,12 @@ window.onload = () => {
             BLOQUE.appendChild(NOMBRE);
 
             var HABILITADO = document.createElement("button");
-            HABILITADO.setAttribute("value", "MOD_COLOR");
+            HABILITADO.setAttribute("id","CONFIGURACION_MODULOS");
+            HABILITADO.setAttribute("value", "MOD_HORA");
 
             var DESHABILITADO = document.createElement("button");
-            DESHABILITADO.setAttribute("value", "MOD_COLOR");
+            DESHABILITADO.setAttribute("id","CONFIGURACION_MODULOS");
+            DESHABILITADO.setAttribute("value", "MOD_HORA");
 
             if(document.getElementById("MOD_HORA_ADQUIRIDO").value == "SI"){
                 
@@ -1568,11 +1581,66 @@ window.onload = () => {
 
         }
   
+        // obtener el valor para luego hacer el modal
+        var boton = document.querySelectorAll("button#CONFIGURACION_MODULOS");
 
+        for (boton_seleccionado of boton) {
+
+            boton_seleccionado.addEventListener("click", (e) => {
+
+                var hijo = e.target;
+                var VALOR = hijo.value;
+                habilitar_deshabilitar_modulo(VALOR);
+            
+            });
+        }
     }
 
-    function funcion_busqueda_empleo(){
-        alert("Busqueda de empleo");
+    // -----------------------
+    // habilita-deshabilita modulo
+    function habilitar_deshabilitar_modulo(MODULO){
+        
+        if(document.getElementById(MODULO+"_ADQUIRIDO").value == "SI"){
+            var nuevo_valor = "INACTIVE";
+        }else{
+            var nuevo_valor = "SI";
+        }
+
+        DATOS = { 
+            id_empresa : ID,
+            MODULO : MODULO,
+            estado : nuevo_valor
+        }
+
+        fetch('/cambiar-estado-modulo', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.text();}
+            else{console.log("Error");}
+                
+        })
+
+        .then(textoRespuesta => {
+
+            window.location.reload();
+            
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+
+    
+    
     }
+
+    
 
 }

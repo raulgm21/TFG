@@ -300,6 +300,30 @@ var conn = require('./model-connection'),
             })
     }
 
+    
+    // ---------------------------------------------------------- //
+    // Nos cambia el estado del modulo de todos los usuarios de la empresa.
+    // ---------------------------------------------------------- //
+
+    Model.cambiar_estado_modulo= (data, cb) => {
+         
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.id_empresa
+                },
+
+                {
+                    [data.id_modulo] : data.estado
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    
     // ---------------------------------------------------------- //
     // Nos actualiza a todos los usuarios los modulos disponibles actualmente
     // ---------------------------------------------------------- //

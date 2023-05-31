@@ -652,6 +652,30 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos permite cambiar el estado de un modulo
+    // ------------------------------------------------------ //
+
+    Controller.cambiar_estado_modulo = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var ID     = datos.id_empresa.trim();   
+        var MODULO = datos.MODULO.trim();   // nombre
+        var ESTADO = datos.estado.trim();   // estado
+
+        
+        OBJDATOS = { 
+            id_empresa : ID,
+            id_modulo : MODULO,
+            estado : ESTADO
+        }
+        console.log(OBJDATOS)
+        
+        Model.cambiar_estado_modulo(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+
+    
+    // ------------------------------------------------------ //
     // Modelo que nos acutalizará los módulos que tengamos actualmente
     // ------------------------------------------------------ //
 
