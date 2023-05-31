@@ -507,3 +507,16 @@
     position: relative;
     left : 25%;
 }
+
+
+/* admin */
+
+#HOME_CALENDARIO_ADMIN{
+    position: fixed;
+    top : 280px;
+    left : 72%;
+    z-index: 1;
+    font-size: 20px;
+    text-align: center;
+    overflow : none;
+}
