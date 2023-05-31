@@ -555,6 +555,24 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos permite cambiar el nombre
+    // ------------------------------------------------------ //
+
+    Controller.cambiar_nombre = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var dni     = datos.dni.trim();
+        var nombre  = datos.nombre.trim();
+        
+        OBJDATOS = { 
+            dni : dni, 
+            nombre : nombre
+        }
+
+        Model.cambiar_nombre(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+    // ------------------------------------------------------ //
     // Modelo que nos comprará el módulo que hayamos seleccionado
     // ------------------------------------------------------ //
 

@@ -359,6 +359,202 @@
 
     })
 
+// ----------------------------------------------------------------------------------------------- //
+
+    // ---------------------------------------------------------------------- //
+    // Sección de código que nos permite configurar la cuenta.
+    // --> Cambiar Nombre
+    // --> Cambiar Password
+    // --> Ver Tutorial
+    // ---------------------------------------------------------------------- //
+
+    document.getElementById("HOME_configuracion").addEventListener("click", () => {
+       
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = " Configuración ";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("h1");
+        texto.setAttribute("id", "HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "¡Toda la configuración sobre su cuenta está disponible aquí!";
+        CUERPO.appendChild(texto);
+
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_CONFIGURACION_DIV");
+        contenedor.style.display = "flex",
+        contenedor.style.marginTop = "48px";
+        contenedor.style.justifyContent = "space-around";
+        contenedor.style.textAlign = "center";
+        contenedor.style.fontFamily = "monospace";
+        contenedor.style.fontSize = "20px";
+        contenedor.style.cursor = "pointer";
+        CUERPO.appendChild(contenedor);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var cambiar_nombre = document.createElement("img");
+        cambiar_nombre.setAttribute("src","./img/icon/usuario.png");
+        cambiar_nombre.style.height = "180px";
+        cambiar_nombre.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Cambiar Nombre";
+        div.appendChild(cambiar_nombre);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var cambiar_password = document.createElement("img");
+        cambiar_password.setAttribute("src","./img/icon/password.png");
+        cambiar_password.style.height = "180px";
+        cambiar_password.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Cambiar Contraseña";
+        div.appendChild(cambiar_password);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var mirar_tutorial = document.createElement("img");
+        mirar_tutorial.setAttribute("src","./img/icon/tutorial.png");
+        mirar_tutorial.style.height = "180px";
+        mirar_tutorial.style.width = "180px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Mirar Tutorial";
+        div.appendChild(mirar_tutorial);
+        div.appendChild(texto);
+
+
+        // CAMBIAR NOMBRE
+        cambiar_nombre.addEventListener("click", () => {
+
+            var modal = document.createElement("div");
+            modal.style.height = "240px";
+            modal.style.width = "40%";
+            modal.style.border = "none";
+            modal.style.position = "fixed";
+            modal.style.top = "50%";
+            modal.style.left = "50%";
+            modal.style.transform = "translate(-50%, -50%)";
+            modal.style.backgroundColor = "#fff";
+            modal.style.zIndex = "1000";
+            modal.style.padding = "20px";
+            modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            var BODY = document.body;
+            BODY.appendChild(modal);
+
+            var texto = document.createElement("p");
+            texto.innerHTML = `Vas a cambiar tú nombre de usuario. Su nombre actual es: <strong>${NOMBRE}</strong>.`;
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            modal.appendChild(texto);
+
+            var textarea = document.createElement("textarea");
+            textarea.setAttribute("id","CORREO_TEXTAREA");
+            modal.appendChild(textarea);
+
+            var enviar = document.createElement("button");
+            enviar.style.display = "block";
+            enviar.style.textAlign = "center";
+            enviar.style.margin = "0 auto";
+            enviar.style.border = "none";
+            enviar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            enviar.innerHTML = "Enviar"
+            enviar.style.position = "relative";
+            enviar.style.top = "8px";
+            modal.appendChild(enviar);
+
+            // ---- ENVIAR ---- //
+            enviar.addEventListener("click", () => {
+            
+                if(textarea.value.length >= 3){
+
+                
+                    DATOS = { 
+                        dni     : DNI,
+                        nombre  : textarea.value,
+                    }
+
+                    
+                    fetch('/cambiar-nombre', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(DATOS)
+                    })
+
+                    .then(response => {
+
+                        if (response.ok){return response.text();}
+                        else{console.log("Error");}
+                        
+                    })
+
+                    .then(textoRespuesta => {
+
+                        if(textoRespuesta == "Correcto"){
+                            modal.remove();
+                            window.location.reload();
+                        }else{
+                            alert("Ha ocurrido algún error a la hora de cambiar el nombre, intentelo de nuevo");
+                        }
+                         
+                    })
+
+                    .catch(error => {
+                        console.error('Error al enviar los datos:' + error);
+                    });
+
+                }else{
+                    alert("No puede tener menos de tres caracteres");
+                }
+            
+            });
+
+            var salir = document.createElement("button");
+            salir.style.display = "block";
+            salir.style.textAlign = "center";
+            salir.style.margin = "0 auto";
+            salir.style.border = "none";
+            salir.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            salir.style.position = "relative";
+            salir.style.top = "16px";
+            salir.innerHTML = "Salir"
+            modal.appendChild(salir);
+
+            salir.addEventListener("click", () => {
+                modal.remove();
+            });
+
+        })
+
+        // CAMBIAR PASSWORD
+        cambiar_password.addEventListener("click", () => {
+            alert("Vas a cambiar la contraseña");
+        })
+        
+        // MIRAR TUTORIAL
+        mirar_tutorial.addEventListener("click", () => {
+
+            if(CARGO == "Empresario"){
+                alert("TUTO EMPR");
+            }
+    
+            if(CARGO == "Oferente"){
+                alert("TUTO OFE")
+            }
+    
+            if(CARGO != "Empresario" && CARGO != "Oferente"){
+                alert("TUTO TRA")
+            }
+        })
+
+    })
+
 // ----------------------------------------------------------------------------------------------- // 
 
     // ---------------------------------------------------------------------- //

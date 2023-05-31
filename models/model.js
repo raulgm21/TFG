@@ -234,6 +234,29 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos edita al usuario activo para ponerle el nuevo nombre
+    // ---------------------------------------------------------- //
+
+    Model.cambiar_nombre= (data, cb) => {
+            
+        conn
+            .findOneAndUpdate(
+                {
+                    dni : data.dni
+                },
+
+                {
+                    nombre : data.nombre
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+
+    // ---------------------------------------------------------- //
     // Nos edita a todos los usuarios de la empresa, y les compra el módulo.
     // ---------------------------------------------------------- //
 
