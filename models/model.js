@@ -256,6 +256,31 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos actualiza a todos los usuarios los modulos disponibles actualmente
+    // ---------------------------------------------------------- //
+
+    Model.actualizar_modulos= (data, cb) => {
+         
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.id_empresa
+                },
+
+                {
+                    MOD_COLOR : data.MOD_COLOR,
+                    MOD_CALENDARIO : data.MOD_CALENDARIO,
+                    MOD_CHAT : data.MOD_CHAT,
+                    MOD_HORA : data.MOD_HORA
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
     // Nos cambia el color de la interfaz con MODULO COLOR
     // ---------------------------------------------------------- //
 

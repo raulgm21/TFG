@@ -1034,9 +1034,72 @@ window.onload = () => {
             
 
         }
+
+        //Actualizar Módulos
+        var boton = document.createElement("button");
+        boton.innerHTML = "ACTUALIZAR MÓDULOS";
+        CUERPO.appendChild(boton);
+
+        boton.addEventListener("click", () => {
+
+
+            if(document.getElementById("MOD_COLOR_ADQUIRIDO")){
+                var COLOR2 = "SI";
+            }else{
+                var COLOR2 = "NO";
+            }
+            if(document.getElementById("MOD_CHAT_ADQUIRIDO")){
+                var CHAT = "SI";
+            }else{
+                var CHAT = "NO";
+            }
+            if(document.getElementById("MOD_CALENDARIO_ADQUIRIDO")){
+                var CALENDARIO = "SI";
+            }else{
+                var CALENDARIO = "NO";
+            }
+            if(document.getElementById("MOD_HORA_ADQUIRIDO")){
+                var HORA = "SI";
+            }else{
+                var HORA = "NO";
+            }
+           
+            DATOS = { 
+                id_empresa : ID,
+                MOD_COLOR : COLOR2,
+                MOD_CALENDARIO : CALENDARIO,
+                MOD_CHAT : CHAT,
+                MOD_HORA : HORA
+            }
+
+            fetch('/actualizar-modulos', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(DATOS)
+            })
+
+            .then(response => {
+
+                if (response.ok){return response.text();}
+                else{console.log("Error");}
+                
+            })
+
+            .then(textoRespuesta => {
+
+                alert("MODULOS ACTUALIZADOS");
+                pantalla_inicio();
+            })
+
+            .catch(error => {
+                console.error('Error al enviar los datos:' + error);
+            });
+
+        })
+
+
     })
-
-
-
 
 }

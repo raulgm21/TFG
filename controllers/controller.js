@@ -576,6 +576,32 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos acutalizará los módulos que tengamos actualmente
+    // ------------------------------------------------------ //
+
+    Controller.actualizar_modulos = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var ID              = datos.id_empresa.trim();
+        var MOD_COLOR       = datos.MOD_COLOR.trim();
+        var MOD_CALENDARIO  = datos.MOD_CALENDARIO.trim();
+        var MOD_CHAT        = datos.MOD_CHAT.trim();
+        var MOD_HORA        = datos.MOD_HORA.trim();
+
+        
+        OBJDATOS = { 
+            id_empresa : ID,
+            MOD_COLOR : MOD_COLOR,
+            MOD_CALENDARIO : MOD_CALENDARIO,
+            MOD_CHAT : MOD_CHAT,
+            MOD_HORA : MOD_HORA
+        }
+        
+        Model.actualizar_modulos(OBJDATOS , (docs) => { res.send("Correcto"); })
+    }
+
+    // ------------------------------------------------------ //
     // MODULO COLOR -> CAMBIAR COLOR
     // ------------------------------------------------------ //
 
