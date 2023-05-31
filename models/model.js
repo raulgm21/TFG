@@ -74,6 +74,7 @@ var conn = require('./model-connection'),
                 color               : "#478AC9",
                 cargo               : "Empresario",
                 foto_perfil         : "./img/perfil/nofoto.png",
+                aparece_oferente    : "NO",
                 MOD_COLOR           : "NO",
                 MOD_CHAT            : "NO",
                 MOD_CALENDARIO      : "NO",
@@ -233,6 +234,48 @@ var conn = require('./model-connection'),
                 cb()
             })
     }
+
+    // ---------------------------------------------------------- //
+    // Nos edita el aparecer oferente en la busqueda
+    // ---------------------------------------------------------- //
+
+    Model.aparecer_oferente= (data, cb) => {
+            
+        conn
+            .updateMany(
+                {
+                    id_empresa : data.id_empresa
+                },
+
+                {
+                    aparece_oferente : data.aparece_oferente
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos edita el aparecer oferente en la busqueda
+    // ---------------------------------------------------------- //
+
+    Model.mostrar_empresas = (cb) => {
+        
+        conn
+            .find(
+                {
+                    aparece_oferente: "SI"
+                },
+                {},
+                (err, docs) => {
+                    if (err) throw err;
+                    cb(docs);
+                }
+        );
+    };
+    
 
     // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el nuevo nombre

@@ -7,6 +7,13 @@ window.onload = () => {
     const DATE      = document.getElementById("HOME_DATE_USUARIO").value;
     const CORREO    = document.getElementById("HOME_CORREO_USUARIO").value;
 
+    // Eliminar el contenedor principal
+    function vaciar_cuerpo(padre){
+        while(padre.firstChild){ 
+            padre.removeChild(padre.firstChild); 
+        }  
+    }
+
 // ----------------------------------------------------------------------------------------------- // 
 
     // ---------------------------------------------------------------------- //
@@ -40,5 +47,49 @@ window.onload = () => {
 
     }
 
+// ----------------------------------------------------------------------------------------------- // 
+
+    // ---------------------------------------------------------------------- //
+    // Sección de Búsqueda
+    // ---------------------------------------------------------------------- //
+    
+    document.getElementById("HOME_BUSQUEDA").addEventListener("click", () => {
+
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Empresas de TeamWork !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "¡Aquí se le ofrece un listado de todas las empresas que desean poder colaborar con usted!";
+        CUERPO.appendChild(texto);
+
+        fetch('/mostrar-empresas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.text();}
+            else{console.log("Error");}
+            
+        })
+
+        .then(textoRespuesta => {
+
+            alert(textoRespuesta)
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+
+    })
 
 }

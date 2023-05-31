@@ -10,6 +10,7 @@ window.onload = () => {
     const CORREO    = document.getElementById("HOME_CORREO_USUARIO").value;
     const CARGO     = document.getElementById("HOME_CARGO_USUARIO").value;
     const FOTO_EMP  = document.getElementById("HOME_cuerpo_imagen_empresa").src;
+    const APARECE_OFERENTE = document.getElementById("HOME_OFERENTE_EMPRESA").value;
 
     // --------------------------- Color Personalizado --------------------------- //
     const COLOR     = document.getElementById("HOME_COLOR_USUARIO").value;
@@ -1024,10 +1025,123 @@ window.onload = () => {
 
     function funcion_modificar_empresa(){
         alert("Modificar empresa");
+
+        
     }
 
     function funcion_busqueda_empleo(){
-        alert("Busqueda de empleo");
+        
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Búsqueda de Empleo !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Numerosas trabajadores sin empleo pueden desear pertenecer a tu empresa. ¿Deseas que tú empresa aparezca en la sección de búsqueda?";
+        CUERPO.appendChild(texto);
+
+        var boton_si = document.createElement("button");
+        boton_si.setAttribute("id","APARECER_OFERENTE_BOTON");
+        boton_si.setAttribute("value", "SI");
+        boton_si.style.border = "none";
+        boton_si.style.height = "32px";
+        boton_si.style.width = "128px";
+        boton_si.style.color = "black";
+        boton_si.style.position = "relative";
+        boton_si.style.left = "360px";
+        boton_si.style.top = "128px";
+        boton_si.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+        boton_si.style.borderRadius = "99px";
+
+        var boton_no = document.createElement("button");
+        boton_no.setAttribute("id", "APARECER_OFERENTE_BOTON");
+        boton_no.setAttribute("value", "NO");
+        boton_no.style.border = "none";
+        boton_no.style.height = "32px";
+        boton_no.style.width = "128px";
+        boton_no.style.color = "black";
+        boton_no.style.position = "relative";
+        boton_no.style.left = "520px";
+        boton_no.style.top = "128px";
+        boton_no.style.boxShadow = "0 8px 8px rgb(102, 109, 114)";
+        boton_no.style.borderRadius = "99px";
+
+        if(APARECE_OFERENTE == "SI"){
+                
+            boton_si.innerHTML = "SI";
+            boton_si.disabled = true;
+            boton_si.style.cursor = "not-allowed";
+            boton_si.style.background = "#6db840";
+            boton_si.style.color = "white";
+            CUERPO.appendChild(boton_si);
+
+
+            boton_no.style.cursor = "pointer";
+            boton_no.innerHTML = "NO";
+            CUERPO.appendChild(boton_no);
+
+        }
+
+        if(APARECE_OFERENTE == "NO"){
+                
+            boton_si.style.cursor = "pointer";
+            boton_si.innerHTML = "SI";
+            CUERPO.appendChild(boton_si);
+
+            boton_no.innerHTML = "NO";
+            boton_no.disabled = true;
+            boton_no.style.cursor = "not-allowed";
+            boton_no.style.background = "#6db840";
+            boton_no.style.color = "white";
+            CUERPO.appendChild(boton_no);
+ 
+        }
+
+        var boton = document.querySelectorAll("button#APARECER_OFERENTE_BOTON");
+
+        for (boton_seleccionado of boton) {
+
+            boton_seleccionado.addEventListener("click", (e) => {
+
+                var hijo = e.target;
+                var RESPUESTA = hijo.value;
+               
+
+                DATOS = { 
+                    id_empresa : ID,
+                    aparece_oferente : RESPUESTA
+                }
+
+                fetch('/aparecer-oferente', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+
+                .then(response => {
+
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                    
+                })
+
+                .then(textoRespuesta => {
+
+                    window.location.reload();
+                })
+
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+
+            
+            });
+        }
     }
 
     // ---------------------------------------------------------------------- //

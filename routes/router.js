@@ -89,8 +89,11 @@
         .put('/comprar-modulo', Controller.comprar_modulo)
         .put('/actualizar-modulos', Controller.actualizar_modulos)
         .put('/cambiar-estado-modulo', Controller.cambiar_estado_modulo)
-
         .put('/modulos/color/cambiar-color', Controller.moduloColor_cambiarColor)
+
+        .put('/aparecer-oferente', Controller.aparecer_oferente)
+        .post('/mostrar-empresas', Controller.mostrar_empresas)
+        
         
         .get('/prueba', Controller.prueba)
         // Uso del Error 404

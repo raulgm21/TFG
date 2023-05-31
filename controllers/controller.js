@@ -554,6 +554,26 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos actualizará si aparece o no en la búsqueda.
+    // ------------------------------------------------------ //
+
+    Controller.aparecer_oferente = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var id_empresa       = datos.id_empresa.trim();
+        var aparece_oferente = datos.aparece_oferente.trim();
+        
+        OBJDATOS = { 
+            id_empresa : id_empresa,
+            aparece_oferente : aparece_oferente
+        }
+        console.log(OBJDATOS);
+        Model.aparecer_oferente(OBJDATOS , (docs) => { res.send("Correcto"); })
+
+    }
+    
+    // ------------------------------------------------------ //
     // Modelo que nos permite cambiar el nombre
     // ------------------------------------------------------ //
 
@@ -745,6 +765,24 @@ const fs = require('fs');                       // Módulo para interactuar con 
         })
     }
     
+    // ------------------------------------------------------ //
+    // Modelo que nos obtiene todas las empresas que buscan oferentes
+    // ------------------------------------------------------ //
+
+    Controller.mostrar_empresas = (req, res, next) => {
+
+        Model.mostrar_empresas((docs) => {
+            
+            console.log(docs);
+            if(docs){
+                res.send(docs);
+            }else{
+                res.send("Error");
+            }
+            
+        })
+    }
+
     // ------------------------------------------------------ //
     // Modelo que nos elimina un trabajador mediante DNI.
     // ------------------------------------------------------ //

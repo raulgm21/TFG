@@ -64,6 +64,7 @@ block content
             input#HOME_DATE_USUARIO(type="text", value=usuario.date)
             input#HOME_CORREO_USUARIO(type="text", value=usuario.correo)
             input#HOME_CARGO_USUARIO(type="text", value=usuario.cargo)
+            input#HOME_OFERENTE_EMPRESA(type="text", value=usuario.aparece_oferente)
 
             div#div_home
                 div#HOME_CALENDARIO
@@ -194,7 +195,8 @@ block content
                         
             script(type="text/javascript", src="../js/home.js")   
             script(type="text/javascript", src="../js/home_trabajador.js")
-        //- PERFIL EMPRESARIO
+        
+        //- PERFIL OFERENTE
         -if(usuario.rol == "oferente")
 
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
@@ -236,8 +238,8 @@ block content
                         img#HOME_INICIO(src="./img/icon/casa.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto#HOME_INICIO Inicio    
                     div.HOME_menu-item
-                        img#HOME_PERSONAL(src="./img/icon/lupa.png", class="HOME_menu_imagen")
-                        p.HOME_menu_texto#HOME_PERSONAL Búsqueda 
+                        img#HOME_BUSQUEDA(src="./img/icon/lupa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto#HOME_BUSQUEDA Búsqueda 
                     div.HOME_menu-item
                         img#HOME_CORREO(src="./img/icon/mail.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto#HOME_CORREO Mensajes    
