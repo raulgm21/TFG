@@ -131,7 +131,8 @@ var conn = require('./model-connection'),
                 rol                 : 'oferente',
                 tutorial            : 'none',
                 color               : "#478AC9",
-                foto_perfil         : "./img/perfil/nofoto.png"
+                foto_perfil         : "./img/perfil/nofoto.png",
+                cargo               : "Oferente",
             }, 
             (err) => {
                 if(err) throw err

@@ -198,27 +198,53 @@ block content
         //- PERFIL EMPRESARIO
         -if(usuario.rol == "oferente")
 
+            input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
+            input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
+            input#HOME_ID_EMPRESA(type="text", value=usuario.id_empresa)
+            input#HOME_DATE_USUARIO(type="text", value=usuario.date)
+            input#HOME_CORREO_USUARIO(type="text", value=usuario.correo)
+            input#HOME_CARGO_USUARIO(type="text", value=usuario.cargo)
+
             div#div_home
-                
-                div#home_header
+                div#HOME_CALENDARIO
+                p#HOME_HORA_ACTUAL 
+                nav#HOME_HEADER 
+                    p#HOME_nombre_empresa
                     p#HOME_nombre=usuario.nombre
                     div#HOME_flechita
-                    img#HOME_foto_perfil(src="./img/fotoprueba.png")
-                    
-                div#home_menu
-                    h1 Le damos la bienvenida a TeamWork
-                    
-                    img(src="./img/icon/inicio.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Inicio
-                    img(src="./img/icon/empresa.png", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Empresa
-                    img(src="", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Chat
-                    img(src="", class="HOME_menu_imagen")
-                    p.HOME_menu_texto Calendario
-                    
-                div#home_body
-                div#home_footer
+                        div#HOME_menu_flechita
+                            nav 
+                                div#HOME_mi_cuenta Mi Cuenta 
+                                div#HOME_configuracion Configuración 
+                                div#HOME_cerrar_sesion Cerrar Sesión
+                    img#HOME_foto_perfil(src=usuario.foto_perfil)
+
+                div#HOME_cuerpo 
+
+                    h1#HOME_cuerpo_titulo ¡ Le damos la bienvenida a TeamWork !
+                    p#HOME_cuerpo_texto_nombre Desde TeamWork, esperamos que vaya bien la instancia #{usuario.nombre}.
+                    p#HOME_cuerpo_texto_no_nombre
+                    img#HOME_cuerpo_imagen_empresa(src="./img/logo.png")
+                    -if(usuario.tutorial == "none")
+                        p#HOME_cuerpo_texto_tutorial ¿Necesitas que te haga un tutorial?
+                        
+                        button#HOME_tutorial_si SÍ
+                        img#HOME_asistente_tutorial(src="./img/asistente2.png")
+                        button#HOME_tutorial_no NO
+                
+                nav#HOME_MENU
+                    div.HOME_menu-item
+                        img#HOME_INICIO(src="./img/icon/casa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto#HOME_INICIO Inicio    
+                    div.HOME_menu-item
+                        img#HOME_PERSONAL(src="./img/icon/lupa.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto#HOME_PERSONAL Búsqueda 
+                    div.HOME_menu-item
+                        img#HOME_CORREO(src="./img/icon/mail.png", class="HOME_menu_imagen")
+                        p.HOME_menu_texto#HOME_CORREO Mensajes    
+                        
+            script(type="text/javascript", src="../js/home.js")   
+            script(type="text/javascript", src="../js/home_oferente.js")
 
 
     //- No existe el usuario    

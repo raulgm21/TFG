@@ -688,7 +688,12 @@
         vaciar_cuerpo(CUERPO);
         var titulo = document.createElement("h1");
         titulo.setAttribute("id", "HOME_cuerpo_titulo");
-        titulo.innerHTML = "¡ Correo !";
+        if(CARGO == "Oferente"){
+            titulo.innerHTML = "¡ Mensajes !";
+        }else{
+            titulo.innerHTML = "¡ Correo !";
+        }
+        
         CUERPO.appendChild(titulo);
 
         var contenedor_correo = document.createElement("div");
@@ -733,23 +738,41 @@
             var fila = document.createElement("tr");
             tabla.appendChild(fila);
 
-            var columna = document.createElement("th");
-            columna.style.backgroundColor = COLOR;
-            columna.innerHTML = "Nombre";
-            fila.appendChild(columna);
-            var columna = document.createElement("th");
-            columna.style.backgroundColor = COLOR;
-            columna.innerHTML = "Correo";
-            fila.appendChild(columna);
-            var columna = document.createElement("th");
-            columna.style.backgroundColor = COLOR;
-            columna.innerHTML = "Foto";
-            fila.appendChild(columna);
-            var columna = document.createElement("th");
-            columna.style.backgroundColor = COLOR;
-            columna.innerHTML = "";
-            fila.appendChild(columna);
+            if(CARGO != "Oferente"){
 
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "Nombre";
+                fila.appendChild(columna);
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "Correo";
+                fila.appendChild(columna);
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "Foto";
+                fila.appendChild(columna);
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "";
+                fila.appendChild(columna);
+
+            }else{
+
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "Empresa";
+                fila.appendChild(columna);
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "Correo";
+                fila.appendChild(columna);
+                var columna = document.createElement("th");
+                columna.style.backgroundColor = COLOR;
+                columna.innerHTML = "";
+                fila.appendChild(columna);
+
+            }
             for(i = 0 ; i < textoRespuesta.length ; i++){
 
                 if(textoRespuesta[i].nombre != undefined){
@@ -902,6 +925,31 @@
                 mensaje.innerHTML = textoRespuesta[i].mensaje;
                 div.appendChild(mensaje);
 
+            }
+
+            if(textoRespuesta.length == 0){
+                var div = document.createElement("div");
+                div.style.width = "500px";
+                div.style.marginLeft = "8px";
+                div.style.marginBottom = "16px";
+                div.style.height = "100px";
+                div.style.overflowX = "hidden";
+                div.style.borderRadius = "8px";
+                div_derecha.appendChild(div);
+
+                var texto = document.createElement("p");
+                texto.style.fontWeight = "bolder";
+                texto.style.fontFamily = "monospace";
+                texto.style.position = "relative";
+                texto.style.fontSize = "24px";
+                texto.style.textAlign = "center";
+                if(CARGO == "Oferente"){
+                    texto.innerHTML = "No tienes ningún mensaje";
+                }else{
+                    texto.innerHTML = "No tienes ningún correo";
+                }
+                
+                div.appendChild(texto);
             }
         })
 
