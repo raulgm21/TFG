@@ -1114,6 +1114,10 @@ window.onload = () => {
 
     document.getElementById("HOME_CORREO").addEventListener("click", pantalla_correo)
 
+    // ---------------------------------------------------------------------- //
+    // Interfaz
+    // ---------------------------------------------------------------------- //
+
     function pantalla_correo(){
 
         vaciar_cuerpo(CUERPO);
@@ -1128,7 +1132,6 @@ window.onload = () => {
         contenedor_correo.style.justifyContent = "center";
         CUERPO.appendChild(contenedor_correo);
 
-        
         var div_izquierda = document.createElement("div");
         div_izquierda.setAttribute("id","CORREO_DIV_IZQUIERDA");
         contenedor_correo.appendChild(div_izquierda);
@@ -1136,7 +1139,6 @@ window.onload = () => {
         var div_derecha = document.createElement("div");
         div_derecha.setAttribute("id","CORREO_DIV_DERECHA");
         contenedor_correo.appendChild(div_derecha);
-
 
         // LADO IZQUIERDO -> USUARIOS
 
@@ -1240,7 +1242,112 @@ window.onload = () => {
             console.error('Error al enviar los datos:' + error);
         });
 
+
+        // LADO DERECHO -> CORREOS
+
+        DATOS = { envia : CORREO,}
+
+        fetch('/consultar-correo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATOS)
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+            
+        })
+
+        .then(textoRespuesta => {
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                var div = document.createElement("div");
+                div.style.width = "500px";
+                div.style.marginLeft = "8px";
+                div.style.marginBottom = "16px";
+                div.style.height = "100px";
+                div.style.overflowY = "scroll";
+                div.style.overflowX = "hidden";
+                div.style.background = "#E8E8E8";
+                div.style.borderRadius = "8px";
+                div_derecha.appendChild(div);
+
+                var imagen = document.createElement("img");
+                imagen.style.height = "32px";
+                imagen.style.width = "32px";
+                imagen.style.position = "relative";
+                imagen.style.top = "8px";
+                imagen.style.left = "8px";
+
+                var texto = document.createElement("p");
+                texto.style.fontWeight = "bolder";
+                texto.style.fontFamily = "monospace";
+                texto.style.position = "relative";
+                texto.style.top = "-36px";
+                texto.style.left = "56px";
+
+                var mensaje = document.createElement("p");
+                mensaje.style.fontFamily = "monospace";
+                mensaje.style.textAlign = "justify";
+                mensaje.style.position = "relative";
+                mensaje.style.left = "16px";
+                mensaje.style.top = "-30px";
+
+                // ENVIADO
+                if(textoRespuesta[i].envia == CORREO && textoRespuesta[i].estado != "MISMO"){
+                    
+                    imagen.setAttribute("src","./img/icon/enviar.png");
+                    div.appendChild(imagen);
+                    
+                    texto.style.color = "rgb(34,177,76)";
+                    texto.innerHTML = "ENVÍADO a " + textoRespuesta[i].recibe;
+                    div.appendChild(texto);
+                     
+                }
+
+                // RECIBIDO
+                if(textoRespuesta[i].recibe == CORREO && textoRespuesta[i].estado != "MISMO"){
+                    
+                    imagen.setAttribute("src","./img/icon/recibir.png");
+                    div.appendChild(imagen);
+
+                    texto.style.color = "rgb(255,127,39)";
+                    texto.innerHTML = "RECIBIDO de " + textoRespuesta[i].envia;
+                    div.appendChild(texto);
+
+                }
+
+                // YO MISMO
+                if(textoRespuesta[i].recibe == textoRespuesta[i].envia && textoRespuesta[i].estado == "MISMO"){
+                    
+                    imagen.setAttribute("src","./img/icon/mismo.png");
+                    div.appendChild(imagen);
+
+                    texto.style.color = "rgb(0,162,232)";
+                    texto.innerHTML = "ENVÍADO A MI MISMO";
+                    div.appendChild(texto);
+
+                }
+
+                mensaje.innerHTML = textoRespuesta[i].mensaje;
+                div.appendChild(mensaje);
+
+            }
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
     }
+
+    // ---------------------------------------------------------------------- //
+    // Mandar Correo
+    // ---------------------------------------------------------------------- //
 
     function escribir_correo(CORREO_QUIEN_RECIBE){
 
@@ -1354,4 +1461,5 @@ window.onload = () => {
         });
 
     }
+
 }

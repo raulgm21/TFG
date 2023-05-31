@@ -162,7 +162,27 @@ var conn = require('./model-connection'),
             
     }
 
+    // ---------------------------------------------------------- //
+    // Nos devuelve todos los correos del usuario
+    // ---------------------------------------------------------- //
 
+    Model.consultar_correo = (data, cb) => {
+
+        conn
+            .find({
+                $or: [
+                    { envia: data.envia },
+                    { recibe: data.envia }
+                ]
+            })
+            .sort({date : -1 })
+            .exec((err, docs) => {
+            if (err) throw err;
+                cb(docs);
+            });
+    }
+
+    
     // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el DNI, nombre, etc
     // ---------------------------------------------------------- //

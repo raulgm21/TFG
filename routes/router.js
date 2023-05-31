@@ -80,6 +80,7 @@
         .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
 
         .post('/mandar-correo', Controller.mandar_correo)
+        .post('/consultar-correo', Controller.consultar_correo)
 
         .put('/tutorialNO', Controller.tutorialNO)
 

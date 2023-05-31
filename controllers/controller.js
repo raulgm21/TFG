@@ -340,6 +340,33 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos manda recibe todos los correos del usuario activo
+    // ------------------------------------------------------ //
+
+    Controller.consultar_correo = (req, res, next) => {
+
+        const datos = req.body;
+        
+        var envia       = datos.envia.trim();
+
+        OBJDATOS = { 
+            envia : envia,
+        }
+
+        console.log(OBJDATOS)
+        
+        Model.consultar_correo(OBJDATOS , (docs) => { 
+            console.log(docs);
+            if(docs){
+                res.send(docs); 
+            }else{
+                res.send("No hay correos");
+            }
+            
+        })
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos revisará si existe o no el DNI en la BDD
     // para iniciar sesión, y nos dirigira al home del user.
     // ------------------------------------------------------ //
