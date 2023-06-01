@@ -156,7 +156,195 @@
     })
     
     function introducir_administrador(){
-        alert("Introduc")
+
+        var modal = document.createElement("div");
+            modal.style.height = "220px";
+            modal.style.width = "40%";
+            modal.style.border = "none";
+            modal.style.position = "fixed";
+            modal.style.top = "50%";
+            modal.style.left = "50%";
+            modal.style.transform = "translate(-50%, -50%)";
+            modal.style.backgroundColor = "#fff";
+            modal.style.zIndex = "1000";
+            modal.style.padding = "20px";
+            modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            CUERPO.appendChild(modal);
+
+            var texto = document.createElement("p");
+            texto.innerHTML = `Vas a introducir un nuevo <strong>administrador</strong>. Rellene los campos:`;
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            modal.appendChild(texto);
+
+            var DNI = document.createElement("input");
+            DNI.setAttribute("id","CORREO_TEXTAREA");
+            DNI.setAttribute("type", "text");
+            DNI.setAttribute("placeholder", "Inserte su DNI");
+            DNI.style.height = "32px";
+            modal.appendChild(DNI);
+
+            var NOMBRE = document.createElement("input");
+            NOMBRE.setAttribute("id","CORREO_TEXTAREA");
+            NOMBRE.setAttribute("type", "text");
+            NOMBRE.setAttribute("placeholder", "Inserte su NOMBRE");
+            NOMBRE.style.height = "32px";
+            modal.appendChild(NOMBRE);
+
+            var CORREO = document.createElement("input");
+            CORREO.setAttribute("id","CORREO_TEXTAREA");
+            CORREO.setAttribute("type", "text");
+            CORREO.setAttribute("placeholder", "Inserte su CORREO");
+            CORREO.style.height = "32px";
+            modal.appendChild(CORREO);
+
+
+            var PASSWORD = document.createElement("input");
+            PASSWORD.setAttribute("id","CORREO_TEXTAREA");
+            PASSWORD.setAttribute("type", "password");
+            PASSWORD.setAttribute("placeholder", "Inserte su CONTRASEÑA");
+            PASSWORD.style.height = "32px";
+            modal.appendChild(PASSWORD);
+
+            var enviar = document.createElement("button");
+            enviar.style.display = "block";
+            enviar.style.textAlign = "center";
+            enviar.style.margin = "0 auto";
+            enviar.style.border = "none";
+            enviar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            enviar.innerHTML = "Enviar"
+            enviar.style.position = "relative";
+            enviar.style.top = "8px";
+            modal.appendChild(enviar);
+
+            let allowClick = true;
+
+            // ---- ENVIAR ---- //
+            enviar.addEventListener("click", () => {
+            
+                    // Expresiones Regulares
+                    var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
+    
+                    // Función para validar gmail (.com)
+                    function validarGmail(correo) {
+                        var regexGmail = /^[\w.-]+@gmail\.com$/;
+                        return regexGmail.test(correo);
+                    }
+
+                    // Función para validad DNI
+                    function validarDNI(dni) {
+                        
+                        var letras          = "TRWAGMYFPDXBNJZSQVHLCKE";
+                        var numero          = dni.substr(0,dni.length-1);
+                        var letra           = dni.substr(dni.length-1,1);
+                        var indice          = numero % 23;
+                        var letraCorrecta   = letras.charAt(indice);
+                        return letra === letraCorrecta;
+                    }
+
+                    // ------------------------- VALIDAR ----------------------- //
+            
+                    // -> Correo
+                    if(validarGmail(CORREO.value) && CORREO.value.length > 12){
+                        // Correcto
+                        CORREO.style.color = "green";
+                        CORREO.style.fontWeight = "bold";
+                    }else{
+                        // Error
+                        CORREO.style.color = "red";
+                        CORREO.style.fontWeight = "bold";
+                    }
+
+                    // -> Nombre
+                    if(NOMBRE.value.length >= 3 && solo_letras.test(NOMBRE.value)){
+                        NOMBRE.style.color = "green";
+                        NOMBRE.style.fontWeight = "bold";
+                    }else{
+                        NOMBRE.style.color = "red";
+                        NOMBRE.style.fontWeight = "bold";
+                    }
+
+                    // -> Contraseña
+                    if(PASSWORD.value.length >= 8){
+                        PASSWORD.style.color = "green";
+                        PASSWORD.style.fontWeight = "bold";
+                    }else{
+                        PASSWORD.style.color = "red";
+                        PASSWORD.style.fontWeight = "bold";
+                    }
+
+                    // -> DNI
+                    if(validarDNI(DNI.value)){
+                        DNI.style.color = "green";
+                        DNI.style.fontWeight = "bold";
+                    }else{
+                        DNI.style.color = "red";
+                        DNI.style.fontWeight = "bold";
+                    }
+
+                    if
+                    (
+                        validarGmail(CORREO.value) && CORREO.value.length > 12 && NOMBRE.value.length >= 3 && 
+                        solo_letras.test(NOMBRE.value)  && PASSWORD.value.length >= 8 && validarDNI(DNI.value)
+                    )
+                    {
+                        DATOS = { 
+                            dni     : DNI.value,
+                            nombre  : NOMBRE.value,
+                            password : PASSWORD.value,
+                            correo   : CORREO.value
+                        }
+
+                        
+                        fetch('/insertar-admin', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(DATOS)
+                        })
+
+                        .then(response => {
+
+                            if (response.ok){return response.text();}
+                            else{console.log("Error");}
+                            
+                        })
+
+                        .then(textoRespuesta => {
+
+                            if(textoRespuesta == "Correcto"){
+                                modal.remove();
+                                window.location.reload();
+                            }
+                            
+                        })
+
+                        .catch(error => {
+                            console.error('Error al enviar los datos:' + error);
+                        });
+
+                    }else{
+                        allowClick = false;
+                    }
+                
+            });
+
+            var salir = document.createElement("button");
+            salir.style.display = "block";
+            salir.style.textAlign = "center";
+            salir.style.margin = "0 auto";
+            salir.style.border = "none";
+            salir.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            salir.style.position = "relative";
+            salir.style.top = "16px";
+            salir.innerHTML = "Salir"
+            modal.appendChild(salir);
+
+            salir.addEventListener("click", () => {
+                modal.remove();
+            });
     }
 
     function eliminar_administrador(){

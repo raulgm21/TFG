@@ -89,6 +89,33 @@ var conn = require('./model-connection'),
     }
 
     // ---------------------------------------------------------- //
+    // Nos añade un nuevo admin en la BDD
+    // ---------------------------------------------------------- //
+
+    Model.insertar_admin = (data, cb) => {
+
+        conn
+            .create(
+            {
+                nombre              : data.nombre,
+                correo              : data.correo,
+                password            : data.password,
+                dni                 : data.dni,
+                rol                 : 'admin',
+                color               : "#478AC9",
+                cargo               : "ADMINISTRADOR",
+                foto_perfil         : "./img/perfil/nofoto.png",
+                imagen_empresa      : "./img/perfil/logo_azul.png",
+                
+            }, 
+            (err) => {
+                if(err) throw err
+                cb()
+            })
+            
+    }
+
+    // ---------------------------------------------------------- //
     // Nos añade un nuevo trabajador por parte de IDENTIFICADOR
     // ---------------------------------------------------------- //
 
@@ -213,6 +240,7 @@ var conn = require('./model-connection'),
                 cb()
             })
     }
+    
 
     // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el tutorial en NO

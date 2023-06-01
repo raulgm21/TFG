@@ -260,6 +260,84 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos registra un administrador en la BDD
+    // ------------------------------------------------------ //
+
+    Controller.insertar_admin = (req, res, next) => {
+
+        const datos = req.body;
+
+        var nombre          = datos.nombre.trim();
+        var correo          = datos.correo.trim();
+        var password        = datos.password.trim();
+        var dni             = datos.dni.trim();
+
+        const salting = 10;
+
+        bcrypt.hash(password,salting, (err,hashedPassword) => {
+
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Hash: " + hashedPassword)
+                // Objeto Actualizado
+                datosActu = {
+                    nombre          : nombre ,
+                    correo          : correo,
+                    password        : hashedPassword,
+                    dni             : dni,
+                }
+
+                // Expresiones Regulares
+                var solo_letras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
+
+                // Función para validar gmail (.com)
+                function validarGmail(correo) {
+                    var regexGmail = /^[\w.-]+@gmail\.com$/;
+                    return regexGmail.test(correo);
+                }
+
+                // Función para validad DNI
+                function validarDNI(dni) {
+                    var letras          = "TRWAGMYFPDXBNJZSQVHLCKE";
+                    var numero          = dni.substr(0,dni.length-1);
+                    var letra           = dni.substr(dni.length-1,1);
+                    var indice          = numero % 23;
+                    var letraCorrecta   = letras.charAt(indice);
+                    return letra === letraCorrecta;
+                }
+        
+                // Validando desde Servidor
+                if
+                (
+                    validarGmail(correo) && correo.length > 12 && nombre.length >= 3 && solo_letras.test(nombre) 
+                    && password.length >= 8 && validarDNI(dni)
+                )
+                {
+        
+                    Model.dni(datosActu , (docs) => {
+                        
+                        console.log(docs)
+                        // No existe el DNI en la BDD, por lo cual es correcto
+                        if(docs == null){
+        
+                            Model.insertar_admin(datosActu, () => { res.send("Correcto"); }) 
+        
+                        }else{
+                            res.send("Error");
+                        }
+                        
+                    })
+        
+                }else{
+                    res.send("Error");
+                }
+            }
+        })
+
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos inserta un trabajador IDENTIFICADOR
     // ------------------------------------------------------ //
 

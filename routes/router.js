@@ -96,6 +96,7 @@
         .put('/aparecer-oferente', Controller.aparecer_oferente)
         .post('/mostrar-empresas', Controller.mostrar_empresas)
         
+        .post('/insertar-admin', Controller.insertar_admin)
         
         .get('/prueba', Controller.prueba)
         // Uso del Error 404
