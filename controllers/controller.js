@@ -764,6 +764,36 @@ const fs = require('fs');                       // Módulo para interactuar con 
             
         })
     }
+
+    // ------------------------------------------------------ //
+    // Modelo que nos obtiene todos los roles de trabajadores
+    // ------------------------------------------------------ //
+
+    Controller.estadisticas_roles = (req, res, next) => {
+
+        Model.estadisticas_roles((docs) => {
+            
+            console.log(docs);
+            if(docs){
+                res.send(docs);
+            }
+        })
+    }
+    
+    // ------------------------------------------------------ //
+    // Modelo que nos obtiene todos los modulos de cada empresa
+    // ------------------------------------------------------ //
+
+    Controller.estadisticas_modulos = (req, res, next) => {
+
+        Model.estadisticas_modulos((docs) => {
+            
+            console.log(docs);
+            if(docs){
+                res.send(docs);
+            }
+        })
+    }
     
     // ------------------------------------------------------ //
     // Modelo que nos obtiene todas las empresas que buscan oferentes

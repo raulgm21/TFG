@@ -186,7 +186,6 @@ var conn = require('./model-connection'),
             });
     }
 
-    
     // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el DNI, nombre, etc
     // ---------------------------------------------------------- //
@@ -236,6 +235,57 @@ var conn = require('./model-connection'),
                 cb()
             })
     }
+
+    // ---------------------------------------------------------- //
+    // Nos devuelve todos los roles de los usuario
+    // ---------------------------------------------------------- //
+
+    Model.estadisticas_roles= (cb) => {
+            
+        conn
+            .find(
+                {
+
+                },
+
+                {
+                    _id: 0,
+                    rol: 1
+                }, 
+
+                (err, docs) =>{
+                if(err) throw err
+                cb(docs)
+            })
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos devuelve todos los modulos de los usuarios
+    // ---------------------------------------------------------- //
+
+    Model.estadisticas_modulos = (cb) => {
+        conn
+            .aggregate([
+                {
+                    $group: {
+                        _id: "$id_empresa",
+                        MOD_CALENDARIO: { $first: "$MOD_CALENDARIO" },
+                        MOD_CHAT: { $first: "$MOD_CHAT" },
+                        MOD_HORA: { $first: "$MOD_HORA" },
+                        MOD_COLOR: { $first: "$MOD_COLOR" },
+                    }
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: "$$ROOT",
+                    },
+                },
+            ])
+            .exec((err, docs) => {
+                if (err) throw err;
+                cb(docs);
+            });
+    };
 
     // ---------------------------------------------------------- //
     // Nos edita el aparecer oferente en la busqueda

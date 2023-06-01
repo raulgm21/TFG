@@ -209,7 +209,6 @@ block content
 
         //- PERFIL ADMIN
         -if(usuario.rol == "admin")
-
             //- VARIABLES
             input#HOME_DNI_USUARIO(type="text", value=usuario.dni)
             input#HOME_COLOR_USUARIO(type="text", value=usuario.color)
@@ -222,7 +221,7 @@ block content
             div#div_home
                 img(src="./img/administrador_fondo.jpg" style="opacity : 0.8")
                 div#HOME_CALENDARIO_ADMIN
-                img#HOME_CORREO(style="display : none")
+                img#HOME_CORREO(style="display : none", height = "600vh")
                 nav#HOME_HEADER 
                     p#HOME_nombre_empresa=usuario.nombre_empresa
                     p#HOME_nombre=usuario.nombre
@@ -246,7 +245,8 @@ block content
                         button#HOME_tutorial_si SÍ
                         img#HOME_asistente_tutorial(src="./img/asistente2.png")
                         button#HOME_tutorial_no NO
-                    
+                
+
                 nav#HOME_MENU
                     div.HOME_menu-item
                         img#HOME_INICIO(src="./img/icon/casa.png", class="HOME_menu_imagen")
@@ -257,7 +257,8 @@ block content
                     div.HOME_menu-item
                         img#HOME_ESTADISTICAS(src="./img/icon/estadisticas.png", class="HOME_menu_imagen")
                         p.HOME_menu_texto#HOME_ESTADISTICAS Estadísticas   
-            
+
+            script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js")
             script(type="text/javascript", src="../js/home.js")   
             script(type="text/javascript", src="../js/home_admin.js")
 

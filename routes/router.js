@@ -77,6 +77,8 @@
         .delete('/eliminar-personal/dni', Controller.eliminar_personal_dni)
         .delete('/eliminar-personal/id', Controller.eliminar_personal_id)
 
+        .post('/estadisticas-roles', Controller.estadisticas_roles)
+        .post('/estadisticas-modulos', Controller.estadisticas_modulos)
         .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
 
         .post('/mandar-correo', Controller.mandar_correo)
