@@ -118,17 +118,6 @@
 
         var div = document.createElement("div");
         contenedor.appendChild(div);
-        var editar = document.createElement("img");
-        editar.setAttribute("src","./img/icon/editar_admin.png");
-        editar.style.height = "160px";
-        editar.style.width = "160px";
-        var texto = document.createElement("p");
-        texto.innerHTML = "Editar Administrador";
-        div.appendChild(editar);
-        div.appendChild(texto);
-
-        var div = document.createElement("div");
-        contenedor.appendChild(div);
         var consultar = document.createElement("img");
         consultar.setAttribute("src","./img/icon/consultar_admin.png");
         consultar.style.height = "160px";
@@ -145,9 +134,6 @@
         })
         eliminar.addEventListener("click", () => {
             eliminar_administrador();
-        })
-        editar.addEventListener("click", () => {
-            editar_administrador();
         })
         consultar.addEventListener("click", () => {
             consultar_administrador();
@@ -465,6 +451,10 @@
         });
     }
 
+    // ---------------------------------------------------------------------- //
+    // ELIMINAR SUGMIT
+    // ---------------------------------------------------------------------- //
+
     function submit_eliminar(DNI){
 
         var modal = document.createElement("div");
@@ -553,9 +543,6 @@
             })
     }
 
-    function editar_administrador(){
-        alert(",pdo")
-    }
 
     // ---------------------------------------------------------------------- //
     // CONSULTAR
