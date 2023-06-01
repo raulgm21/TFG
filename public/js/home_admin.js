@@ -155,6 +155,10 @@
 
     })
     
+    // ---------------------------------------------------------------------- //
+    // INTRODUCIR
+    // ---------------------------------------------------------------------- //
+
     function introducir_administrador(){
 
         var modal = document.createElement("div");
@@ -347,14 +351,215 @@
             });
     }
 
+    // ---------------------------------------------------------------------- //
+    // ELIMINAR
+    // ---------------------------------------------------------------------- //
+
     function eliminar_administrador(){
-        alert("ELimi")
+
+        fetch('/mostrar-administradores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+                
+        })
+
+        .then(textoRespuesta => {
+          
+            vaciar_cuerpo(CUERPO);
+
+            var titulo = document.createElement("h1");
+            titulo.setAttribute("id", "HOME_cuerpo_titulo");
+            titulo.innerHTML = "¡ Cuidado ! los administradores que borres no se podrán recuperar";
+            CUERPO.appendChild(titulo);
+
+            var tabla = document.createElement("table");
+            tabla.setAttribute("id","HOME_PERSONAL_EMPRESARIO");
+         
+            CUERPO.appendChild(tabla);
+
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "DNI";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Nombre";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Correo";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Foto";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "";
+            fila.appendChild(columna);
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                if(textoRespuesta[i].nombre != undefined){
+
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
+
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].dni;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].nombre;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].correo;
+                    fila.appendChild(columna);
+                    var foto = document.createElement("img");
+                    foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                    foto.style.height = "64px";
+                    foto.style.width = "64px";
+                    foto.style.borderRadius = "9999px";
+                    foto.style.position = "relative";
+                    foto.style.left = "80px";
+                    fila.appendChild(foto);
+                    var boton = document.createElement("button");
+                    boton.setAttribute("class",textoRespuesta[i].dni);
+                    boton.setAttribute("id","EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
+                    boton.innerHTML = "Eliminar";
+                    boton.style.position = "relative";
+                    boton.style.left = "224px";
+                    fila.appendChild(boton);
+
+                }
+                
+            }
+
+            // obtener el valor para luego hacer el modal
+            var boton = document.querySelectorAll("button#EMPRESARIO_PERSONAL_ELIMINAR_BOTON");
+
+                for (boton_seleccionado of boton) {
+
+                    boton_seleccionado.addEventListener("click", (e) => {
+
+                        var hijo = e.target;
+                        var VALOR = hijo.getAttribute("class")
+                        submit_eliminar(VALOR);
+                    });
+                }
+
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
+    }
+
+    function submit_eliminar(DNI){
+
+        var modal = document.createElement("div");
+                modal.style.height = "88px";
+                modal.style.width = "40%";
+                modal.style.border = "none";
+                modal.style.position = "fixed";
+                modal.style.top = "50%";
+                modal.style.left = "50%";
+                modal.style.transform = "translate(-50%, -50%)";
+                modal.style.backgroundColor = "#fff";
+                modal.style.zIndex = "1000";
+                modal.style.padding = "20px";
+                modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+
+            var BODY = document.body;
+            BODY.appendChild(modal);
+
+            var texto = document.createElement("p");
+            
+            texto.style.textAlign = "center";
+            texto.style.fontFamily = "monospace";
+            texto.innerHTML = "¿Estás seguro de eliminar al admin <strong>"+DNI+"</strong>?. Una vez que aceptes no se podrá volver a atrás.";
+            modal.appendChild(texto);
+
+            var aceptar = document.createElement("button");
+            aceptar.style.display = "block";
+            aceptar.style.textAlign = "center";
+            aceptar.style.margin = "0 auto";
+            aceptar.style.border = "none";
+            aceptar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            aceptar.style.color = "#F9260D";
+            aceptar.style.width = "64px";
+            aceptar.style.marginBottom = "8px";
+            aceptar.style.cursor = "pointer";
+            aceptar.innerHTML = "Aceptar";
+
+            modal.appendChild(aceptar);
+
+            var cancelar = document.createElement("button");
+            cancelar.style.display = "block";
+            cancelar.style.textAlign = "center";
+            cancelar.style.margin = "0 auto";
+            cancelar.style.border = "none";
+            cancelar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+            cancelar.style.cursor = "pointer";
+            cancelar.style.width = "64px";
+            cancelar.innerHTML = "Cancelar";
+
+            modal.appendChild(cancelar);
+
+            cancelar.addEventListener("click", () => {
+                modal.remove();
+            });
+
+            aceptar.addEventListener("click", () => {
+
+                DATOS = { dni : DNI,}
+
+                fetch('/eliminar-administrador', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(DATOS)
+                })
+    
+                .then(response => {
+    
+                    if (response.ok){return response.text();}
+                    else{console.log("Error");}
+                    
+                })
+    
+                .then(textoRespuesta => {
+    
+                    if(textoRespuesta === "Correcto"){
+                        modal.remove();
+                        window.location.reload();
+                    }
+                })
+    
+                .catch(error => {
+                    console.error('Error al enviar los datos:' + error);
+                });
+            })
     }
 
     function editar_administrador(){
         alert(",pdo")
     }
 
+    // ---------------------------------------------------------------------- //
+    // CONSULTAR
+    // ---------------------------------------------------------------------- //
     function consultar_administrador(){
 
         fetch('/mostrar-administradores', {

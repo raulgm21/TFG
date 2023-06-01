@@ -930,6 +930,28 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos eliminar un ADMIN
+    // ------------------------------------------------------ //
+
+    Controller.eliminar_administrador = (req, res, next) => {
+        
+        const datos = req.body;
+       
+        var dni = datos.dni.trim();
+        
+        OBJDATOS = {
+            dni : dni
+        }
+
+        Model.eliminar_administrador(OBJDATOS , (docs) => {
+            
+            res.send("Correcto");
+
+        })
+
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos elimina un trabajador mediante ID.
     // ------------------------------------------------------ //
 

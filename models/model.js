@@ -597,6 +597,24 @@ var conn = require('./model-connection'),
     }
 
     // ------------------------------------------------------ //
+    // Nos elimina un ADMINISTRADOR
+    // ------------------------------------------------------ //
+
+    Model.eliminar_administrador= (data, cb) => {
+            
+        conn
+            .findOneAndDelete(
+                {
+                    dni : data.dni
+                }, 
+                (err, docs) =>{
+                if(err) throw err
+                cb()
+            })
+    }
+
+
+    // ------------------------------------------------------ //
     // Nos elimina un trabajador mediante IDENTIFICADOR.
     // ------------------------------------------------------ //
 

@@ -98,6 +98,7 @@
         
         .post('/insertar-admin', Controller.insertar_admin)
         .post('/mostrar-administradores', Controller.mostrar_administradores)
+        .delete('/eliminar-administrador', Controller.eliminar_administrador)
         
         .get('/prueba', Controller.prueba)
         // Uso del Error 404
