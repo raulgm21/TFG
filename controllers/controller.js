@@ -844,6 +844,22 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
+    // Modelo que nos obtiene todos los administradores
+    // ------------------------------------------------------ //
+
+    Controller.mostrar_administradores = (req, res, next) => {
+
+        Model.mostrar_administradores((docs) => {
+            
+            console.log(docs);
+            if(docs){
+                res.send(docs);
+            }
+            
+        })
+    }
+
+    // ------------------------------------------------------ //
     // Modelo que nos obtiene todos los roles de trabajadores
     // ------------------------------------------------------ //
 

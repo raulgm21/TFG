@@ -241,7 +241,6 @@ var conn = require('./model-connection'),
             })
     }
     
-
     // ---------------------------------------------------------- //
     // Nos edita al usuario activo para ponerle el tutorial en NO
     // ---------------------------------------------------------- //
@@ -549,6 +548,27 @@ var conn = require('./model-connection'),
             (
                 {
                     id_empresa : data.id_empresa
+                }
+            )
+            .exec((err, docs) => {
+
+                if(err) throw err
+                cb(docs)
+            })
+            
+    }
+
+    // ---------------------------------------------------------- //
+    // Nos muestra todo los administradores
+    // ---------------------------------------------------------- //
+
+    Model.mostrar_administradores= (cb) => {
+            
+        conn
+            .find
+            (
+                {
+                    rol : "admin"
                 }
             )
             .exec((err, docs) => {

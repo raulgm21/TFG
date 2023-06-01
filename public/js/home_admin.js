@@ -356,7 +356,90 @@
     }
 
     function consultar_administrador(){
-        alert("consultar")
+
+        fetch('/mostrar-administradores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        .then(response => {
+
+            if (response.ok){return response.json();}
+            else{console.log("Error");}
+                
+        })
+
+        .then(textoRespuesta => {
+          
+            vaciar_cuerpo(CUERPO);
+
+            var titulo = document.createElement("h1");
+            titulo.setAttribute("id", "HOME_cuerpo_titulo");
+            titulo.innerHTML = "¡ Listado de todos los administradores de TeamWork !";
+            CUERPO.appendChild(titulo);
+
+            var tabla = document.createElement("table");
+            tabla.setAttribute("id","HOME_PERSONAL_EMPRESARIO");
+            CUERPO.appendChild(tabla);
+
+            var fila = document.createElement("tr");
+            tabla.appendChild(fila);
+
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "DNI";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Nombre";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Correo";
+            fila.appendChild(columna);
+            var columna = document.createElement("th");
+            columna.style.backgroundColor = COLOR;
+            columna.innerHTML = "Foto";
+            fila.appendChild(columna);
+
+
+            // DNI, Nombre, Correo, Cargo, Foto
+
+            for(i = 0 ; i < textoRespuesta.length ; i++){
+
+                if(textoRespuesta[i].nombre != undefined){
+
+                    var fila = document.createElement("tr");
+                    tabla.appendChild(fila);
+
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].dni;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].nombre;
+                    fila.appendChild(columna);
+                    var columna = document.createElement("td");
+                    columna.innerHTML = textoRespuesta[i].correo;
+                    fila.appendChild(columna);
+
+                    var foto = document.createElement("img");
+                    foto.setAttribute("src",textoRespuesta[i].foto_perfil);
+                    foto.style.height = "64px";
+                    foto.style.width = "64px";
+                    foto.style.borderRadius = "9999px";
+                    foto.style.position = "relative";
+                    foto.style.left = "96px";
+                    fila.appendChild(foto);
+                }
+                
+            }
+        })
+
+        .catch(error => {
+            console.error('Error al enviar los datos:' + error);
+        });
     }
 
 // ----------------------------------------------------------------------------------------------- //
