@@ -57,6 +57,119 @@
 
     document.getElementById("HOME_INICIO").addEventListener("click", () => {window.location.reload();})
 
+// ----------------------------------------------------------------------------------------------- //
+
+    // ---------------------------------------------------------------------- //
+    // ADMINISTRACIÓN
+    // ---------------------------------------------------------------------- //
+
+    document.getElementById("HOME_ADMINISTRACION").addEventListener("click", () => {
+
+        vaciar_cuerpo(CUERPO);
+
+        var titulo = document.createElement("h1");
+        titulo.setAttribute("id", "HOME_cuerpo_titulo");
+        titulo.innerHTML = "¡ Administración de TeamWork !";
+        CUERPO.appendChild(titulo);
+
+        var texto = document.createElement("p");
+        texto.setAttribute("id","HOME_cuerpo_texto_nombre");
+        texto.innerHTML = "Aquí se puede añadir, eliminar, modificar o consultar personal administrativo.";
+        CUERPO.appendChild(texto);
+
+        var calendario = document.getElementById("HOME_CALENDARIO_ADMIN");
+        var div_home = document.getElementById("div_home");
+        if(document.getElementById("HOME_CALENDARIO_ADMIN")){
+            div_home.removeChild(calendario);
+        }
+
+        var contenedor = document.createElement("div");
+        contenedor.setAttribute("id","HOME_CONFIGURACION_DIV");
+        contenedor.style.display = "flex",
+        contenedor.style.marginTop = "48px";
+        contenedor.style.justifyContent = "space-around";
+        contenedor.style.textAlign = "center";
+        contenedor.style.fontFamily = "monospace";
+        contenedor.style.fontSize = "20px";
+        contenedor.style.cursor = "pointer";
+        CUERPO.appendChild(contenedor);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var introducir = document.createElement("img");
+        introducir.setAttribute("src","./img/icon/introducir_admin.png");
+        introducir.style.height = "160px";
+        introducir.style.width = "160px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Añadir Administrador";
+        div.appendChild(introducir);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var eliminar = document.createElement("img");
+        eliminar.setAttribute("src","./img/icon/eliminar_admin.png");
+        eliminar.style.height = "160px";
+        eliminar.style.width = "160px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Eliminar Admin";
+        div.appendChild(eliminar);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var editar = document.createElement("img");
+        editar.setAttribute("src","./img/icon/editar_admin.png");
+        editar.style.height = "160px";
+        editar.style.width = "160px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Editar Administrador";
+        div.appendChild(editar);
+        div.appendChild(texto);
+
+        var div = document.createElement("div");
+        contenedor.appendChild(div);
+        var consultar = document.createElement("img");
+        consultar.setAttribute("src","./img/icon/consultar_admin.png");
+        consultar.style.height = "160px";
+        consultar.style.width = "160px";
+        var texto = document.createElement("p");
+        texto.innerHTML = "Consultar Administradores";
+        div.appendChild(consultar);
+        div.appendChild(texto);
+
+
+        // EVENTOS
+        introducir.addEventListener("click", () => {
+            introducir_administrador();
+        })
+        eliminar.addEventListener("click", () => {
+            eliminar_administrador();
+        })
+        editar.addEventListener("click", () => {
+            editar_administrador();
+        })
+        consultar.addEventListener("click", () => {
+            consultar_administrador();
+        })
+
+    })
+    
+    function introducir_administrador(){
+        alert("Introduc")
+    }
+
+    function eliminar_administrador(){
+        alert("ELimi")
+    }
+
+    function editar_administrador(){
+        alert(",pdo")
+    }
+
+    function consultar_administrador(){
+        alert("consultar")
+    }
 
 // ----------------------------------------------------------------------------------------------- //
 
@@ -70,7 +183,7 @@
 
         var titulo = document.createElement("h1");
         titulo.setAttribute("id", "HOME_cuerpo_titulo");
-        titulo.innerHTML = "¡Estadísticas!";
+        titulo.innerHTML = "¡ Estadísticas !";
         CUERPO.appendChild(titulo);
 
         var texto = document.createElement("p");
@@ -80,7 +193,10 @@
 
         var calendario = document.getElementById("HOME_CALENDARIO_ADMIN");
         var div_home = document.getElementById("div_home");
-        div_home.removeChild(calendario);
+        if(document.getElementById("HOME_CALENDARIO_ADMIN")){
+            div_home.removeChild(calendario);
+        }
+        
 
         var contenedor = document.createElement("div");
         contenedor.setAttribute("id","HOME_CONFIGURACION_DIV");
@@ -519,7 +635,4 @@
         console.error('Error al enviar los datos:' + error);
     });
 
-})
-    // ---------------------------------------------------------------------- //
-    // GRAFICA
-    // ---------------------------------------------------------------------- //
+    })
