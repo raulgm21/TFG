@@ -1216,7 +1216,6 @@ const fs = require('fs');                       // Módulo para interactuar con 
     
     Controller.error404 = (req, res, next) => {
 
-        // Declaración del Objeto Error, es un módulo de Node.js
         let error  = new Error(),
         locals = {
 
@@ -1224,7 +1223,7 @@ const fs = require('fs');                       // Módulo para interactuar con 
             error : error
 
         }
-        // Cómo el error es un NOT_FOUND deberemos de poner 404
+        
         error.status = 404
         
         res.render('error', locals)

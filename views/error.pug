@@ -1,0 +1,14 @@
+extends layout.pug 
+
+block content
+    
+    link(rel="stylesheet", href="./css/error.css")
+    div#error_div     
+        div#fondo-error
+        div#icono-error
+
+        button#error_regresar
+            a(onclick="history.back()") Regresar
+
+        div.error_info
+            p Lo sentimos, la página no ha sido encontrada o no existe actualmente.

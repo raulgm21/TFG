@@ -101,8 +101,10 @@
         .delete('/eliminar-administrador', Controller.eliminar_administrador)
         
         .get('/prueba', Controller.prueba)
-        // Uso del Error 404
-       // .use(Controller.error404)
+        
+        
+        //Uso del Error 404
+        .use(Controller.error404)
 
 // ********************************************************************* //
 //                         Exportación del Módulo.                       //
