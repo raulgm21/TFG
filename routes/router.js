@@ -46,20 +46,30 @@
 
     router
 
+        // ------------------ INDEX ------------------ //
+
         .get('/', Controller.index)
 
         .get('/asistente', Controller.asistente)
         
+        // ------------------ RGPD ------------------ //
+
         .get('/terminos-condiciones', Controller.terminos_condiciones)
         .get('/privacidad-datos', Controller.privacidad_datos)
         .get('/aviso-legal', Controller.aviso_legal)
         .get('/politica-cookies', Controller.politica_cookies)
 
+        // ------------------ CONTACTO ------------------ //
+
         .get('/contacto', Controller.contacto)
         .post('/contacto/correo', Controller.contacto_correo)
 
+        // ------------------ INICIO DE SESIÓN ------------------ //
+
         .get('/iniciarSesion', Controller.iniciarSesion)
         
+        // ------------------ REGISTRO ------------------ //
+
         .get('/registro', Controller.registro)
         .get('/registro/empresario', Controller.registro_empresario)
         .get('/registro/trabajador', Controller.registro_trabajador)
@@ -70,42 +80,58 @@
         .post('/registro/trabajador/submit', Controller.registro_trabajador_submit)
         .post('/consultar/trabajador/identificador', Controller.consultar_trabajador_identificador)
 
+        // ------------------ HOME ------------------ //
+
         .post('/home', Controller.sesion)
+
+        .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
+
+        // ------------------ PERSONAL - EMPRESARIO ------------------ //
 
         .post('/insertar-personal', Controller.insertar_personal)
         .post('/mostrar-personal', Controller.mostrar_personal)
         .delete('/eliminar-personal/dni', Controller.eliminar_personal_dni)
         .delete('/eliminar-personal/id', Controller.eliminar_personal_id)
 
-        .post('/estadisticas-roles', Controller.estadisticas_roles)
-        .post('/estadisticas-modulos', Controller.estadisticas_modulos)
-        .post('/subir-foto', upload.single('imagen'), Controller.subir_foto)
+        // ------------------ CORREO ------------------ //
 
         .post('/mandar-correo', Controller.mandar_correo)
         .post('/consultar-correo', Controller.consultar_correo)
 
-        .put('/tutorialNO', Controller.tutorialNO)
+        // ------------------ MODIFICAR CUENTA ------------------ //
+
         .put('/cambiar-nombre', Controller.cambiar_nombre)
         .put('/cambiar-password', Controller.cambiar_password)
+
+        // ------------------ MÓDULOS ------------------ //
 
         .put('/comprar-modulo', Controller.comprar_modulo)
         .put('/actualizar-modulos', Controller.actualizar_modulos)
         .put('/cambiar-estado-modulo', Controller.cambiar_estado_modulo)
         .put('/modulos/color/cambiar-color', Controller.moduloColor_cambiarColor)
 
+        // ------------------ EMPRESA - OFERENTE ------------------ //
+
         .put('/aparecer-oferente', Controller.aparecer_oferente)
         .post('/mostrar-empresas', Controller.mostrar_empresas)
         
+        // ------------------ PERSONAL - ADMINISTRADOR ------------------ //
+
         .post('/insertar-admin', Controller.insertar_admin)
         .post('/mostrar-administradores', Controller.mostrar_administradores)
         .delete('/eliminar-administrador', Controller.eliminar_administrador)
         
+        // ------------------ ESTADÍSTICAS - ADMINISTRADOR ------------------ //
+
+        .post('/estadisticas-roles', Controller.estadisticas_roles)
+        .post('/estadisticas-modulos', Controller.estadisticas_modulos)
+        
+        // ------------------ ERRORES Y PRUEBAS ------------------ //
+        
+        .use(Controller.error404)    
+        
         .get('/prueba', Controller.prueba)
         
-        
-        //Uso del Error 404
-        .use(Controller.error404)
-
 // ********************************************************************* //
 //                         Exportación del Módulo.                       //
 // ********************************************************************* //

@@ -1211,7 +1211,7 @@ const fs = require('fs');                       // Módulo para interactuar con 
     }
 
     // ------------------------------------------------------ //
-    // Vista del Error, que es cuando no se produce un error404
+    // Vista de Error, que es cuando no se produce un error404
     // ------------------------------------------------------ //
     
     Controller.error404 = (req, res, next) => {
@@ -1223,7 +1223,7 @@ const fs = require('fs');                       // Módulo para interactuar con 
             error : error
 
         }
-        
+
         error.status = 404
         
         res.render('error', locals)
